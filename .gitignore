@@ -6,3 +6,5 @@
 Thumbs.db
 /public/
 /resources/
+\.knit\.md$
+\.utf8\.md$

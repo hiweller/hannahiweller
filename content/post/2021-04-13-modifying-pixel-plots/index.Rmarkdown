@@ -3,18 +3,18 @@ title: Modifying pixel plots
 author: Hannah Weller
 date: '2021-04-13'
 slug: modifying-pixel-plots
-categories: [colordistance, color, r packages]
+categories: []
 tags: [colordistance, color, r packages, plotting]
 subtitle: ''
-summary: ''
-authors: []
+summary: 'How to make prettier, more flexible plots of pixels in color space.'
+authors: [Hannah Weller]
 lastmod: '2021-04-13T12:06:09-04:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: []
+projects: [colordistance]
 ---
 
 The `plotPixels` function in `colordistance` is pretty inflexible. It was originally meant as a diagnostic tool, and the plots it produces are not exactly beautiful:

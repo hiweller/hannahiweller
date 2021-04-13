@@ -5,16 +5,16 @@ date: '2021-04-13'
 slug: function-gallery-for-recolorize
 categories: []
 tags: [recolorize, color, r packages]
-subtitle: 'A copy of the `recolorize` function gallery vignette.'
-summary: ''
-authors: []
+subtitle: ''
+summary: 'A copy of the `recolorize` function gallery vignette.'
+authors: [Hannah Weller]
 lastmod: '2021-04-13T17:27:09-04:00'
 featured: no
 image:
   caption: ''
   focal_point: ''
   preview_only: no
-projects: []
+projects: [recolorize]
 ---
 
 

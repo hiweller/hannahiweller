@@ -1,0 +1,22 @@
+# Theme metadata
+name = "Hannah"
+
+# Is theme light or dark?
+light = true
+
+# Primary
+primary = "#073847"
+
+# Menu
+menu_primary = "#fff"
+menu_text = "#a4c1c1"
+menu_text_active = "#440919"
+menu_title = "#2b2b2b"
+
+# Home sections
+home_section_odd = "rgb(255, 255, 255)"
+home_section_even = "rgb(247, 247, 247)"
+
+[dark]
+  link = "#a4c1c1"
+  link_hover = "#a4c1c1"

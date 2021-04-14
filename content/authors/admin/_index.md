@@ -15,6 +15,7 @@ email: hannahiweller@gmail.com
 highlight_name: false
 interests:
 - Life history evolution
+- Historical contingency
 - Visual signaling
 - Image processing
 organizations:
@@ -41,15 +42,13 @@ superuser: true
 title: Hannah Weller
 ---
 
-> There are fascinating ideas all over the place, irresistible experiments beyond numbering, all sorts of new ways into the maze of problems. But every next move is unpredictable, every outcome uncertain. It is a puzzling time, but a very good time.
->
-> I do not know how you lay out orderly plans for this kind of activity, but I suppose you could find out by looking through the disorderly records of the past hundred years. **Somehow, the atmosphere has to be set so that a disquieting sense of being wrong is the normal attitude of the investigators.** It has to be taken for granted that the only way in is by riding the unencumbered human imagination, with the special rigor required for recognizing that something can be highly improbable, maybe almost impossible, and at the same time true.    
+I want to know how to interpret organisms in the light of their evolutionary history. We often assume everything on an organism serves a purpose, and that each trait is direct outcome of natural selection, but this is almost never true. Drift and chance, at least in animals, seems to be the name of the game. So, which traits are adaptations, and which are byproducts? How often does evolution take the path of least resistance? And what does that mean, exactly, for the popular conception of evolution as an "optimizer"?
 
-—Lewis Thomas, on basic science
+I find it helpful to think about every living thing as being like a very, very old house. Some of the parts are there because they've always been useful (walls), and some of the parts are new additions for new functions (solar panels); but a lot of parts are there because it was easier to modify what existed than it was to build something from scratch, especially if the house needs to be habitable the whole time. And, like houses, I think we can learn a lot about organisms by understanding them as the outcomes of their history.
 
-We are constantly inventing new ways to represent organisms as numbers -- genomics, CT scanning, 3D kinematics, molecular phylogenetics, fMRIs, neural networks, and anything else that falls under the label of "big data".These methods allow researchers to address important, qualitative questions in specific, quantitative ways. This comes with a major caveat: representing organisms as numbers, however comprehensive we try to make those numbers, reduces the organisms. What are we losing? What matters, and to whom?
+Right now I'm studying how the evolution of mouthbrooding (a kind of parental care where parents incubate offspring in their mouths), and how much feeding phenotypes influence that evolution. I think that mouthbrooding is a beautiful example of an extraordinary behavior (using a mouth as a nursery!) that arises from co-opting existing traits (some mouths are better nurseries than others, depending on how species feed).
 
-In the broadest possible sense, my ambitions as a biologist are 1) to figure out how we can choose the right numbers for our questions, 2) to use those numbers to answer those questions in meaningful ways, and 3) to always keep our answers in context of the full complexity of the organisms themselves, warts and all.
+I also work a lot on color pattern evolution, and have written a few R packages to make that easier for myself and others. Color is a very tricky trait: human beings are highly visual, and so we tend to ascribe a lot of importance to color pattern. To me, this is why it's so important to make sure that we're being careful and rigorous with the conclusions we draw about how much it matters to other living things. I think that accessible, objective tools for color pattern research are an important part of that. Plus, it turns out I just enjoy coding.
 
 
 {{< icon name="download" pack="fas" >}} Download my {{< staticref "media/cv.pdf" "newtab" >}}CV{{< /staticref >}}.

@@ -2,10 +2,22 @@
 name = "Hannah"
 
 # Optional Google font URL
-google_fonts = "family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700"
+# google_fonts = "family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700"
+google_fonts = "family=Cormorant+Garamond&family=Inconsolata&family=Noto+Sans&family=Nunito+Sans:wght@300;400&family=Nunito:wght@300&family=Open+Sans&family=Raleway:wght@300;400&display=swap"
+
+# mono: Inconsolata
+
+# sans serif:
+# Noto Sans
+# Nunito Sans
+# Open Sans
+# Raleway
+
+# serif:
+# Nunito
 
 # Font families
-heading_font = "Montserrat"
-body_font = "Montserrat"
-nav_font = "Montserrat"
-mono_font = "Roboto Mono"
+heading_font = "Raleway"
+body_font = "Nunito"
+nav_font = "Raleway"
+mono_font = "Inconsolata"

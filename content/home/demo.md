@@ -20,7 +20,7 @@ text_color_light: true
 design:
   columns: "1"
   background:
-    image: 010.jpg
+    image: 016.jpg
     image_darken: 0.5
     image_parallax: true
     image_position: center

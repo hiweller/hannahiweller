@@ -5,11 +5,11 @@ name = "Hannah"
 light = true
 
 # Primary
-primary = "#073847"
+primary = "#004a61"
 
 # Menu
 menu_primary = "#fff"
-menu_text = "#a4c1c1"
+menu_text = "#608d90"
 menu_text_active = "#440919"
 menu_title = "#2b2b2b"
 

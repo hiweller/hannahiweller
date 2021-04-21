@@ -24,7 +24,7 @@ Hannah Weller
 
 ----
 
-
+<br>  
 
 Education
 ---------
@@ -43,6 +43,8 @@ Education
 :   **Honors B.Sc., Biology**  
   University of Chicago (Chicago, IL)    
    *Thesis: Winnowing in the eartheater cichlids*  
+
+<br>  
 
 Awards and Fellowships
 ----------------------
@@ -74,8 +76,13 @@ June 2014
 : **Elliott and Eileen Hinkes Research Fellowship**  
     $4,000, University of Chicago
 
+
+<br>  
+
 Peer-reviewed publications
 --------------------------
+
+**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2021). Feeding adaptations facilitate the evolution of mouthbrooding in Neotropical cichlids. In review.
 
 **Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. Integrative Organismal Biology. DOI: https://doi.org/10.1093/iob/obaa018.
 
@@ -92,7 +99,7 @@ van Meer, N.M., **Weller, H.I.**, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., 
 
 **Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid *Satanoperca daemon* and evolutionary implications. Zoomorphology. DOI: [10.1007/s00435-016-0335-6](10.1007/s00435-016-0335-6)
 
-
+<br>  
 
 Software
 ---------------------------
@@ -106,9 +113,13 @@ O'Sullivan, D., **Weller, H.I.**, and Lord, N.P. Insect Color Database (ICDB). I
 **Weller, H.I.** (2018). countcolors: Locates and Counts Pixels Within Color Range(s) in Images (ver. 0.9.1). CRAN Repository. [https://CRAN.R-project.org/package=countcolors](https://CRAN.R-project.org/package=countcolors)
 
 
+<br>  
 
 Presentations
 -------------
+
+**Weller, H.I.**,  Karan, E., Schwartz, S. and Lord, N.P. (Jan. 2021). Talk: `recolorize`: color-based image segmentation (for people with other things to do). *Society for Integrative and Comparative Biology (Virtual).*
+
 
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan's perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. *Society for Integrative and Comparative Biology, Austin, TX.*
 
@@ -124,6 +135,8 @@ Presentations
 
 **Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. *American Society of Ichthyologists and Herpetologists, New Orleans, LA.*
 
+
+<br>  
 
 
 Invited talks, lectures, & workshops
@@ -156,6 +169,8 @@ December 2019
     Organizer. Day-long workshop on data analysis and visualization in R.
 
 
+<br>  
+
 Research experience
 -------------------
 2017 – Present
@@ -179,9 +194,11 @@ June 2014 – September 2014
   Ontogenetic scaling; biomechanical modeling; geometric morphometrics.
 
 
+<br>  
+
 Teaching and outreach
 ---------------------
-August 2020 – Present
+August 2020 – April 2020
 :   **Teaching assistant**, *Brown University, Alpert Medical School* (Providence, RI)  
   COVID-modified Human Anatomy (lecture and lab)  
     Restructuring the traditional gross anatomy curriculum, including remote/small group work and prosection-based staggered labs.
@@ -217,6 +234,9 @@ June 2013 – September 2013
     Daily animal care and maintenance; visitor outreach; collection trips.
 
 
+<br>  
+
+
 Skills
 ------
 Coding
@@ -229,6 +249,8 @@ Languages
 :   English (native), French (intermediate)
 
 ----
+
+<br>  
 
 >*Lab*: Biomedical Center 426, 171 Meeting St.,  Providence, RI 02906  
 >*Email*: <hannahiweller@gmail.com>  

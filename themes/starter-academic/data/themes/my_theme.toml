@@ -5,17 +5,17 @@ name = "Hannah"
 light = true
 
 # Primary
-primary = "#004a61"
+primary = "#006181"
 
 # Menu
-menu_primary = "#fff"
-menu_text = "#608d90"
+menu_primary = "#f5f5f5"
+menu_text = "#5f8684"
 menu_text_active = "#440919"
-menu_title = "#2b2b2b"
+menu_title = "#5f8684"
 
 # Home sections
 home_section_odd = "#ffffff"
-home_section_even = "#f5f4f4"
+home_section_even = "#f5f5f5"
 
 [dark]
   link = "#a4c1c1"

@@ -28,10 +28,9 @@ design:
     image_size: cover
     text_color_light: true
   spacing:
-    padding: ["200px", "0", "200px", "0"]
+    padding: ["300px", "50px", "300px", "50px"]
 ---
 
 <p align="center">
-<img src="/home/demo_files/white_fish.png" alt="A drawing of a fish." width="20%"/>
-</p>
+<img src="/home/demo_files/hello_fish.png" alt="A fish saying hello." width="50%"/></p>
 

@@ -26,6 +26,14 @@ content:
       captcha: false
   
 design:
-  columns: '2'
-
+  columns: "1"
+  background:
+    image: moss_light.JPG
+    image_darken: 1.1
+    image_parallax: true
+    image_position: center
+    image_size: cover
+    text_color_light: false
+  spacing:
+    padding: ["20px", "0", "20px", "0"]
 ---

@@ -14,6 +14,9 @@ header:
   image: ""
 ---
 
+{{< icon name="download" pack="fas" >}} {{< staticref "media/cv.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
+
+
 Hannah Weller
 ============
 

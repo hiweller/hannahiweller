@@ -66,5 +66,5 @@ I find it helpful to think about every living thing as being like a very, very o
 [See what I'm up to lately.](/currently) 
 
 
-{{< icon name="paper-plane" pack="fas" >}} [Get in touch!](/contact)
+{{< icon name="paper-plane" pack="fas" >}} [Get in touch!](#contact)
 

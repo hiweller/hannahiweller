@@ -21,7 +21,7 @@ text_color_light: true
 design:
   columns: "1"
   background:
-    image: moss.JPG
+    image: "moss.JPG"
     image_darken: 0.8
     image_parallax: true
     image_position: center

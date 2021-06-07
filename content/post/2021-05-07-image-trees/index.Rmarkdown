@@ -44,7 +44,7 @@ images <- dir("images/", full.names = TRUE)
 # generate a distance matrix using all the package defaults
 cdm <- imageClusterPipeline(images, sample.size = FALSE)
 ```
-The idea of this analysis is the cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.
+The idea of this analysis is to cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.
 
 By default, colordistance generates a heatmap representing the pairwise color distances between each image, where darker blue indicates that two images are more similar, and brighter pink indicates that they are less similar. You might notice that this graphic is kind of useless for diagnostics. The image names are just printed as labels, and their names are not indicative of their contents--so I have no idea if this analysis has lumped together the green-and-shiny beetles separate from the black-and-yellow beetles, or if I need to try different settings, and sitting here looking up image names is not a quick way to check.
 
@@ -295,7 +295,7 @@ image_tree <- function(tree, # a phylo object
 
 I'll save that function and the `add_image` function in a script file (typically called `image_tree.R` or similar) and source that for the relevant project, so in practice my actual workflow looks like this:
 
-```{r, message=FALSE, warning=FALSE}
+```{r, message=FALSE, warning=FALSE, results='hide'}
 library(ape)
 library(colordistance)
 

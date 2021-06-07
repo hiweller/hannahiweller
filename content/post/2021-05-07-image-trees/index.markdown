@@ -39,7 +39,7 @@ cdm <- imageClusterPipeline(images, sample.size = FALSE)
 ```
 
 <img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" />
-The idea of this analysis is the cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.
+The idea of this analysis is to cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.
 
 By default, colordistance generates a heatmap representing the pairwise color distances between each image, where darker blue indicates that two images are more similar, and brighter pink indicates that they are less similar. You might notice that this graphic is kind of useless for diagnostics. The image names are just printed as labels, and their names are not indicative of their contents--so I have no idea if this analysis has lumped together the green-and-shiny beetles separate from the black-and-yellow beetles, or if I need to try different settings, and sitting here looking up image names is not a quick way to check.
 
@@ -134,37 +134,44 @@ nmds_scores <- scores(metaMDS(comm = as.dist(cdm)))
 ## Run 0 stress 0.1158626 
 ## Run 1 stress 0.1139447 
 ## ... New best solution
-## ... Procrustes: rmse 0.01705769  max resid 0.09844763 
-## Run 2 stress 0.1158142 
-## Run 3 stress 0.1158141 
-## Run 4 stress 0.115814 
-## Run 5 stress 0.1139447 
-## ... Procrustes: rmse 4.950082e-05  max resid 0.0002317959 
+## ... Procrustes: rmse 0.01705616  max resid 0.09840254 
+## Run 2 stress 0.1140722 
+## ... Procrustes: rmse 0.007575743  max resid 0.03447679 
+## Run 3 stress 0.1159785 
+## Run 4 stress 0.1158626 
+## Run 5 stress 0.1139448 
+## ... Procrustes: rmse 0.0001779728  max resid 0.0006533518 
 ## ... Similar to previous best
-## Run 6 stress 0.115814 
+## Run 6 stress 0.1158627 
 ## Run 7 stress 0.115814 
-## Run 8 stress 0.1158141 
-## Run 9 stress 0.1158626 
-## Run 10 stress 0.1139448 
-## ... Procrustes: rmse 0.000163327  max resid 0.0006680534 
-## ... Similar to previous best
-## Run 11 stress 0.1139447 
-## ... Procrustes: rmse 7.3757e-05  max resid 0.0003012947 
-## ... Similar to previous best
-## Run 12 stress 0.1158141 
-## Run 13 stress 0.1158141 
-## Run 14 stress 0.1139447 
+## Run 8 stress 0.1158626 
+## Run 9 stress 0.1139447 
 ## ... New best solution
-## ... Procrustes: rmse 1.384958e-05  max resid 7.078235e-05 
+## ... Procrustes: rmse 6.912601e-05  max resid 0.0002514859 
 ## ... Similar to previous best
-## Run 15 stress 0.1158141 
-## Run 16 stress 0.1140711 
-## ... Procrustes: rmse 0.00728234  max resid 0.03298987 
-## Run 17 stress 0.1159775 
-## Run 18 stress 0.1158141 
-## Run 19 stress 0.1140706 
-## ... Procrustes: rmse 0.007124455  max resid 0.03226219 
-## Run 20 stress 0.1159784 
+## Run 10 stress 0.1139447 
+## ... Procrustes: rmse 5.642976e-05  max resid 0.0001733153 
+## ... Similar to previous best
+## Run 11 stress 0.1140719 
+## ... Procrustes: rmse 0.007496018  max resid 0.03406593 
+## Run 12 stress 0.1139448 
+## ... Procrustes: rmse 9.99557e-05  max resid 0.000494275 
+## ... Similar to previous best
+## Run 13 stress 0.1139447 
+## ... Procrustes: rmse 9.345179e-05  max resid 0.0004509194 
+## ... Similar to previous best
+## Run 14 stress 0.1139447 
+## ... Procrustes: rmse 6.492366e-05  max resid 0.0003038437 
+## ... Similar to previous best
+## Run 15 stress 0.1140722 
+## ... Procrustes: rmse 0.007604775  max resid 0.03440036 
+## Run 16 stress 0.1158141 
+## Run 17 stress 0.1158141 
+## Run 18 stress 0.1158142 
+## Run 19 stress 0.1139447 
+## ... Procrustes: rmse 5.046786e-05  max resid 0.0002452231 
+## ... Similar to previous best
+## Run 20 stress 0.1158141 
 ## *** Solution reached
 ```
 
@@ -299,95 +306,7 @@ images <- dir("images/", full.names = TRUE)
 cdm <- imageClusterPipeline(images, 
                             plot.heatmap = FALSE, 
                             sample.size = NULL)
-```
 
-```
-## 
-  |                                                                            
-  |                                                                      |   0%
-  |                                                                            
-  |==                                                                    |   2%
-  |                                                                            
-  |====                                                                  |   5%
-  |                                                                            
-  |=====                                                                 |   8%
-  |                                                                            
-  |=======                                                               |  10%
-  |                                                                            
-  |=========                                                             |  12%
-  |                                                                            
-  |==========                                                            |  15%
-  |                                                                            
-  |============                                                          |  18%
-  |                                                                            
-  |==============                                                        |  20%
-  |                                                                            
-  |================                                                      |  22%
-  |                                                                            
-  |==================                                                    |  25%
-  |                                                                            
-  |===================                                                   |  28%
-  |                                                                            
-  |=====================                                                 |  30%
-  |                                                                            
-  |=======================                                               |  32%
-  |                                                                            
-  |========================                                              |  35%
-  |                                                                            
-  |==========================                                            |  38%
-  |                                                                            
-  |============================                                          |  40%
-  |                                                                            
-  |==============================                                        |  42%
-  |                                                                            
-  |================================                                      |  45%
-  |                                                                            
-  |=================================                                     |  48%
-  |                                                                            
-  |===================================                                   |  50%
-  |                                                                            
-  |=====================================                                 |  52%
-  |                                                                            
-  |======================================                                |  55%
-  |                                                                            
-  |========================================                              |  58%
-  |                                                                            
-  |==========================================                            |  60%
-  |                                                                            
-  |============================================                          |  62%
-  |                                                                            
-  |==============================================                        |  65%
-  |                                                                            
-  |===============================================                       |  68%
-  |                                                                            
-  |=================================================                     |  70%
-  |                                                                            
-  |===================================================                   |  72%
-  |                                                                            
-  |====================================================                  |  75%
-  |                                                                            
-  |======================================================                |  78%
-  |                                                                            
-  |========================================================              |  80%
-  |                                                                            
-  |==========================================================            |  82%
-  |                                                                            
-  |============================================================          |  85%
-  |                                                                            
-  |=============================================================         |  88%
-  |                                                                            
-  |===============================================================       |  90%
-  |                                                                            
-  |=================================================================     |  92%
-  |                                                                            
-  |==================================================================    |  95%
-  |                                                                            
-  |====================================================================  |  98%
-  |                                                                            
-  |======================================================================| 100%
-```
-
-```r
 # make neighbor-joining tree
 tree <- nj(as.dist(cdm))
 

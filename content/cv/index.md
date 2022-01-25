@@ -87,8 +87,6 @@ Peer-reviewed publications
 
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2021). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. The American Naturalist. In press.
 
-**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2021). Feeding adaptations facilitate the evolution of mouthbrooding in Neotropical cichlids. In review.
-
 **Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. Integrative Organismal Biology. DOI: https://doi.org/10.1093/iob/obaa018.
 
 Cohen, K.E., **Weller, H.I.**, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of *Halichoeres* Wrasses. Integrative and Comparative Biology. https://doi.org/10.1093/icb/icaa137.

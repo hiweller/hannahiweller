@@ -175,10 +175,11 @@ all_palettes <- do.call(rbind, lapply(rc_list, function(i) i$centers))
 all_sizes <- do.call(c, lapply(rc_list, function(i) i$sizes))
 
 # plot colors using hclust and return grouping list:
+par(mar = rep(2, 4))
 cluster_list <- hclust_color(all_palettes, n_final = 3)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="288" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
 
 The `cluster_list` object is a list, each element of which is a vector of which of the original colors should be clustered together. See the rest of the `hclust_color()` options to various ways to combine colors by similarity—by default, it calculates the Euclidean distance matrix between all provided color centers in [CIE Lab](https://cran.r-project.org/web/packages/colordistance/vignettes/lab-analyses.html) color space. We can use that list to combine all the colors and come up with our universal palette:
 

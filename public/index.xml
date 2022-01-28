@@ -128,6 +128,499 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
+      <title>Recolorize &amp; patternize workflow</title>
+      <link>/post/recolorize-patternize-workflow/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/post/recolorize-patternize-workflow/</guid>
+      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://www.biorxiv.org/content/10.1101/2021.09.07.459327v1.abstract&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2021),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/wasps.png&#34; alt=&#34;figures illustrating steps in the quantification of wasp facial patterns using recolorize and patternize&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12853&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;patternize&lt;/code&gt; package&lt;/a&gt; is an excellent tool for quantifying variation in color patterns. I use it frequently, because it&amp;rsquo;s a consistent, scaleable method for quantification that works for almost any organism, and it allows you to control for variation in shape, orientation, and size by first aligning all of your color patterns to a RasterStack—analogous to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Procrustes_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Procrustes fit step of geometric morphometrics&lt;/a&gt;. It also helps that the package author, Steven Van Belleghem, is extremely friendly!&lt;/p&gt;
+&lt;p&gt;In practice, the most difficult step of using &lt;code&gt;patternize&lt;/code&gt; is often the color segmentation: like several other color analysis packages and tools, &lt;code&gt;patternize&lt;/code&gt; frequently relies on k-means clustering to extract color patches from images (especially for batch processing). That&amp;rsquo;s where &lt;code&gt;recolorize&lt;/code&gt; comes in. In order to use &lt;code&gt;recolorize&lt;/code&gt; to do the segmentation step for &lt;code&gt;patternize&lt;/code&gt;, we have to follow three steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Align original images as RasterStacks using &lt;code&gt;alignLan()&lt;/code&gt; in &lt;code&gt;patternize&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Segment the list of aligned images using &lt;code&gt;recolorize&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Convert list of segmented images back into the &lt;code&gt;patternize&lt;/code&gt; format&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s do it!&lt;/p&gt;
+&lt;h2 id=&#34;example-files&#34;&gt;Example files&lt;/h2&gt;
+&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/tree/main/wasps&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-1-image-alignment-in-patternize&#34;&gt;Step 1: Image alignment in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Make sure you have installed the development version of &lt;code&gt;patternize&lt;/code&gt; (e.g. by running &lt;code&gt;devtools::install_github(&amp;quot;StevenVB12/patternize&amp;quot;)&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re starting with a folder of unaltered images of wasp faces. These images have been color-corrected and cropped to the wasp&amp;rsquo;s face, but the background hasn&amp;rsquo;t been masked out, since &lt;code&gt;patternize&lt;/code&gt; will do that when we do the alignment.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Note that even on this dataset—which is highly standardized—the images have slight variations in the size, shape, and angle of the head, making it difficult to differentiate variation due to color pattern differences from that due to other factors.&lt;/p&gt;
+&lt;p&gt;To use the &lt;code&gt;alignLan()&lt;/code&gt; function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the &lt;a href=&#34;https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;multi-point tool&lt;/a&gt;, but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and &lt;strong&gt;no header&lt;/strong&gt;. Our landmarking scheme for the wasp faces only had 8 points:
+&lt;img src=&#34;images/F03_wasps_landmarking.png&#34; alt=&#34;&#34; width=&#34;40%&#34;/&gt;
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
+&lt;p&gt;Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using &lt;code&gt;patternize&lt;/code&gt;. I organized my files into separate folders (images in the &lt;code&gt;original_images/&lt;/code&gt; folder, landmark text files in the &lt;code&gt;landmarks&lt;/code&gt; folder, etc), but you don&amp;rsquo;t have to do that so long as your files are organized and named in a way that works with the &lt;code&gt;makeList()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
+library(patternize)
+
+### Align set of 20 images ###
+
+# set of specimen IDs
+IDlist &amp;lt;- tools::file_path_sans_ext(dir(&amp;quot;original_images/&amp;quot;, &amp;quot;.jpg&amp;quot;))
+
+# make list with images
+imageList &amp;lt;- makeList(IDlist, type = &amp;quot;image&amp;quot;,
+                      prepath = &amp;quot;original_images/&amp;quot;,
+                      extension = &amp;quot;.jpg&amp;quot;)
+
+# make list with landmarks
+landmarkList &amp;lt;- makeList(IDlist,
+                         type = &amp;quot;landmark&amp;quot;,
+                         prepath = &amp;quot;landmarks/&amp;quot;,
+                         extension = &amp;quot;_landmarks.txt&amp;quot;)
+
+# Set target as polistes 05
+target &amp;lt;- landmarkList[[&#39;polistes_05&#39;]]
+
+# Set up mask, which excludes eyes/mandibles and antenna holes
+mask1 &amp;lt;- read.table(&amp;quot;masks/polistes_05_mask.txt&amp;quot;, header = FALSE)
+mask2 &amp;lt;- read.table(&amp;quot;masks/polistes_05_Lantenna.txt&amp;quot;, header = FALSE)
+mask3 &amp;lt;- read.table(&amp;quot;masks/polistes_05_Rantenna.txt&amp;quot;, header = FALSE)
+
+### Alignment ###
+# this takes ~1 minute on a 16Gb RAM laptop running Ubuntu
+imageList_aligned &amp;lt;- alignLan(imageList, landmarkList, transformRef = target, 
+                              adjustCoords = TRUE,
+                              plotTransformed = T, 
+                              resampleFactor = 5, 
+                              cartoonID = &#39;polistes_05&#39;,
+                              maskOutline = list(mask1, mask2, mask3), 
+                              inverse = list(FALSE, TRUE, TRUE))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The resulting &lt;code&gt;imageList_aligned&lt;/code&gt; object is a list of aligned &lt;a href=&#34;https://rdrr.io/cran/raster/man/brick.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RasterBrick&lt;/a&gt; objects, one per image, with everything but the region of interest (frons and clypeus) removed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: I usually save this list as an .RDS file so I can load it back in at my convenience without having to do the alignment step again:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# save RDS file
+saveRDS(imageList_aligned, &amp;quot;rds_files/imageList_aligned.rds&amp;quot;)
+
+# read it in:
+imageList_aligned &amp;lt;- readRDS(&amp;quot;rds_files/imageList_aligned.rds&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-segment-images-in-recolorize&#34;&gt;Step 2: Segment images in &lt;code&gt;recolorize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The wonky step in this workflow is that &lt;code&gt;patternize&lt;/code&gt; works with raster images, and &lt;code&gt;recolorize&lt;/code&gt; works with arrays, so we have to convert from raster objects to arrays before using &lt;code&gt;recolorize&lt;/code&gt;. The &lt;code&gt;brick_to_array()&lt;/code&gt; function makes that fairly straightforward:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
+library(recolorize)
+
+# convert from RasterBricks to image arrays using the brick_to_array function:
+imgs &amp;lt;- lapply(imageList_aligned, brick_to_array)
+names(imgs) &amp;lt;- names(imageList_aligned)
+
+# save raster extents for later conversion:
+extent_list &amp;lt;- lapply(imageList_aligned, extent)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have a list of image arrays. Plotting them using &lt;code&gt;plotImageArray()&lt;/code&gt; helps us to see what the &lt;code&gt;alignLan()&lt;/code&gt; step did for our original images:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;480&#34; /&gt;
+(Note that it also flipped the images upside because the y coordinate systems are reversed–this is annoying, but doesn&amp;rsquo;t affect our results, so we&amp;rsquo;ll leave it for now.)&lt;/p&gt;
+&lt;p&gt;We want to map each of these wasp faces to the same set of three colors: dark brown, reddish brown, and yellow. K-means clustering could work in theory for this problem (we would fit &lt;em&gt;n = 3&lt;/em&gt; colors for each image), but in practice, we get the colors back in a random order—and they&amp;rsquo;re not actually the same color. Here&amp;rsquo;s what it looks like if we try to do that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;for (i in 1:length(imgs)) {
+  rc &amp;lt;- recolorize(imgs[i], method = &amp;quot;k&amp;quot;, n = 3, plotting = FALSE)
+  plotColorPalette(rc$centers)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These colors are definitely similar across images, but they&amp;rsquo;re not consistent, especially since not all wasps have all three colors present. Maybe most intractably, they&amp;rsquo;re not in the same order: yellow is color 1, 2, or 3 depending on the image, and sometimes it&amp;rsquo;s not there at all.&lt;/p&gt;
+&lt;p&gt;Instead, we&amp;rsquo;ll come up with our list of 3 colors by combining color palettes across images, and then use the &lt;code&gt;imposeColors()&lt;/code&gt; function in &lt;code&gt;recolorize&lt;/code&gt; to map each of our images to the same color palette. First, generate a color palette for each image:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty list for storing the recolorize objects
+rc_list &amp;lt;- vector(&amp;quot;list&amp;quot;, length(imgs))
+names(rc_list) &amp;lt;- names(imgs)
+
+# for every image, run the same recolorize2 function to fit a recolorize object:
+for (i in 1:length(imgs)) {
+  rc_list[[i]] &amp;lt;- recolorize2(imgs[[i]], bins = 3,
+                              cutoff = 35, plotting = FALSE)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I kept it pretty simple for this example (we&amp;rsquo;re just calling &lt;code&gt;recolorize2()&lt;/code&gt; with the same parameters for each image), but you could get more complicated with what you put in the for loop. (You could even choose to use k-means clustering as the method here by setting &lt;code&gt;method = &amp;quot;k&amp;quot;&lt;/code&gt; and specifying the number of colors, since we&amp;rsquo;re just using it as a starting point, but since k-means is not deterministic that poses problems for repeatability.)&lt;/p&gt;
+&lt;p&gt;Next you can combine the color palettes from all of the &lt;code&gt;recolorize&lt;/code&gt; objects in &lt;code&gt;rc_list&lt;/code&gt; and use &lt;code&gt;hclust_color&lt;/code&gt; to plot them and return a list of which colors to group together:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get a dataframe of all colors:
+all_palettes &amp;lt;- do.call(rbind, lapply(rc_list, function(i) i$centers))
+
+# and for cluster sizes (as a proportion of their original image):
+all_sizes &amp;lt;- do.call(c, lapply(rc_list, function(i) i$sizes))
+
+# plot colors using hclust and return grouping list:
+par(mar = rep(2, 4))
+cluster_list &amp;lt;- hclust_color(all_palettes, n_final = 3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;cluster_list&lt;/code&gt; object is a list, each element of which is a vector of which of the original colors should be clustered together. See the rest of the &lt;code&gt;hclust_color()&lt;/code&gt; options to various ways to combine colors by similarity—by default, it calculates the Euclidean distance matrix between all provided color centers in &lt;a href=&#34;https://cran.r-project.org/web/packages/colordistance/vignettes/lab-analyses.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CIE Lab&lt;/a&gt; color space. We can use that list to combine all the colors and come up with our universal palette:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty matrix for storing the new palette
+wasp_palette &amp;lt;- matrix(NA, ncol = 3, nrow = length(cluster_list))
+
+# for every color in cluster_list...
+for (i in 1:length(cluster_list)) {
+  
+  # get the center indices
+  idx &amp;lt;- cluster_list[[i]]
+  
+  # get the average value for each channel, using cluster size to get a weighted average
+  ctr &amp;lt;- apply(all_palettes, 2, 
+                 function(j) weighted.mean(j[idx], 
+                                           w = all_sizes[idx]))
+  
+  # store in the palette matrix
+  wasp_palette[i, ] &amp;lt;- ctr
+}
+
+# check that our colors seem reasonable
+par(mar = rep(0, 4))
+plotColorPalette(wasp_palette)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;288&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;And now, we can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to the same set of three colors:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;impose_list &amp;lt;- lapply(imgs, function(i) imposeColors(i, wasp_palette, 
+                                                     adjust_centers = FALSE, 
+                                                     plotting = FALSE))
+
+# let&#39;s look at our palettes!
+layout(matrix(1:20, nrow = 4))
+par(mar = rep(0, 4))
+for (i in impose_list) {
+  plotColorPalette(i$centers, i$sizes)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Although the proportions of each color vary by image, the order/value of the colors does not (unlike with k-means). This is the key step. As long as you can provide a color palette to which all of your images should be mapped, you can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to those colors. The earlier portion where we did an initial fit and used &lt;code&gt;hclust_color&lt;/code&gt; is a good option when you want to come up with a color palette intrinsic to your original images, but it may still take some toying around before you find a palette that works.&lt;/p&gt;
+&lt;p&gt;The last step is to convert each &lt;code&gt;recolorize&lt;/code&gt; fit in back to a &lt;code&gt;patternize&lt;/code&gt; format, which we can do with the &lt;code&gt;recolorize_to_patternize()&lt;/code&gt; function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# convert to patternize:
+patternize_list &amp;lt;- lapply(impose_list, recolorize_to_patternize)
+
+# and set extents again:
+for (i in 1:length(patternize_list)) {
+  for (j in 1:length(patternize_list[[1]])) {
+    raster::extent(patternize_list[[i]][[j]]) &amp;lt;- extent_list[[i]]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a list of lists: there is one element per sample ID in &lt;code&gt;patternize_list&lt;/code&gt; (20 total), and each of those elements is a list of &lt;code&gt;RasterLayer&lt;/code&gt; objects, one per color class (3 per sample ID). You may need to reshuffle these depending on what you want to do.&lt;/p&gt;
+&lt;p&gt;Now, back to &lt;code&gt;patternize&lt;/code&gt;!&lt;/p&gt;
+&lt;h2 id=&#34;step-3-color-pattern-analyses-in-patternize&#34;&gt;Step 3: Color pattern analyses in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Since we now have the images segmented in the way that &lt;code&gt;patternize&lt;/code&gt; needs, we can run any of the regular &lt;code&gt;patternize&lt;/code&gt; functions on it (see the methods paper and &lt;a href=&#34;https://github.com/StevenVB12/patternize-examples&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;examples repository&lt;/a&gt;). Here, we&amp;rsquo;ll use a custom function based on code that Steven sent me for running a PCA on the entire color pattern (all three colors simultaneously, rather than one color class at a time). You can see the full function &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/wasps/patPCA_total.R&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. If you&amp;rsquo;ve downloaded the wasp example dataset, the easiest thing to do is to just source it and run the function on the list we made earlier:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;patPCA_total.R&amp;quot;)
+wasp_pca &amp;lt;- patPCA_total(patternize_list, quietly = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Summing raster lists...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Making dataframe from rasters...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Running PCA on 3 colors and 20 images...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;
+That&amp;rsquo;s it! The &lt;code&gt;wasp_pca&lt;/code&gt; object is a &lt;code&gt;prcomp&lt;/code&gt; object (the standard class for principal components analysis in R).&lt;/p&gt;
+&lt;h2 id=&#34;bonus-visualization&#34;&gt;Bonus: visualization&lt;/h2&gt;
+&lt;p&gt;It can be hard to tell whether the PCA is capturing relevant axes of color pattern variation from a scatterplot; I find it more intuitive to plot some version the actual images. The &lt;code&gt;add_image()&lt;/code&gt; function is an easy way to do that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# first, make a blank plot
+PCx &amp;lt;- 1; PCy &amp;lt;- 2
+pca_summary &amp;lt;- summary(wasp_pca)
+limits &amp;lt;- apply(wasp_pca$x[ , c(PCx, PCy)], 2, range)
+par(mar = c(4, 4, 2, 1))
+plot(wasp_pca$x[ , c(PCx, PCy)], type = &amp;quot;n&amp;quot;,
+     asp = 1,
+     xlim = limits[ , 1] + c(-5, 5), 
+     ylim = limits[ , 2] + c(-10, 10),
+     xlab=paste0(&#39;PC1 (&#39;, round(pca_summary$importance[2, PCx]*100, 1), &#39; %)&#39;),
+     ylab=paste0(&#39;PC2 (&#39;, round(pca_summary$importance[2, PCy]*100, 1), &#39; %)&#39;))
+
+# then add images:
+for (i in 1:length(impose_list)) {
+  add_image(impose_list[[i]]$original_img, 
+            x = wasp_pca$x[i, PCx],
+            y = wasp_pca$x[i, PCy],
+            width = 20)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;
+You could also plot images from a folder on your computer:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(wasp_pca$x[ , c(PCx, PCy)], type = &amp;quot;n&amp;quot;,
+     asp = 1,
+     xlim = limits[ , 1] + c(-5, 5), 
+     ylim = limits[ , 2] + c(-10, 10),
+     xlab=paste0(&#39;PC1 (&#39;, round(pca_summary$importance[2, PCx]*100, 1), &#39; %)&#39;),
+     ylab=paste0(&#39;PC2 (&#39;, round(pca_summary$importance[2, PCy]*100, 1), &#39; %)&#39;))
+
+# read in images from the original folder:
+images &amp;lt;- lapply(dir(&amp;quot;original_images/&amp;quot;, full.names = TRUE),
+                 readImage)
+
+# and plot:
+for (i in 1:length(images)) {
+  add_image(images[[i]], 
+            x = wasp_pca$x[i, PCx],
+            y = wasp_pca$x[i, PCy],
+            width = 20)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;
+(If I were to use these images for a paper figure, though, I would go through and mask out the background using transparencies—these are a little hard to see on a white background.)&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for the tutorial. I would recommend downloading the example code and files from the linked GitHub repository if you want to try it out: there are a few steps involved, but ultimately it&amp;rsquo;s a reasonably simple procedure. I&amp;rsquo;d love to be able to write a one-and-done version of this process, but if you&amp;rsquo;ve been reading &lt;a href=&#34;https://hiweller.github.io/recolorize/articles/Introduction.html#general-guidelines&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the other recolorize documentation&lt;/a&gt;, you&amp;rsquo;ll be familiar with my perspective on this. Basically, if I try to impose a general structure for how to do this every time, that&amp;rsquo;s not going to be flexible enough to encompass many use cases, and I prefer to keep things modular. Still, if you have any ideas for how to make this a more friendly process, I&amp;rsquo;m all ears!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Image trees</title>
+      <link>/post/image-trees/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/image-trees/</guid>
+      <description>&lt;p&gt;One of the most direct ways to tell whether or not your image analysis is working is to plot your images themselves as points in your result plots, which is usually easier said than done. Lots of packages in R will allow you to do some form of this, but I usually run into two problems: 1) I have to download a (sometimes pretty hefty) package for a single function, and 2) that function often only works in a specific context, which means it&amp;rsquo;s not very flexible. In practice, I usually end up defining functions for this as-needed, in a sort of ad-hoc dirtbag fashion. This post will outline the basics of doing just that.&lt;/p&gt;
+&lt;p&gt;First, let&amp;rsquo;s take a look at our images:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+This is a lovely set of 40 images of jewel beetles, taken by my collaborator &lt;a href=&#34;https://www.thelordlab.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nathan P. Lord&lt;/a&gt;. Not only are they all nicely uniform and centered, but the backgrounds are &lt;strong&gt;transparent&lt;/strong&gt; &amp;ndash; this almost always makes for nicer plotting, because you don&amp;rsquo;t get big white corners when the images overlap. Although if you&amp;rsquo;re just using these plots as diagnostics instead of figures, it doesn&amp;rsquo;t really matter as long as it helps you understand your data better.&lt;/p&gt;
+&lt;p&gt;As an example of the kind of thing we might want to plot, we&amp;rsquo;ll use &lt;a href=&#34;https://github.com/hiweller/colordistance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;colordistance&lt;/a&gt; to generate a distance matrix of color similarity for the forty images above:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(colordistance)
+
+# in my case, I have a folder called &#39;images&#39; which contains the 40 images,
+# so &#39;images&#39; is a vector of 40 paths
+images &amp;lt;- dir(&amp;quot;images/&amp;quot;, full.names = TRUE)
+
+# generate a distance matrix using all the package defaults
+cdm &amp;lt;- imageClusterPipeline(images, sample.size = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+The idea of this analysis is to cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.&lt;/p&gt;
+&lt;p&gt;By default, colordistance generates a heatmap representing the pairwise color distances between each image, where darker blue indicates that two images are more similar, and brighter pink indicates that they are less similar. You might notice that this graphic is kind of useless for diagnostics. The image names are just printed as labels, and their names are not indicative of their contents&amp;ndash;so I have no idea if this analysis has lumped together the green-and-shiny beetles separate from the black-and-yellow beetles, or if I need to try different settings, and sitting here looking up image names is not a quick way to check.&lt;/p&gt;
+&lt;p&gt;A better solution is to plot the images at the tips of the hierarchical clustering tree shown on the top and left of the heatmap:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To make this plot, I used the &lt;code&gt;ape&lt;/code&gt; package to plot a neighbor-joining tree of the distance matrix, then defined a function for plotting images at the tips. First, let&amp;rsquo;s make the neighbor-joining tree:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ape)
+tree &amp;lt;- nj(as.dist(cdm))
+plot(tree, direction = &amp;quot;upwards&amp;quot;, cex = 0.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Next, we can define a function, &lt;code&gt;add_image&lt;/code&gt;, which adds an image to a plot at a given set of XY coordinates. It&amp;rsquo;s sort of analogous to the &lt;code&gt;points&lt;/code&gt; function, which lets you add points to an existing base R plot.&lt;/p&gt;
+&lt;p&gt;This is more complicated than just plotting an image as an image, because we have to play nice with existing plotting parameters (aspect ratio, range of the X- and Y-axes, etc).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# define add_image function:
+add_image &amp;lt;- function(obj, # an object interpretable by rasterImage
+                      x = NULL, # x &amp;amp; y coordinates for the center of the image
+                      y = NULL,
+                      width = NULL, # width of the image
+                      interpolate = TRUE, # method for resizing
+                      angle = 0) {
+  
+  # get current plotting window parameters:
+  usr &amp;lt;- graphics::par()$usr # extremes of user coordinates in the plotting region
+  pin &amp;lt;- graphics::par()$pin # plot dimensions (in inches)
+  
+  # image dimensions and scaling factor:
+  imdim &amp;lt;- dim(obj)
+  sf &amp;lt;- imdim[1] / imdim[2]
+  
+  # set the width of the image (relative to x-axis)
+  w &amp;lt;- width / (usr[2] - usr[1]) * pin[1]
+  h &amp;lt;- w * sf # height is proportional to width
+  hu &amp;lt;- h / pin[2] * (usr[4] - usr[3]) # scale height to y-axis range
+  
+  # plot the image
+  graphics::rasterImage(image = obj,
+                        xleft = x - (width / 2), xright = x + (width / 2),
+                        ybottom = y - (hu / 2), ytop = y + (hu/2),
+                        interpolate = interpolate,
+                        angle = angle)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that if you just want to plot an image as an image, you can use &lt;code&gt;rasterImage&lt;/code&gt; from the &lt;code&gt;graphics&lt;/code&gt; package, and almost any other image analysis package will come with a plotting method (for example, in &lt;code&gt;recolorize&lt;/code&gt; you can use &lt;code&gt;plotImageArray&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;We can use this function to plot the images on a regular XY plot:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;X &amp;lt;- runif(40)
+Y &amp;lt;- runif(40)
+plot(X, Y)
+
+for (i in 1:length(images)) {
+  
+  # read the image into R:
+  img &amp;lt;- png::readPNG(images[i]) 
+  
+  # add the image:
+  add_image(img, x = X[i], y = Y[i],
+            width = 0.05)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If we wanted to actually plot the distance matrix as a bivariate plot, we could use non-metric multidimensional scaling (NMDS), as described in &lt;a href=&#34;https://cougrstats.wordpress.com/2019/12/11/non-metric-multidimensional-scaling-nmds-in-r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt;, to represent the distance matrix with a set of 2D coordinates:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# explaining NMDS is beyond the scope of this post (and is probably best left to the ecologists)
+# see this link for more: 
+# https://cougrstats.wordpress.com/2019/12/11/non-metric-multidimensional-scaling-nmds-in-r/
+
+# for now, we&#39;ll just do it in two lines!
+library(vegan)
+nmds_scores &amp;lt;- scores(metaMDS(comm = as.dist(cdm)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Run 0 stress 0.1158626 
+## Run 1 stress 0.1139447 
+## ... New best solution
+## ... Procrustes: rmse 0.01705616  max resid 0.09840254 
+## Run 2 stress 0.1140722 
+## ... Procrustes: rmse 0.007575743  max resid 0.03447679 
+## Run 3 stress 0.1159785 
+## Run 4 stress 0.1158626 
+## Run 5 stress 0.1139448 
+## ... Procrustes: rmse 0.0001779728  max resid 0.0006533518 
+## ... Similar to previous best
+## Run 6 stress 0.1158627 
+## Run 7 stress 0.115814 
+## Run 8 stress 0.1158626 
+## Run 9 stress 0.1139447 
+## ... New best solution
+## ... Procrustes: rmse 6.912601e-05  max resid 0.0002514859 
+## ... Similar to previous best
+## Run 10 stress 0.1139447 
+## ... Procrustes: rmse 5.642976e-05  max resid 0.0001733153 
+## ... Similar to previous best
+## Run 11 stress 0.1140719 
+## ... Procrustes: rmse 0.007496018  max resid 0.03406593 
+## Run 12 stress 0.1139448 
+## ... Procrustes: rmse 9.99557e-05  max resid 0.000494275 
+## ... Similar to previous best
+## Run 13 stress 0.1139447 
+## ... Procrustes: rmse 9.345179e-05  max resid 0.0004509194 
+## ... Similar to previous best
+## Run 14 stress 0.1139447 
+## ... Procrustes: rmse 6.492366e-05  max resid 0.0003038437 
+## ... Similar to previous best
+## Run 15 stress 0.1140722 
+## ... Procrustes: rmse 0.007604775  max resid 0.03440036 
+## Run 16 stress 0.1158141 
+## Run 17 stress 0.1158141 
+## Run 18 stress 0.1158142 
+## Run 19 stress 0.1139447 
+## ... Procrustes: rmse 5.046786e-05  max resid 0.0002452231 
+## ... Similar to previous best
+## Run 20 stress 0.1158141 
+## *** Solution reached
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(nmds_scores)
+for (i in 1:length(images)) {
+  
+  # read the image into R:
+  img &amp;lt;- png::readPNG(images[i]) 
+  
+  # add the image:
+  add_image(img, x = nmds_scores[i, 1], y = nmds_scores[i, 2],
+            width = 0.05)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If this were a presentation-quality figure, I would probably bump out the X- and Y-axis ranges a bit so none of the images got cut off, but this looks pretty good!&lt;/p&gt;
+&lt;p&gt;However, I did promise plotting images at the tips of trees, and that turns out to be pretty easy once you&amp;rsquo;ve got a plotted tree and a set of tips. This mostly comes from &lt;a href=&#34;http://blog.phytools.org/2017/04/new-function-to-add-tip-labels-to-tree.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt; on Liam Revell&amp;rsquo;s Phytools blog, which shows how to extract the XY coordinates of the tree tips from a plotted phylogeny; once we have those XY coordinates, we can plot images at those coordinates just as we would for a regular bivariate plot:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# plot the tree
+plot(tree, show.tip.label = FALSE, direction = &amp;quot;upward&amp;quot;)
+
+# get the parameters from the plotting environment
+lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+
+# get the xy coordinates of the tips
+ntip &amp;lt;- lastPP$Ntip
+
+# first n values are the tips, remaining values are the coordinates of the
+# nodes:
+xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                 y = lastPP$yy[1:ntip]) 
+
+# we can add points to the tree pretty easily using generic functions:
+points(xy[ , 1], xy[ , 2], 
+       col = viridisLite::viridis(40), 
+       pch = 19, cex = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Putting it all together, all we have to do is plot the tree, then plot the images. One crucial thing here&amp;ndash;and familiar to anyone working with trees&amp;ndash;&lt;strong&gt;make sure your images are in the same order as your tips&lt;/strong&gt;. This will save you a lot of head-scratching later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get image names
+imnames &amp;lt;- tools::file_path_sans_ext(basename(images))
+
+# get tip labels
+tipnames &amp;lt;- tree$tip.label
+
+# in my case, the tip labels are identical to the image names, so I can
+# use these to check that my images are in the right order:
+image_order &amp;lt;- match(tipnames, imnames)
+images &amp;lt;- images[image_order]
+
+# and plot!
+par(mar = rep(0, 4))
+plot(tree, show.tip.label = FALSE, direction = &amp;quot;upward&amp;quot;)
+
+# get the parameters from the plotting environment
+lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+
+# get the xy coordinates of the tips
+ntip &amp;lt;- lastPP$Ntip
+xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                 y = lastPP$yy[1:ntip]) 
+
+for (i in 1:length(images)) {
+  add_image(png::readPNG(images[i]),
+            x = xy[i, 1],
+            y = xy[i, 2], 
+            width = 3)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;At this point,  I usually write a wrapper function to do all of this for me, so I can plot an image tree from a tree and a list of image paths. I also add a bit of trickery to fix the x-axis scaling; phylogenies typically have weird axis scaling.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;image_tree &amp;lt;- function(tree, # a phylo object
+                       image_paths, # a vector of image paths (in order)
+                       image_width = 0.1, # image width (as a proportion of the x-axis)
+                       tip_label = FALSE, # whether to draw the tip labels
+                       ...) {
+  
+  require(ape)
+  # plot the tree
+  plot.phylo(tree, show.tip.label = tip_label, ...)
+  
+  # this is the weird part: we get the phylo plot parameters from the active
+  # graphics device
+  lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+  
+  # get the xy coordinates of the tips
+  ntip &amp;lt;- lastPP$Ntip
+  xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                   y = lastPP$yy[1:ntip])
+  
+  # scale image width according to plot width
+  image_width &amp;lt;- diff(range(lastPP$x.lim)) * image_width
+  
+  # add the images using the add_image function
+  for (i in 1:length(image_paths)) {
+    img &amp;lt;- recolorize::readImage(image_paths[i])
+    add_image(img,
+              xy[i, 1], xy[i, 2],
+              width = image_width)
+  }
+  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ll save that function and the &lt;code&gt;add_image&lt;/code&gt; function in a script file (typically called &lt;code&gt;image_tree.R&lt;/code&gt; or similar) and source that for the relevant project, so in practice my actual workflow looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ape)
+library(colordistance)
+
+# get images
+images &amp;lt;- dir(&amp;quot;images/&amp;quot;, full.names = TRUE)
+
+# get distance matrix
+cdm &amp;lt;- imageClusterPipeline(images, 
+                            plot.heatmap = FALSE, 
+                            sample.size = NULL)
+
+# make neighbor-joining tree
+tree &amp;lt;- nj(as.dist(cdm))
+
+# plot image tree
+par(mar = rep(0, 4))
+image_tree(tree, images, 
+           direction = &amp;quot;upward&amp;quot;,
+           y.lim = c(0, 0.7))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So it&amp;rsquo;s actually pretty straightforward!&lt;/p&gt;
+&lt;p&gt;One question I would have after reading this post is: &amp;ldquo;Why don&amp;rsquo;t you just add this function to your R packages, instead of the crummy-looking default?&amp;rdquo; This is a good question, and there are two answers.&lt;/p&gt;
+&lt;p&gt;First, I didn&amp;rsquo;t know how to do this when I first wrote the colordistance package, but I did know how to make heatmaps. I assumed that anyone using the package would take a quick look at the heatmap and then export the distance matrix for further analysis and plotting to emphasize whatever was most important about their results, and it didn&amp;rsquo;t occur to me that people are pretty likely to use the default visualization because they assume that&amp;rsquo;s what the package author intended. If I ever get the time and incentive to update the package, I hope to do so.&lt;/p&gt;
+&lt;p&gt;Second, I find myself redefining or tweaking this function so much for specific use cases (for instance, in this case we just use the &lt;code&gt;readPNG&lt;/code&gt; function because all the images are PNGs, but you would need to change this if that&amp;rsquo;s not true of your images) that I didn&amp;rsquo;t see the point of including a static version in any one package. There&amp;rsquo;s so much variability in how plots are displayed and in how images are stored and displayed that a post explaining the details of the function was more helpful than creating a static version that would be out of date or too specific in scope. For instance, the &lt;code&gt;image_tree&lt;/code&gt; function above doesn&amp;rsquo;t try to match your image list to your tree tips, because that would require assuming your images are named the same way as your tree tips, which probably won&amp;rsquo;t usually be the case.&lt;/p&gt;
+&lt;p&gt;Anyways, there is probably a happier middle ground than what I&amp;rsquo;ve included here. Hopefully this post provides enough detail for other people to modify it for their needs!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Function gallery for recolorize</title>
       <link>/post/function-gallery-for-recolorize/</link>
       <pubDate>Tue, 13 Apr 2021 00:00:00 +0000</pubDate>
@@ -985,17 +1478,95 @@ plot_ly(data = clusters,
     </item>
     
     <item>
-      <title>An example preprint / working paper</title>
-      <link>/publication/preprint/</link>
-      <pubDate>Sun, 07 Apr 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/preprint/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
+      <title></title>
+      <link>/currently/</link>
+      <pubDate>Sun, 28 Mar 2021 00:00:00 +0000</pubDate>
+      <guid>/currently/</guid>
+      <description>&lt;h2 id=&#34;what-im-working-on-these-days&#34;&gt;What I&amp;rsquo;m working on these days&lt;/h2&gt;
+&lt;br&gt;  
+&lt;h3 id=&#34;the-evolution-of-mouthbrooding-in-fishes&#34;&gt;The evolution of mouthbrooding in fishes&lt;/h3&gt;
+&lt;p&gt;Right now I&amp;rsquo;m studying the evolution of mouthbrooding (a kind of parental care where parents incubate offspring in their mouths), and how much feeding phenotypes influence that evolution. I think that mouthbrooding is a beautiful example of an extraordinary behavior (using a mouth as a nursery!) that arises from co-opting existing traits. Specifically, it seems like mouthbrooding is more likely to evolve in species whose feeding adaptations already make them good at mouthbrooding. And the further I dive into the whys and hows, the more I appreciate how much this behavior seems to be the result of the interplay of morphology, behavior, and environment. I have a somewhat out-there idea for why only some fishes in a given environemtn will evolve mouthbrooding, and it&amp;rsquo;s what I&amp;rsquo;m testing now.&lt;/p&gt;
+&lt;p&gt;More &lt;a href=&#34;/category/mouthbrooding/&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;br&gt;
+&lt;h3 id=&#34;color-analysis-software&#34;&gt;Color analysis software&lt;/h3&gt;
+&lt;p&gt;I also work a lot on color pattern evolution, and have written a few R packages to make that easier for myself and others. I think that accessible, objective tools for color pattern research are an important part of making sure we&amp;rsquo;re being careful with the conclusions we draw about how much color matters to other living things. Current projects include:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;recolorize&lt;/code&gt;, an R package for color segmentation, which integrates with the &lt;code&gt;pavo&lt;/code&gt; and &lt;code&gt;patternize&lt;/code&gt; packages as well as providing a variety of other output formats (vectorized images, individual layers, masks). More &lt;a href=&#34;/category/recolorize&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;colordistance&lt;/code&gt;, an R package for comparing images by quantitative color similarity:&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;images/cdm_rec_tree.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;More &lt;a href=&#34;/category/colordistance&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;h3 id=&#34;collaborations&#34;&gt;Collaborations&lt;/h3&gt;
+&lt;p&gt;I&amp;rsquo;m lucky to have really delightful spread of collaborations with researchers at other universities, including:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;UV in snakes (University of Michigan, Davis-Rabosky lab)&lt;/li&gt;
+&lt;li&gt;The origin and diversity of color jewel beetles (Louisiana State University, Lord lab)&lt;/li&gt;
+&lt;li&gt;Population structure and color variation in brook trout (Pennsylvania State University)&lt;/li&gt;
+&lt;li&gt;The effect of mouthbrooding on the rate of craniofacial evolution (Clemson, Price lab)&lt;/li&gt;
+&lt;/ul&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
+      <link>/publication/sicb-2021/</link>
+      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
+      <guid>/publication/sicb-2021/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>An XROMM Study of Food Transport and Swallowing in Channel Catfish</title>
+      <link>/publication/catfish/</link>
+      <pubDate>Mon, 01 Jun 2020 19:18:37 -0400</pubDate>
+      <guid>/publication/catfish/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>colordistance</title>
+      <link>/project/colordistance/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/colordistance/</guid>
+      <description>&lt;p&gt;A package for implementing distance metrics to quantify color diversity across images. This is done by binning pixels by color using either data-dependent or automatically generated color bins, quantitatively measuring color similarity among images using one of several distance metrics for comparing pixel color clusters, and clustering images by object color similarity. Uses CIE Lab, RGB, or HSV color spaces. Originally written for use with organism coloration (reef fish color diversity, butterfly mimicry, etc), but easily applicable for any image set.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>recolorize</title>
+      <link>/project/recolorize/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/recolorize/</guid>
+      <description>&lt;p&gt;This is a package for making color maps, which are needed (or at least useful) for a wide range of color analysis techniques. It was born out of conversations with many biologists who found, to their surprise and mine, that generating color maps was the bottleneck step in their analyses. Fully automated methods rarely work all of the time, and are difficult to modify, while fully manual methods are subjective and time-consuming. This package tries to split the difference by giving you a mix of tools that will do a pretty good job with no user input, and then allow minor manual changes like merging and filtering layers or splitting components, before exporting them to the next step of your analysis. It&amp;rsquo;s also, for the most part, totally deterministic – no arbitrary seed-setting for repeatability.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats</title>
+      <link>/publication/countcolors/</link>
+      <pubDate>Sat, 01 Feb 2020 19:36:14 -0400</pubDate>
+      <guid>/publication/countcolors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The spandrels of Satan&#39;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids</title>
+      <link>/publication/sicb-2020/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/sicb-2020/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
+      <link>/publication/colordistance/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/colordistance/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -1128,62 +1699,203 @@ Three
     </item>
     
     <item>
-      <title>External Project</title>
-      <link>/project/external-project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/external-project/</guid>
+      <title></title>
+      <link>/cv/</link>
+      <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
+      <guid>/cv/</guid>
+      <description>&lt;p&gt;
+  &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/cv.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
+&lt;h1 id=&#34;hannah-weller&#34;&gt;Hannah Weller&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: the role of biomechanical
+constraints in life history evolution; paths of least
+resistance in the evolution of new traits; methods
+development for analyzing organism color and pattern.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;hr&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;2019 – Present&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;PhD candidate, Ecology and Evolutionary Biology&lt;/strong&gt;&lt;br&gt;
+Brown University (Providence, RI) &lt;br&gt;
+&lt;em&gt;Thesis: How much does functional morphology matter to the evolution of mouthbrooding?&lt;/em&gt;&lt;/dd&gt;
+&lt;dt&gt;2017 – 2019&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Transitional M.Sc., Ecology and Evolutionary Biology&lt;/strong&gt;&lt;br&gt;
+Brown University (Providence, RI) &lt;br&gt;
+&lt;em&gt;Thesis: How do feeding adaptations influence the convergent evolution of mouthbrooding?&lt;/em&gt;&lt;/dd&gt;
+&lt;dt&gt;2012 – 2016&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Honors B.Sc., Biology&lt;/strong&gt;&lt;br&gt;
+University of Chicago (Chicago, IL) &lt;br&gt;
+&lt;em&gt;Thesis: Winnowing in the eartheater cichlids&lt;/em&gt;&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;awards-and-fellowships&#34;&gt;Awards and Fellowships&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;April 2019&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Graduate Research Fellowship&lt;/strong&gt;&lt;br&gt;
+$138,000, National Science Foundation&lt;/dd&gt;
+&lt;dt&gt;December 2018&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Field Museum Visiting Scientist Scholarship&lt;/strong&gt;&lt;br&gt;
+$1,500, Field Museum of Natural History&lt;/dd&gt;
+&lt;dt&gt;May 2017&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Presidential Fellowship&lt;/strong&gt;&lt;br&gt;
+$108,000, Brown University&lt;/dd&gt;
+&lt;dt&gt;June 2015&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Jeff Metcalf Undergraduate Research Fellowship&lt;/strong&gt;&lt;br&gt;
+$5,000, Marine Biological Laboratory&lt;/dd&gt;
+&lt;dt&gt;March 2015&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Elected to Phi Beta Kappa Society&lt;/strong&gt;&lt;/dd&gt;
+&lt;dt&gt;September 2014&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Best Presentation, Undergraduate Research Symposium&lt;/strong&gt;&lt;br&gt;
+$150, University of Chicago&lt;/dd&gt;
+&lt;dt&gt;June 2014&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Elliott and Eileen Hinkes Research Fellowship&lt;/strong&gt;&lt;br&gt;
+$4,000, University of Chicago&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;peer-reviewed-publications&#34;&gt;Peer-reviewed publications&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2021). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. The American Naturalist. In press.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. Integrative Organismal Biology. DOI: &lt;a href=&#34;https://doi.org/10.1093/iob/obaa018&#34;&gt;https://doi.org/10.1093/iob/obaa018&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of &lt;em&gt;Halichoeres&lt;/em&gt; Wrasses. Integrative and Comparative Biology. &lt;a href=&#34;https://doi.org/10.1093/icb/icaa137&#34;&gt;https://doi.org/10.1093/icb/icaa137&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Hooper, S.E.*, and Amelon, S.K* (2020). Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats. Journal of Wildlife Diseases. &lt;a href=&#34;https://doi.org/10.7589/2019-09-231&#34;&gt;https://doi.org/10.7589/2019-09-231&lt;/a&gt;&lt;br&gt;
+&lt;sup&gt;*These authors contributed equally to this work.&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont. Journal of Anatomy. DOI: &lt;a href=&#34;https://doi.org/10.1111/joa.13248&#34;&gt;https://doi.org/10.1111/joa.13248&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;van Meer, N.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Brainerd, E.B., and Camp, A.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. Journal of Experimental Biology. DOI: &lt;a href=&#34;10.1242/jeb.201426&#34;&gt;10.1242/jeb.201426&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. PeerJ. DOI: &lt;a href=&#34;10.7717/peerj.6398&#34;&gt;10.7717/peerj.6398&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid &lt;em&gt;Satanoperca daemon&lt;/em&gt; and evolutionary implications. Zoomorphology. DOI: &lt;a href=&#34;10.1007/s00435-016-0335-6&#34;&gt;10.1007/s00435-016-0335-6&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;software&#34;&gt;Software&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2020). recolorize: Simplify and Remap Image Colors for Biological Analysis (ver. 0.9.000). Compiled and installable; CRAN release planned. &lt;a href=&#34;https://github.com/hiweller/recolorize&#34;&gt;https://github.com/hiweller/recolorize&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;O&amp;rsquo;Sullivan, D., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Lord, N.P. Insect Color Database (ICDB). In development. &lt;a href=&#34;https://insectcolor.com/&#34;&gt;https://insectcolor.com/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2019). colordistance: Distance Metrics for Image Color Similarity (ver. 1.1.0). CRAN repository. &lt;a href=&#34;https://CRAN.R-project.org/package=colordistance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://CRAN.R-project.org/package=colordistance&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2018). countcolors: Locates and Counts Pixels Within Color Range(s) in Images (ver. 0.9.1). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=countcolors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://CRAN.R-project.org/package=countcolors&lt;/a&gt;&lt;/p&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;presentations&#34;&gt;Presentations&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Wham, D., Ezray-Wham, B., and Lord, N.P. (August 2021). Talk: Greater than the sum of their parts? Unpacking the “black box” of perceptual similarity using classical color pattern metrics. &lt;em&gt;Living Light Early Career Reserachers&lt;/em&gt;, virtual conference.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Schwartz, S.T., Karan, E., and Lord, N.P. (Jan. 2021). Talk: Recolorize: a flexible R package for color classification. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, virtual conference.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;,  Karan, E., Schwartz, S. and Lord, N.P. (Jan. 2021). Talk: &lt;code&gt;recolorize&lt;/code&gt;: color-based image segmentation (for people with other things to do). &lt;em&gt;Society for Integrative and Comparative Biology (Virtual).&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan&amp;rsquo;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;Society for Integrative and Comparative Biology, Austin, TX.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Oct. 2019). Talk: Does mouthbrooding constrain or complement feeding morphology? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast), Newton, MA.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (Jan. 2019). Talk: 3D-Intra-oral Prey Trajectories Indicate Distinct Phases in how Channel Catfish (Ictalurus punctatus, Siluriformes: Ictaluridae) Swallow Food. &lt;em&gt;International Congress of Vertebrate Morphology, Prague, CZ.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Cohen, K.E., Gibb, A., and Brainerd, E.L. (Jan. 2019). Poster: Using tethers to measure food transport in a flatfish. &lt;em&gt;Society for Integrative and Comparative Biology, Tampa, FL.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L.(Jan. 2019). Talk: An XROMM study of intra-oral transport and swallowing in catfish. &lt;em&gt;Society for Integrative and Comparative Biology, Tampa, FL.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; and Brainerd, E.L. (Oct. 2017). Talk: How do fish swallow food? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast), Lowell, MA.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. &lt;em&gt;American Society of Ichthyologists and Herpetologists, New Orleans, LA.&lt;/em&gt;&lt;/p&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;invited-talks-lectures--workshops&#34;&gt;Invited talks, lectures, &amp;amp; workshops&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;July 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Workshop: Phylogenetic Comparative Methods in R&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;University of Washington, Friday Harbor Laboratories&lt;/em&gt; (Friday Harbor, WA) &lt;br&gt;
+R workshop focusing on phylogenetic and comparative methods. Instructors: Matthew Kolmann and Cassandra Donatelli.&lt;/dd&gt;
+&lt;dt&gt;July 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;A field guide to statistics in organismal biology&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;University of Washington, Friday Harbor Laboratories&lt;/em&gt; (Friday Harbor, WA)&lt;br&gt;
+Guest lecture. Instructors: Matthew Kolmann and Cassandra Donatelli.&lt;/dd&gt;
+&lt;dt&gt;July 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Mouthbrooding morphologies in Neotropical cichlids&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;University of California Davis, Dept. of Ecology and Evolutionary Biology&lt;/em&gt; (Davis, CA)&lt;br&gt;
+Virtual seminar. Host: Peter Wainwright.&lt;/dd&gt;
+&lt;dt&gt;April 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Special Topics: Light, Color, and Vision in Biology (BIOL 7901/ENTM 7008)&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Louisiana State University, Dept. of Entomology and Dept. of Biology&lt;/em&gt; (Baton Rouge, LA)&lt;br&gt;
+Guest lecturer (3 classes). Instructors: Nathan Lord (ENTM) &amp;amp; Brant Faircloth (BIOL).&lt;/dd&gt;
+&lt;dt&gt;December 2019&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Workshop: R for Biologists&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;Louisiana State University, Dept. of Entomology&lt;/em&gt; (Baton Rouge, LA)&lt;br&gt;
+Organizer. Day-long workshop on data analysis and visualization in R.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;research-experience&#34;&gt;Research experience&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;2017 – Present&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;PhD candidate, Brainerd Lab&lt;/strong&gt;; advisor: Elizabeth Brainerd&lt;br&gt;
+&lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt;&lt;br&gt;
+Comparative morphology, kinematics, and biomechanics of mouthbrooding fishes; XROMM fish feeding and transport.&lt;/dd&gt;
+&lt;dt&gt;September 2013 – July 2017&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Research assistant&lt;/strong&gt;; advisor: Mark Westneat&lt;br&gt;
+&lt;em&gt;University of Chicago, Dept. of Organismal Biology &amp;amp; Anatomy&lt;/em&gt;&lt;br&gt;
+Quantitative color analysis; geometric morphometrics; high-speed video kinematics.&lt;/dd&gt;
+&lt;dt&gt;June 2015 – September 2015&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Jeff Metcalf Summer Research Fellow&lt;/strong&gt;; advisor: Roger Hanlon&lt;br&gt;
+&lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt;&lt;br&gt;
+Hyperspectral imaging; image analysis pipelines; camouflage analyses.&lt;/dd&gt;
+&lt;dt&gt;June 2014 – September 2014&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Summer Research Fellow, Westneat Lab&lt;/strong&gt;; advisor: Mark Westneat&lt;br&gt;
+&lt;em&gt;University of Chicago, Dept. of Organismal Biology &amp;amp; Anatomy&lt;/em&gt;&lt;br&gt;
+Ontogenetic scaling; biomechanical modeling; geometric morphometrics.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;teaching-and-outreach&#34;&gt;Teaching and outreach&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;June 2021 – July 2021&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Instructor&lt;/strong&gt;, &lt;em&gt;Brown University, Summer@Brown Program&lt;/em&gt; (Providence, RI)&lt;br&gt;
+Anatomy, Behavior, and Evolution: Fishy Solutions to Life Underwater&lt;br&gt;
+Intensive high school course including labs, assignments, and mentoring of final project (preparation of research proposals and presentations).&lt;/dd&gt;
+&lt;dt&gt;August 2020 – April 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
+COVID-modified Human Anatomy (lecture and lab)&lt;br&gt;
+Restructuring the traditional gross anatomy curriculum, including remote/small group work and prosection-based staggered labs.&lt;/dd&gt;
+&lt;dt&gt;September 2019 – Present&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;R User Group&lt;/strong&gt;, &lt;em&gt;Brown University, Dept. of Ecology and Evolutionary Biology&lt;/em&gt; (Providence, RI)&lt;br&gt;
+Organizing and running monthly R workshops for graduate and undergraduate students, focusing on techniques for biological analysis (e.g., data organization, statistics, and visualization).&lt;/dd&gt;
+&lt;dt&gt;August 2019 – April 2020&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
+Human Anatomy (lecture and lab)&lt;br&gt;
+Guiding medical students through cadaver-based human anatomy labs.&lt;/dd&gt;
+&lt;dt&gt;September 2018 – Present&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Marine Science Club&lt;/strong&gt;, &lt;em&gt;Paul Cuffee High School&lt;/em&gt; (Providence, RI)&lt;br&gt;
+Collaborating with high school teachers for weekly science activities with high school students.&lt;/dd&gt;
+&lt;dt&gt;September 2017 – Dec. 2017&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt; (Providence, RI)&lt;br&gt;
+Diversity of Life (lecture)&lt;/dd&gt;
+&lt;dt&gt;January 2015 – April 2017&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;University of Chicago, Dept. of Biological Sciences&lt;/em&gt; (Chicago, IL)&lt;br&gt;
+Presenting and supervising lab experiments; writing and grading assignments; lecturing; leading paper discussions and review sessions; guiding dissection-based anatomy labs.
+&lt;p&gt;Genetic and Developmental Biology (lab &amp;amp; lecture)&lt;br&gt;
+Multiscale Modeling of Biological Systems (lecture)&lt;br&gt;
+Molecular Biology of the Cell (lab)&lt;br&gt;
+Comparative Vertebrate Anatomy (lab &amp;amp; lecture)&lt;/p&gt;
+&lt;/dd&gt;
+&lt;dt&gt;June 2013 – September 2013&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Animal care intern&lt;/strong&gt;, &lt;em&gt;New England Aquarium&lt;/em&gt; (Boston, MA)&lt;br&gt;
+Daily animal care and maintenance; visitor outreach; collection trips.&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;br&gt;  
+&lt;h2 id=&#34;skills&#34;&gt;Skills&lt;/h2&gt;
+&lt;dl&gt;
+&lt;dt&gt;Coding&lt;/dt&gt;
+&lt;dd&gt;R, Python (OpenCV, Scrapy, &amp;amp; BioPython libraries), MATLAB, UNIX, MEL&lt;/dd&gt;
+&lt;dt&gt;Software&lt;/dt&gt;
+&lt;dd&gt;Latex, Maya, FIJI/ImageJ, Horos, 3DSlicer, XMALab, Mesquite, Pandoc, Microsoft Office&lt;/dd&gt;
+&lt;dt&gt;Languages&lt;/dt&gt;
+&lt;dd&gt;English (native), French (intermediate)&lt;/dd&gt;
+&lt;/dl&gt;
+&lt;hr&gt;
+&lt;br&gt;  
+&lt;blockquote&gt;
+&lt;p&gt;&lt;em&gt;Lab&lt;/em&gt;: Biomedical Center 426, 171 Meeting St.,  Providence, RI 02906&lt;br&gt;
+&lt;em&gt;Email&lt;/em&gt;: &lt;a href=&#34;mailto:hannahiweller@gmail.com&#34;&gt;hannahiweller@gmail.com&lt;/a&gt;&lt;br&gt;
+&lt;em&gt;Website&lt;/em&gt;: &lt;a href=&#34;hiweller.github.io&#34;&gt;hiweller.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Winnowing in the geophagine cichlid Satanoperca daemon</title>
+      <link>/publication/winnowing/</link>
+      <pubDate>Fri, 01 Sep 2017 19:05:49 -0400</pubDate>
+      <guid>/publication/winnowing/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>Internal Project</title>
-      <link>/project/internal-project/</link>
+      <title>Insect Color Database</title>
+      <link>/project/icdb/</link>
       <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      <guid>/project/internal-project/</guid>
-      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
-&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
-&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
-&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
-&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example journal article</title>
-      <link>/publication/journal-article/</link>
-      <pubDate>Tue, 01 Sep 2015 00:00:00 +0000</pubDate>
-      <guid>/publication/journal-article/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>An example conference paper</title>
-      <link>/publication/conference-paper/</link>
-      <pubDate>Mon, 01 Jul 2013 00:00:00 +0000</pubDate>
-      <guid>/publication/conference-paper/</guid>
-      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Click the &lt;em&gt;Cite&lt;/em&gt; button above to demo the feature to enable visitors to import publication metadata into their reference management software.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;alert alert-note&#34;&gt;
-  &lt;div&gt;
-    Create your slides in Markdown - click the &lt;em&gt;Slides&lt;/em&gt; button to check out the example.
-  &lt;/div&gt;
-&lt;/div&gt;
-&lt;p&gt;Supplementary notes can be added here, including &lt;a href=&#34;https://wowchemy.com/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;code, math, and images&lt;/a&gt;.&lt;/p&gt;
-</description>
+      <guid>/project/icdb/</guid>
+      <description></description>
     </item>
     
     <item>

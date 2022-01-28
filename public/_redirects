@@ -1,5 +1,3 @@
 # Netlify redirects
 # Automatically generated
 # Documentation: http://bit.ly/netlify-deployment
-http://hiweller.rbind.io/* https://hiweller.rbind.io/:splat 301!
-https://hannahiweller.netlify.app https://hiweller.rbind.io/:splat 301!

@@ -5,12 +5,246 @@
     <link>/tag/recolorize/</link>
       <atom:link href="/tag/recolorize/index.xml" rel="self" type="application/rss+xml" />
     <description>recolorize</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 27 Jan 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
       <title>recolorize</title>
       <link>/tag/recolorize/</link>
     </image>
+    
+    <item>
+      <title>Recolorize &amp; patternize workflow</title>
+      <link>/post/recolorize-patternize-workflow/</link>
+      <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>/post/recolorize-patternize-workflow/</guid>
+      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://www.biorxiv.org/content/10.1101/2021.09.07.459327v1.abstract&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2021),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/wasps.png&#34; alt=&#34;figures illustrating steps in the quantification of wasp facial patterns using recolorize and patternize&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href=&#34;https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12853&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;patternize&lt;/code&gt; package&lt;/a&gt; is an excellent tool for quantifying variation in color patterns. I use it frequently, because it&amp;rsquo;s a consistent, scaleable method for quantification that works for almost any organism, and it allows you to control for variation in shape, orientation, and size by first aligning all of your color patterns to a RasterStack—analogous to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Procrustes_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Procrustes fit step of geometric morphometrics&lt;/a&gt;. It also helps that the package author, Steven Van Belleghem, is extremely friendly!&lt;/p&gt;
+&lt;p&gt;In practice, the most difficult step of using &lt;code&gt;patternize&lt;/code&gt; is often the color segmentation: like several other color analysis packages and tools, &lt;code&gt;patternize&lt;/code&gt; frequently relies on k-means clustering to extract color patches from images (especially for batch processing). That&amp;rsquo;s where &lt;code&gt;recolorize&lt;/code&gt; comes in. In order to use &lt;code&gt;recolorize&lt;/code&gt; to do the segmentation step for &lt;code&gt;patternize&lt;/code&gt;, we have to follow three steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Align original images as RasterStacks using &lt;code&gt;alignLan()&lt;/code&gt; in &lt;code&gt;patternize&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Segment the list of aligned images using &lt;code&gt;recolorize&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Convert list of segmented images back into the &lt;code&gt;patternize&lt;/code&gt; format&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Let&amp;rsquo;s do it!&lt;/p&gt;
+&lt;h2 id=&#34;example-files&#34;&gt;Example files&lt;/h2&gt;
+&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/tree/main/wasps&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;step-1-image-alignment-in-patternize&#34;&gt;Step 1: Image alignment in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Make sure you have installed the development version of &lt;code&gt;patternize&lt;/code&gt; (e.g. by running &lt;code&gt;devtools::install_github(&amp;quot;StevenVB12/patternize&amp;quot;)&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;We&amp;rsquo;re starting with a folder of unaltered images of wasp faces. These images have been color-corrected and cropped to the wasp&amp;rsquo;s face, but the background hasn&amp;rsquo;t been masked out, since &lt;code&gt;patternize&lt;/code&gt; will do that when we do the alignment.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Note that even on this dataset—which is highly standardized—the images have slight variations in the size, shape, and angle of the head, making it difficult to differentiate variation due to color pattern differences from that due to other factors.&lt;/p&gt;
+&lt;p&gt;To use the &lt;code&gt;alignLan()&lt;/code&gt; function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the &lt;a href=&#34;https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;multi-point tool&lt;/a&gt;, but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and &lt;strong&gt;no header&lt;/strong&gt;. Our landmarking scheme for the wasp faces only had 8 points:
+&lt;img src=&#34;images/F03_wasps_landmarking.png&#34; alt=&#34;&#34; width=&#34;40%&#34;/&gt;
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
+&lt;p&gt;Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using &lt;code&gt;patternize&lt;/code&gt;. I organized my files into separate folders (images in the &lt;code&gt;original_images/&lt;/code&gt; folder, landmark text files in the &lt;code&gt;landmarks&lt;/code&gt; folder, etc), but you don&amp;rsquo;t have to do that so long as your files are organized and named in a way that works with the &lt;code&gt;makeList()&lt;/code&gt; function.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
+library(patternize)
+
+### Align set of 20 images ###
+
+# set of specimen IDs
+IDlist &amp;lt;- tools::file_path_sans_ext(dir(&amp;quot;original_images/&amp;quot;, &amp;quot;.jpg&amp;quot;))
+
+# make list with images
+imageList &amp;lt;- makeList(IDlist, type = &amp;quot;image&amp;quot;,
+                      prepath = &amp;quot;original_images/&amp;quot;,
+                      extension = &amp;quot;.jpg&amp;quot;)
+
+# make list with landmarks
+landmarkList &amp;lt;- makeList(IDlist,
+                         type = &amp;quot;landmark&amp;quot;,
+                         prepath = &amp;quot;landmarks/&amp;quot;,
+                         extension = &amp;quot;_landmarks.txt&amp;quot;)
+
+# Set target as polistes 05
+target &amp;lt;- landmarkList[[&#39;polistes_05&#39;]]
+
+# Set up mask, which excludes eyes/mandibles and antenna holes
+mask1 &amp;lt;- read.table(&amp;quot;masks/polistes_05_mask.txt&amp;quot;, header = FALSE)
+mask2 &amp;lt;- read.table(&amp;quot;masks/polistes_05_Lantenna.txt&amp;quot;, header = FALSE)
+mask3 &amp;lt;- read.table(&amp;quot;masks/polistes_05_Rantenna.txt&amp;quot;, header = FALSE)
+
+### Alignment ###
+# this takes ~1 minute on a 16Gb RAM laptop running Ubuntu
+imageList_aligned &amp;lt;- alignLan(imageList, landmarkList, transformRef = target, 
+                              adjustCoords = TRUE,
+                              plotTransformed = T, 
+                              resampleFactor = 5, 
+                              cartoonID = &#39;polistes_05&#39;,
+                              maskOutline = list(mask1, mask2, mask3), 
+                              inverse = list(FALSE, TRUE, TRUE))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The resulting &lt;code&gt;imageList_aligned&lt;/code&gt; object is a list of aligned &lt;a href=&#34;https://rdrr.io/cran/raster/man/brick.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RasterBrick&lt;/a&gt; objects, one per image, with everything but the region of interest (frons and clypeus) removed.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Tip&lt;/strong&gt;: I usually save this list as an .RDS file so I can load it back in at my convenience without having to do the alignment step again:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# save RDS file
+saveRDS(imageList_aligned, &amp;quot;rds_files/imageList_aligned.rds&amp;quot;)
+
+# read it in:
+imageList_aligned &amp;lt;- readRDS(&amp;quot;rds_files/imageList_aligned.rds&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;step-2-segment-images-in-recolorize&#34;&gt;Step 2: Segment images in &lt;code&gt;recolorize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;The wonky step in this workflow is that &lt;code&gt;patternize&lt;/code&gt; works with raster images, and &lt;code&gt;recolorize&lt;/code&gt; works with arrays, so we have to convert from raster objects to arrays before using &lt;code&gt;recolorize&lt;/code&gt;. The &lt;code&gt;brick_to_array()&lt;/code&gt; function makes that fairly straightforward:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
+library(recolorize)
+
+# convert from RasterBricks to image arrays using the brick_to_array function:
+imgs &amp;lt;- lapply(imageList_aligned, brick_to_array)
+names(imgs) &amp;lt;- names(imageList_aligned)
+
+# save raster extents for later conversion:
+extent_list &amp;lt;- lapply(imageList_aligned, extent)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Now we have a list of image arrays. Plotting them using &lt;code&gt;plotImageArray()&lt;/code&gt; helps us to see what the &lt;code&gt;alignLan()&lt;/code&gt; step did for our original images:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;480&#34; /&gt;
+(Note that it also flipped the images upside because the y coordinate systems are reversed–this is annoying, but doesn&amp;rsquo;t affect our results, so we&amp;rsquo;ll leave it for now.)&lt;/p&gt;
+&lt;p&gt;We want to map each of these wasp faces to the same set of three colors: dark brown, reddish brown, and yellow. K-means clustering could work in theory for this problem (we would fit &lt;em&gt;n = 3&lt;/em&gt; colors for each image), but in practice, we get the colors back in a random order—and they&amp;rsquo;re not actually the same color. Here&amp;rsquo;s what it looks like if we try to do that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;for (i in 1:length(imgs)) {
+  rc &amp;lt;- recolorize(imgs[i], method = &amp;quot;k&amp;quot;, n = 3, plotting = FALSE)
+  plotColorPalette(rc$centers)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These colors are definitely similar across images, but they&amp;rsquo;re not consistent, especially since not all wasps have all three colors present. Maybe most intractably, they&amp;rsquo;re not in the same order: yellow is color 1, 2, or 3 depending on the image, and sometimes it&amp;rsquo;s not there at all.&lt;/p&gt;
+&lt;p&gt;Instead, we&amp;rsquo;ll come up with our list of 3 colors by combining color palettes across images, and then use the &lt;code&gt;imposeColors()&lt;/code&gt; function in &lt;code&gt;recolorize&lt;/code&gt; to map each of our images to the same color palette. First, generate a color palette for each image:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty list for storing the recolorize objects
+rc_list &amp;lt;- vector(&amp;quot;list&amp;quot;, length(imgs))
+names(rc_list) &amp;lt;- names(imgs)
+
+# for every image, run the same recolorize2 function to fit a recolorize object:
+for (i in 1:length(imgs)) {
+  rc_list[[i]] &amp;lt;- recolorize2(imgs[[i]], bins = 3,
+                              cutoff = 35, plotting = FALSE)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I kept it pretty simple for this example (we&amp;rsquo;re just calling &lt;code&gt;recolorize2()&lt;/code&gt; with the same parameters for each image), but you could get more complicated with what you put in the for loop. (You could even choose to use k-means clustering as the method here by setting &lt;code&gt;method = &amp;quot;k&amp;quot;&lt;/code&gt; and specifying the number of colors, since we&amp;rsquo;re just using it as a starting point, but since k-means is not deterministic that poses problems for repeatability.)&lt;/p&gt;
+&lt;p&gt;Next you can combine the color palettes from all of the &lt;code&gt;recolorize&lt;/code&gt; objects in &lt;code&gt;rc_list&lt;/code&gt; and use &lt;code&gt;hclust_color&lt;/code&gt; to plot them and return a list of which colors to group together:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get a dataframe of all colors:
+all_palettes &amp;lt;- do.call(rbind, lapply(rc_list, function(i) i$centers))
+
+# and for cluster sizes (as a proportion of their original image):
+all_sizes &amp;lt;- do.call(c, lapply(rc_list, function(i) i$sizes))
+
+# plot colors using hclust and return grouping list:
+par(mar = rep(2, 4))
+cluster_list &amp;lt;- hclust_color(all_palettes, n_final = 3)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;cluster_list&lt;/code&gt; object is a list, each element of which is a vector of which of the original colors should be clustered together. See the rest of the &lt;code&gt;hclust_color()&lt;/code&gt; options to various ways to combine colors by similarity—by default, it calculates the Euclidean distance matrix between all provided color centers in &lt;a href=&#34;https://cran.r-project.org/web/packages/colordistance/vignettes/lab-analyses.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CIE Lab&lt;/a&gt; color space. We can use that list to combine all the colors and come up with our universal palette:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty matrix for storing the new palette
+wasp_palette &amp;lt;- matrix(NA, ncol = 3, nrow = length(cluster_list))
+
+# for every color in cluster_list...
+for (i in 1:length(cluster_list)) {
+  
+  # get the center indices
+  idx &amp;lt;- cluster_list[[i]]
+  
+  # get the average value for each channel, using cluster size to get a weighted average
+  ctr &amp;lt;- apply(all_palettes, 2, 
+                 function(j) weighted.mean(j[idx], 
+                                           w = all_sizes[idx]))
+  
+  # store in the palette matrix
+  wasp_palette[i, ] &amp;lt;- ctr
+}
+
+# check that our colors seem reasonable
+par(mar = rep(0, 4))
+plotColorPalette(wasp_palette)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;288&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;And now, we can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to the same set of three colors:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;impose_list &amp;lt;- lapply(imgs, function(i) imposeColors(i, wasp_palette, 
+                                                     adjust_centers = FALSE, 
+                                                     plotting = FALSE))
+
+# let&#39;s look at our palettes!
+layout(matrix(1:20, nrow = 4))
+par(mar = rep(0, 4))
+for (i in impose_list) {
+  plotColorPalette(i$centers, i$sizes)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Although the proportions of each color vary by image, the order/value of the colors does not (unlike with k-means). This is the key step. As long as you can provide a color palette to which all of your images should be mapped, you can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to those colors. The earlier portion where we did an initial fit and used &lt;code&gt;hclust_color&lt;/code&gt; is a good option when you want to come up with a color palette intrinsic to your original images, but it may still take some toying around before you find a palette that works.&lt;/p&gt;
+&lt;p&gt;The last step is to convert each &lt;code&gt;recolorize&lt;/code&gt; fit in back to a &lt;code&gt;patternize&lt;/code&gt; format, which we can do with the &lt;code&gt;recolorize_to_patternize()&lt;/code&gt; function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# convert to patternize:
+patternize_list &amp;lt;- lapply(impose_list, recolorize_to_patternize)
+
+# and set extents again:
+for (i in 1:length(patternize_list)) {
+  for (j in 1:length(patternize_list[[1]])) {
+    raster::extent(patternize_list[[i]][[j]]) &amp;lt;- extent_list[[i]]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This is a list of lists: there is one element per sample ID in &lt;code&gt;patternize_list&lt;/code&gt; (20 total), and each of those elements is a list of &lt;code&gt;RasterLayer&lt;/code&gt; objects, one per color class (3 per sample ID). You may need to reshuffle these depending on what you want to do.&lt;/p&gt;
+&lt;p&gt;Now, back to &lt;code&gt;patternize&lt;/code&gt;!&lt;/p&gt;
+&lt;h2 id=&#34;step-3-color-pattern-analyses-in-patternize&#34;&gt;Step 3: Color pattern analyses in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
+&lt;p&gt;Since we now have the images segmented in the way that &lt;code&gt;patternize&lt;/code&gt; needs, we can run any of the regular &lt;code&gt;patternize&lt;/code&gt; functions on it (see the methods paper and &lt;a href=&#34;https://github.com/StevenVB12/patternize-examples&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;examples repository&lt;/a&gt;). Here, we&amp;rsquo;ll use a custom function based on code that Steven sent me for running a PCA on the entire color pattern (all three colors simultaneously, rather than one color class at a time). You can see the full function &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/wasps/patPCA_total.R&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;. If you&amp;rsquo;ve downloaded the wasp example dataset, the easiest thing to do is to just source it and run the function on the list we made earlier:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;source(&amp;quot;patPCA_total.R&amp;quot;)
+wasp_pca &amp;lt;- patPCA_total(patternize_list, quietly = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Summing raster lists...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Making dataframe from rasters...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Running PCA on 3 colors and 20 images...
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## done
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;
+That&amp;rsquo;s it! The &lt;code&gt;wasp_pca&lt;/code&gt; object is a &lt;code&gt;prcomp&lt;/code&gt; object (the standard class for principal components analysis in R).&lt;/p&gt;
+&lt;h2 id=&#34;bonus-visualization&#34;&gt;Bonus: visualization&lt;/h2&gt;
+&lt;p&gt;It can be hard to tell whether the PCA is capturing relevant axes of color pattern variation from a scatterplot; I find it more intuitive to plot some version the actual images. The &lt;code&gt;add_image()&lt;/code&gt; function is an easy way to do that:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# first, make a blank plot
+PCx &amp;lt;- 1; PCy &amp;lt;- 2
+pca_summary &amp;lt;- summary(wasp_pca)
+limits &amp;lt;- apply(wasp_pca$x[ , c(PCx, PCy)], 2, range)
+par(mar = c(4, 4, 2, 1))
+plot(wasp_pca$x[ , c(PCx, PCy)], type = &amp;quot;n&amp;quot;,
+     asp = 1,
+     xlim = limits[ , 1] + c(-5, 5), 
+     ylim = limits[ , 2] + c(-10, 10),
+     xlab=paste0(&#39;PC1 (&#39;, round(pca_summary$importance[2, PCx]*100, 1), &#39; %)&#39;),
+     ylab=paste0(&#39;PC2 (&#39;, round(pca_summary$importance[2, PCy]*100, 1), &#39; %)&#39;))
+
+# then add images:
+for (i in 1:length(impose_list)) {
+  add_image(impose_list[[i]]$original_img, 
+            x = wasp_pca$x[i, PCx],
+            y = wasp_pca$x[i, PCy],
+            width = 20)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;
+You could also plot images from a folder on your computer:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(wasp_pca$x[ , c(PCx, PCy)], type = &amp;quot;n&amp;quot;,
+     asp = 1,
+     xlim = limits[ , 1] + c(-5, 5), 
+     ylim = limits[ , 2] + c(-10, 10),
+     xlab=paste0(&#39;PC1 (&#39;, round(pca_summary$importance[2, PCx]*100, 1), &#39; %)&#39;),
+     ylab=paste0(&#39;PC2 (&#39;, round(pca_summary$importance[2, PCy]*100, 1), &#39; %)&#39;))
+
+# read in images from the original folder:
+images &amp;lt;- lapply(dir(&amp;quot;original_images/&amp;quot;, full.names = TRUE),
+                 readImage)
+
+# and plot:
+for (i in 1:length(images)) {
+  add_image(images[[i]], 
+            x = wasp_pca$x[i, PCx],
+            y = wasp_pca$x[i, PCy],
+            width = 20)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;
+(If I were to use these images for a paper figure, though, I would go through and mask out the background using transparencies—these are a little hard to see on a white background.)&lt;/p&gt;
+&lt;p&gt;That&amp;rsquo;s it for the tutorial. I would recommend downloading the example code and files from the linked GitHub repository if you want to try it out: there are a few steps involved, but ultimately it&amp;rsquo;s a reasonably simple procedure. I&amp;rsquo;d love to be able to write a one-and-done version of this process, but if you&amp;rsquo;ve been reading &lt;a href=&#34;https://hiweller.github.io/recolorize/articles/Introduction.html#general-guidelines&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the other recolorize documentation&lt;/a&gt;, you&amp;rsquo;ll be familiar with my perspective on this. Basically, if I try to impose a general structure for how to do this every time, that&amp;rsquo;s not going to be flexible enough to encompass many use cases, and I prefer to keep things modular. Still, if you have any ideas for how to make this a more friendly process, I&amp;rsquo;m all ears!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Function gallery for recolorize</title>
@@ -697,6 +931,23 @@ dev.off()
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;&lt;img src=&#34;/post/introduction-to-recolorize/index_files/figure-html/unnamed-chunk-39-1.png&#34; width=&#34;144&#34; style=&#34;display: block; margin: auto;&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;This function is VERY experimental. If it gives you errors or looks too funky, try decreasing the size filter (which absorbs all components below some size to simplify the image) and the smoothness. Then again, sometimes you want things to look funky. If this is the case, &lt;code&gt;recolorizeVector&lt;/code&gt; will happily enable you.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
+      <link>/publication/sicb-2021/</link>
+      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
+      <guid>/publication/sicb-2021/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>recolorize</title>
+      <link>/project/recolorize/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/recolorize/</guid>
+      <description>&lt;p&gt;This is a package for making color maps, which are needed (or at least useful) for a wide range of color analysis techniques. It was born out of conversations with many biologists who found, to their surprise and mine, that generating color maps was the bottleneck step in their analyses. Fully automated methods rarely work all of the time, and are difficult to modify, while fully manual methods are subjective and time-consuming. This package tries to split the difference by giving you a mix of tools that will do a pretty good job with no user input, and then allow minor manual changes like merging and filtering layers or splitting components, before exporting them to the next step of your analysis. It&amp;rsquo;s also, for the most part, totally deterministic – no arbitrary seed-setting for repeatability.&lt;/p&gt;
 </description>
     </item>
     

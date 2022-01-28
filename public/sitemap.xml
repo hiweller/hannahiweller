@@ -21,19 +21,52 @@
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
     <loc>/authors/</loc>
-    <lastmod>2021-04-13T12:06:09-04:00</lastmod>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/categories/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
   </url><url>
     <loc>/tag/color/</loc>
-    <lastmod>2021-04-13T17:27:09-04:00</lastmod>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/author/hannah-weller/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/post/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/tag/r/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/tag/r-packages/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/tag/recolorize/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/category/recolorize/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/post/recolorize-patternize-workflow/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/author/steven-van-belleghem/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
+  </url><url>
+    <loc>/author/hannah-weller/</loc>
+    <lastmod>2021-05-07T10:16:26-04:00</lastmod>
+  </url><url>
+    <loc>/post/image-trees/</loc>
+    <lastmod>2021-05-07T10:16:26-04:00</lastmod>
   </url><url>
     <loc>/tag/colordistance/</loc>
     <lastmod>2021-04-13T12:06:09-04:00</lastmod>
   </url><url>
     <loc>/post/function-gallery-for-recolorize/</loc>
     <lastmod>2021-04-13T17:27:09-04:00</lastmod>
-  </url><url>
-    <loc>/author/hannah-weller/</loc>
-    <lastmod>2021-04-13T12:06:09-04:00</lastmod>
   </url><url>
     <loc>/post/introduction-to-recolorize/</loc>
     <lastmod>2021-04-13T17:24:29-04:00</lastmod>
@@ -44,17 +77,8 @@
     <loc>/tag/plotting/</loc>
     <lastmod>2021-04-13T12:06:09-04:00</lastmod>
   </url><url>
-    <loc>/post/</loc>
-    <lastmod>2021-04-13T17:27:09-04:00</lastmod>
-  </url><url>
-    <loc>/tag/r-packages/</loc>
-    <lastmod>2021-04-13T17:27:09-04:00</lastmod>
-  </url><url>
-    <loc>/tag/recolorize/</loc>
-    <lastmod>2021-04-13T17:27:09-04:00</lastmod>
-  </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2021-04-13T17:27:09-04:00</lastmod>
+    <loc>/currently/</loc>
+    <lastmod>2021-03-28T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/courses/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
@@ -62,23 +86,110 @@
     <loc>/courses/example/</loc>
     <lastmod>2021-01-24T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/publication-type/3/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <loc>/publication-type/1/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
   </url><url>
-    <loc>/publication/preprint/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <loc>/tag/beetles/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
   </url><url>
-    <loc>/author/hannah-weller/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <loc>/author/elizabeth-karan/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
+  </url><url>
+    <loc>/author/nathan-lord/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
   </url><url>
     <loc>/publication_types/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
   </url><url>
     <loc>/publication/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
   </url><url>
-    <loc>/tag/source-themes/</loc>
-    <lastmod>2019-04-07T00:00:00+00:00</lastmod>
+    <loc>/publication/sicb-2021/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
+  </url><url>
+    <loc>/author/shawn-schwartz/</loc>
+    <lastmod>2021-01-01T20:57:23-04:00</lastmod>
+  </url><url>
+    <loc>/publication-type/2/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/author/aaron-olsen/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/publication/catfish/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/author/ariel-camp/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/author/armita-manafzadeh/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/tag/biomechanics/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/author/elizabeth-brainerd/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/tag/fish/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/category/fish/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/tag/kinematics/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/author/l.-patricia-hernandez/</loc>
+    <lastmod>2020-06-01T19:18:37-04:00</lastmod>
+  </url><url>
+    <loc>/project/colordistance/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/project/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/project/recolorize/</loc>
+    <lastmod>2020-04-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/category/colordistance/</loc>
+    <lastmod>2020-02-01T19:36:14-04:00</lastmod>
+  </url><url>
+    <loc>/publication/countcolors/</loc>
+    <lastmod>2020-02-01T19:36:14-04:00</lastmod>
+  </url><url>
+    <loc>/author/sarah-hooper/</loc>
+    <lastmod>2020-02-01T19:36:14-04:00</lastmod>
+  </url><url>
+    <loc>/author/sybill-amelon/</loc>
+    <lastmod>2020-02-01T19:36:14-04:00</lastmod>
+  </url><url>
+    <loc>/author/caleb-mcmahan/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tag/cichlids/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tag/evolution/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/author/hernan-lopez-fernandez/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tag/mouthbrooding/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/category/mouthbrooding/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/publication/sicb-2020/</loc>
+    <lastmod>2020-01-01T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/author/mark-westneat/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/publication/colordistance/</loc>
+    <lastmod>2019-02-06T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/slides/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
@@ -86,40 +197,18 @@
     <loc>/slides/example/</loc>
     <lastmod>2019-02-05T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>/tag/deep-learning/</loc>
+    <loc>/cv/</loc>
+    <lastmod>2018-06-28T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tag/winnowing/</loc>
+    <lastmod>2017-09-01T19:05:49-04:00</lastmod>
+  </url><url>
+    <loc>/publication/winnowing/</loc>
+    <lastmod>2017-09-01T19:05:49-04:00</lastmod>
+  </url><url>
+    <loc>/project/icdb/</loc>
     <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tag/demo/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/project/external-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/project/internal-project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/project/</loc>
-    <lastmod>2016-04-27T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/publication-type/2/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/publication/journal-article/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/author/robert-ford/</loc>
-    <lastmod>2015-09-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/publication-type/1/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/publication/conference-paper/</loc>
-    <lastmod>2013-07-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/admin/</loc>
-  </url><url>
-    <loc>/categories/</loc>
-  </url><url>
-    <loc>/author/%E5%90%B3%E6%81%A9%E9%81%94/</loc>
   </url>
 </urlset>

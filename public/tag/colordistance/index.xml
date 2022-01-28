@@ -181,5 +181,22 @@ plot_ly(data = clusters,
 </description>
     </item>
     
+    <item>
+      <title>colordistance</title>
+      <link>/project/colordistance/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/colordistance/</guid>
+      <description>&lt;p&gt;A package for implementing distance metrics to quantify color diversity across images. This is done by binning pixels by color using either data-dependent or automatically generated color bins, quantitatively measuring color similarity among images using one of several distance metrics for comparing pixel color clusters, and clustering images by object color similarity. Uses CIE Lab, RGB, or HSV color spaces. Originally written for use with organism coloration (reef fish color diversity, butterfly mimicry, etc), but easily applicable for any image set.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
+      <link>/publication/colordistance/</link>
+      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/colordistance/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

@@ -188,7 +188,7 @@ I kept it pretty simple for this example (we're just calling `recolorize2()` wit
 
 Next you can combine the color palettes from all of the `recolorize` objects in `rc_list` and use `hclust_color` to plot them and return a list of which colors to group together:
 
-```{r, fig.width=3}
+```{r, fig.width=7, fig.height=3}
 # get a dataframe of all colors:
 all_palettes <- do.call(rbind, lapply(rc_list, function(i) i$centers))
 
@@ -196,6 +196,7 @@ all_palettes <- do.call(rbind, lapply(rc_list, function(i) i$centers))
 all_sizes <- do.call(c, lapply(rc_list, function(i) i$sizes))
 
 # plot colors using hclust and return grouping list:
+par(mar = rep(2, 4))
 cluster_list <- hclust_color(all_palettes, n_final = 3)
 ```
 

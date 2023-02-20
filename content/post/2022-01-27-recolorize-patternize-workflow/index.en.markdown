@@ -38,7 +38,7 @@ Let's do it!
 
 ## Example files
 
-All the data and code used in this tutorial can be found here: https://github.com/hiweller/recolorize_examples/tree/main/wasps
+All the data and code used in this tutorial can be found here: https://github.com/hiweller/recolorize_examples/02_wasps
 
 ## Step 1: Image alignment in `patternize`
 
@@ -52,9 +52,9 @@ Note that even on this dataset—which is highly standardized—the images have 
 
 To use the `alignLan()` function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the [multi-point tool](https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5), but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and **no header**. Our landmarking scheme for the wasp faces only had 8 points:
 <img src="images/F03_wasps_landmarking.png" alt="" width="40%"/>
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/wasps/landmarks/polistes_01_landmarks.txt)).
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt)).
 
-I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
+I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
 
 Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using `patternize`. I organized my files into separate folders (images in the `original_images/` folder, landmark text files in the `landmarks` folder, etc), but you don't have to do that so long as your files are organized and named in a way that works with the `makeList()` function.
 
@@ -161,7 +161,6 @@ for (i in 1:length(imgs)) {
 }
 ```
 
-
 I kept it pretty simple for this example (we're just calling `recolorize2()` with the same parameters for each image), but you could get more complicated with what you put in the for loop. (You could even choose to use k-means clustering as the method here by setting `method = "k"` and specifying the number of colors, since we're just using it as a starting point, but since k-means is not deterministic that poses problems for repeatability.)
 
 Next you can combine the color palettes from all of the `recolorize` objects in `rc_list` and use `hclust_color` to plot them and return a list of which colors to group together:
@@ -179,7 +178,7 @@ par(mar = rep(2, 4))
 cluster_list <- hclust_color(all_palettes, n_final = 3)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-9-1.png" width="672" />
 
 The `cluster_list` object is a list, each element of which is a vector of which of the original colors should be clustered together. See the rest of the `hclust_color()` options to various ways to combine colors by similarity—by default, it calculates the Euclidean distance matrix between all provided color centers in [CIE Lab](https://cran.r-project.org/web/packages/colordistance/vignettes/lab-analyses.html) color space. We can use that list to combine all the colors and come up with our universal palette:
 
@@ -208,7 +207,7 @@ par(mar = rep(0, 4))
 plotColorPalette(wasp_palette)
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-11-1.png" width="288" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-10-1.png" width="288" />
 
 And now, we can use `imposeColors()` to map every image to the same set of three colors:
 
@@ -225,7 +224,7 @@ for (i in impose_list) {
   plotColorPalette(i$centers, i$sizes)
 }
 ```
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-13-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-12-1.png" width="672" />
 
 Although the proportions of each color vary by image, the order/value of the colors does not (unlike with k-means). This is the key step. As long as you can provide a color palette to which all of your images should be mapped, you can use `imposeColors()` to map every image to those colors. The earlier portion where we did an initial fit and used `hclust_color` is a good option when you want to come up with a color palette intrinsic to your original images, but it may still take some toying around before you find a palette that works.
 
@@ -273,7 +272,7 @@ wasp_pca <- patPCA_total(patternize_list, quietly = FALSE)
 ## done
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-16-1.png" width="672" />
 That's it! The `wasp_pca` object is a `prcomp` object (the standard class for principal components analysis in R).
 
 ## Bonus: visualization
@@ -303,7 +302,7 @@ for (i in 1:length(impose_list)) {
 }
 ```
 
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-18-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-17-1.png" width="672" />
 You could also plot images from a folder on your computer:
 
 
@@ -327,20 +326,7 @@ for (i in 1:length(images)) {
             width = 20)
 }
 ```
-<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-20-1.png" width="672" />
+<img src="{{< blogdown/postref >}}index.en_files/figure-html/unnamed-chunk-19-1.png" width="672" />
 (If I were to use these images for a paper figure, though, I would go through and mask out the background using transparencies—these are a little hard to see on a white background.)
 
 That's it for the tutorial. I would recommend downloading the example code and files from the linked GitHub repository if you want to try it out: there are a few steps involved, but ultimately it's a reasonably simple procedure. I'd love to be able to write a one-and-done version of this process, but if you've been reading [the other recolorize documentation](https://hiweller.github.io/recolorize/articles/Introduction.html#general-guidelines), you'll be familiar with my perspective on this. Basically, if I try to impose a general structure for how to do this every time, that's not going to be flexible enough to encompass many use cases, and I prefer to keep things modular. Still, if you have any ideas for how to make this a more friendly process, I'm all ears! 
-
-
-
-
-
-
-
-
-
-
-
-
-

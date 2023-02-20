@@ -128,6 +128,184 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
+      <title>Scaling images to a uniform resolution</title>
+      <link>/post/scaling-images-to-a-uniform-resolution/</link>
+      <pubDate>Mon, 14 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>/post/scaling-images-to-a-uniform-resolution/</guid>
+      <description>&lt;p&gt;Kei-Lin Ooi at the University of Melbourne has a very good question about batch resizing (excerpted from an email):&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;I am using images from online databases and thus the images are not standardized. I am using the anisotropic blur to smooth out the image and eliminate image &amp;ldquo;noise&amp;rdquo;, but the anisotropic blur function is dependent on the image resolution. I was wondering if there was a way of batch processing images to scale and resize them to be, for example, 10 pixels / millimeter, so that the blur function smooths each image proportionally?&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;This is an important step of image processing, so I wanted to use Kei-Lin&amp;rsquo;s email as motivation for writing out slightly more general instructions for this problem.&lt;/p&gt;
+&lt;p&gt;If you&amp;rsquo;re reading this post, you&amp;rsquo;re most likely already familiar with image resolution, usually defined as pixels per some real-world unit, like millimeters or inches (&lt;em&gt;not&lt;/em&gt; the number of pixels in the image). When we&amp;rsquo;re taking photographs for analysis, we often try to take the highest resolution pictures we can of each subject, which might mean zooming in on smaller specimens and zooming out for large ones. The result is that we&amp;rsquo;re sampling those smaller specimens at a much higher resolution than the larger ones, which if nothing else introduces a confounding variable to our measurements.&lt;/p&gt;
+&lt;p&gt;Luckily, this is pretty easy to fix a long as you know the resolution of each of your images: you just have to calculate the rescaling factor for the image from its current resolution and its target resolution, and provide that factor as an argument to an image resizing tool. We&amp;rsquo;ll do it in R (for pretty obvious inertia reasons), but I&amp;rsquo;ll list some alternatives at the end of the post.&lt;/p&gt;
+&lt;h2 id=&#34;generating-example-images&#34;&gt;Generating example images&lt;/h2&gt;
+&lt;p&gt;First, I&amp;rsquo;ll generate some simple exmple images by resizing an original image. We&amp;rsquo;ll do this with one of the images that comes with &lt;code&gt;recolorize&lt;/code&gt;, reading it in at 1x, 2x, and 3x the original size:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get image path
+image_path &amp;lt;- system.file(&amp;quot;extdata/chongi.png&amp;quot;, package = &amp;quot;recolorize&amp;quot;)
+
+# load recolorize
+library(recolorize)
+
+# read in image at 1x, 2x, and 3x
+sample_images &amp;lt;- lapply(1:3, function(i) readImage(image_path, resize = i))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;We can verify that the dimensions of the 2x and 3x images are indeed 2x and 3x the dimensions of the original:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;lapply(sample_images, dim)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## [1] 226  90   4
+## 
+## [[2]]
+## [1] 452 180   4
+## 
+## [[3]]
+## [1] 678 270   4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;m using this as sample data because the final solution is obvious: we want to downsample the 2x and 3x images to have the same dimensions as the 1x image again. For now, let&amp;rsquo;s save them as their own set of images:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# save as images
+for (i in 1:3) {
+  png::writePNG(sample_images[[i]], paste0(&amp;quot;beetle_&amp;quot;, i, &amp;quot;.png&amp;quot;))
+}
+
+# and make a list of image paths
+image_paths &amp;lt;- dir(&amp;quot;.&amp;quot;, &amp;quot;beetle_&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Skip this step if you have your own images that you want to resize!&lt;/p&gt;
+&lt;h2 id=&#34;calculating-current-resolution-and-rescaling-factors&#34;&gt;Calculating current resolution and rescaling factors&lt;/h2&gt;
+&lt;p&gt;Let&amp;rsquo;s say the beetle in this image is 35mm long, and I measure it in ImageJ on each image to find that the beetle is 200px long in image 1, 400px long in image 2, and 600px long in image 3. That means my image resolutions are 200/35 = 5.71 px/mm for image 1, 400/35 = 11.43 px/mm for image 2, and 600/35 = 17.14 px/mm in image 3. For a real dataset, I would probably make a metadata spreadsheet of image name in one column and resolution in another so that you can keep track of everything.&lt;/p&gt;
+&lt;p&gt;In our example, we&amp;rsquo;ll try to resize everything so that it&amp;rsquo;s the same as the original resolution of 5.71 px/mm. For an actual dataset, you could pick any target resolution so long as it is equal to or lower than the lowest resolution of any image in your dataset.&lt;/p&gt;
+&lt;p&gt;In our case, we know our rescaling factors because we picked them, but let&amp;rsquo;s pretend we need to find them. The simplest calculation is to just divide the target resolution by the current resolution:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;current_resolutions &amp;lt;- c(200/35, 400/35, 600/35)
+target_resolution &amp;lt;- 200/35
+
+rescaling_factors &amp;lt;- target_resolution / current_resolutions
+print(rescaling_factors)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1] 1.0000000 0.5000000 0.3333333
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;As expected, we end up with rescaling factors of 1 for the original image (no resizing), 0.5 for the 2x image (1/2), and 0.3333 for the 3x image (1/3).&lt;/p&gt;
+&lt;h2 id=&#34;rescaling-images&#34;&gt;Rescaling images&lt;/h2&gt;
+&lt;p&gt;The easiest thing to do is to rescale the images using the &lt;code&gt;resize&lt;/code&gt; argument in &lt;code&gt;recolorize&lt;/code&gt;, since you have the option any time you read in an image for the package:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty list for images
+image_list &amp;lt;- vector(&amp;quot;list&amp;quot;, length = length(image_paths))
+image_list &amp;lt;- setNames(image_list, basename(image_paths))
+
+# read in images and rescale appropriately
+for (i in 1:length(image_paths)) {
+  image_list[[i]] &amp;lt;- recolorize::readImage(image_paths[i],
+                                           resize = rescaling_factors[i])
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;However, you&amp;rsquo;ll notice something if you look at the actual image dimensions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;lapply(image_list, dim)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## $beetle_1.png
+## [1] 226  90   4
+## 
+## $beetle_2.png
+## [1] 226  90   4
+## 
+## $beetle_3.png
+## [1] 223  89   4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;The first two images now have identical dimensions, but the last one—which we scaled up 3x—isn&amp;rsquo;t quite right: it&amp;rsquo;s 223x89 pixels, instead of 226x90 pixels, so we have a resolution of about 5.63 px/mm instead of 5.71 px/mm. As far as I can tell, this is an artifact of our particular rescaling factor (1/3) being a repeating decimal (0.333&amp;hellip;) that gets rounded by the computer. One way around that would be to explicitly calculate the image dimensions you want, and use the &lt;code&gt;imager&lt;/code&gt; library directly to specify those dimensions:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(imager)
+
+# load the image as a cimg object
+img &amp;lt;- load.image(image_paths[3])
+
+# this doesn&#39;t work (this is the function recolorize calls):
+img_imresize &amp;lt;- imresize(img, scale = 1/3)
+dim(img_imresize) 
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  89 223   1   4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# cimg objects have x and y flipped, but this is still 223 pixels long x 89
+# pixels wide
+
+# we can explicitly calculate image dimensions:
+new_dimensions &amp;lt;- dim(img)[1:2] * 1/3
+
+# and specify those dimensions directly:
+img_resize &amp;lt;- resize(img, 
+                     size_x = new_dimensions[1], 
+                     size_y = new_dimensions[2])
+dim(img_resize)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [1]  90 226   1   4
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;In practice, you&amp;rsquo;ll most likely encounter these fractional rescaling artifacts a lot, and even doing it the more precise way in &lt;code&gt;imager&lt;/code&gt; doesn&amp;rsquo;t totally eliminate it, since images have to be represented as an integer number of pixels. In this case, our artifact translated to a 0.08 px/mm discrepancy, partly because the images were so small to begin with.&lt;/p&gt;
+&lt;h2 id=&#34;saving-images&#34;&gt;Saving images&lt;/h2&gt;
+&lt;p&gt;Once you rescale an image, you&amp;rsquo;ll want to save it. I would use &lt;code&gt;writePNG()&lt;/code&gt; if your images are arrays, but the other option is &lt;code&gt;imager&lt;/code&gt;&amp;rsquo;s &lt;code&gt;save.image()&lt;/code&gt; function:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# we can save it with save.image:
+save.image(img_resize, file = &amp;quot;beetle_3_resized.png&amp;quot;, quality = 1)
+
+# or we can use a non-exported recolorize function to turn it back into an array:
+img_array &amp;lt;- recolorize:::cimg_to_array(img_resize)
+
+# and then export it:
+png::writePNG(img_array, &amp;quot;beetle_3_resized.png&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;That&amp;rsquo;s basically it! Calculate the rescaling factor for each image, apply it to that image, and save the downsampled result.&lt;/p&gt;
+&lt;h2 id=&#34;a-slightly-more-realistic-example&#34;&gt;A slightly more realistic example&lt;/h2&gt;
+&lt;p&gt;Here&amp;rsquo;s some code for running through a folder of images (the beetles that come with the package). The easier way:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get vector of images:
+images &amp;lt;- dir(system.file(&amp;quot;extdata&amp;quot;, package = &amp;quot;recolorize&amp;quot;), 
+              &amp;quot;png&amp;quot;, full.names = TRUE)
+
+# best practice would be to have these stored in a CSV in one column with image
+# name in the other column, but for this example we&#39;ll just define image
+# resolution as a vector:
+image_resolutions &amp;lt;- c(5.71, 6.63, 5.32, 5.91, 6.63) # px/mm
+
+# target resolution is 5 px/mm, since our lowest resolution is 5.3 px/mm
+target_resolution &amp;lt;- 5
+
+# for every image...
+for (i in 1:length(images)) {
+  
+  # read in new image, rescaling it appropriately
+  new_image &amp;lt;- readImage(images[i], 
+                         resize = target_resolution / image_resolutions[i])
+  
+  # get filename for renaming
+  filename &amp;lt;- basename(tools::file_path_sans_ext(images[i]))
+  
+  # and store output in current working directory
+  png::writePNG(new_image, target = paste0(filename, &amp;quot;_resized.png&amp;quot;))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;And the slightly more complicated way:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# or, you could use the more precise option:
+for (i in 1:length(images)) {
+  # load image
+  img &amp;lt;- load.image(images[i])
+  
+  # define new dimensions
+  new_dimensions &amp;lt;- dim(new_image)[1:2] * (target_resolution / image_resolutions[i])
+  
+  # resize
+  new_image &amp;lt;- resize(img,
+                      size_x = new_dimensions[1], 
+                      size_y = new_dimensions[2])
+  
+  # and save
+  filename &amp;lt;- basename(tools::file_path_sans_ext(images[i]))
+  save.image(new_image, file = paste0(filename, &amp;quot;_resized.png&amp;quot;))
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;alternatives-to-rescaling-in-r&#34;&gt;Alternatives to rescaling in R&lt;/h2&gt;
+&lt;p&gt;Almost any image processing tool will let you resize/rescale an image. The most tedious (and familiar) way is probably to use &lt;a href=&#34;https://bobbingwidewebdesign.com/photoshop-tutorial/how-do-i-batch-resize-in-gimp.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Photoshop or Gimp&lt;/a&gt;, manually opening each image and resizing it to desired dimensions.&lt;/p&gt;
+&lt;p&gt;Personally, I&amp;rsquo;m a big fan of &lt;a href=&#34;https://ffmpeg.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;ffmpeg&lt;/a&gt;, a popular command line tool for video, audio, and image processing. For example, to resize the 3x beetle, we would just call the following line in the terminal:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;&amp;gt; ffmpeg -i beetle_3.png -vf &amp;quot;scale=iw/3:ih/3&amp;quot; beetle_3_resized.png
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;It&amp;rsquo;s pretty easy to automate the renaming and rescaling. The only thing that would be difficult here is figuring out how to supply a different rescaling argument for each image (notice here I just divided the image width and height by 3). I&amp;rsquo;m sure you could do this by writing a short bash script, but I didn&amp;rsquo;t bother to do that for this post.&lt;/p&gt;
+&lt;p&gt;Hopefully this is helpful—I guess the takeaway is that you have to calculate a simple ratio and then use any of half a dozen tools to resize your image. Pretty straightforward!&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Recolorize &amp; patternize workflow</title>
       <link>/post/recolorize-patternize-workflow/</link>
       <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
@@ -143,7 +321,7 @@ The variance of the distribution is $\sigma^{2}$.
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s do it!&lt;/p&gt;
 &lt;h2 id=&#34;example-files&#34;&gt;Example files&lt;/h2&gt;
-&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/tree/main/wasps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/02_wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/02_wasps&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;step-1-image-alignment-in-patternize&#34;&gt;Step 1: Image alignment in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Make sure you have installed the development version of &lt;code&gt;patternize&lt;/code&gt; (e.g. by running &lt;code&gt;devtools::install_github(&amp;quot;StevenVB12/patternize&amp;quot;)&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;re starting with a folder of unaltered images of wasp faces. These images have been color-corrected and cropped to the wasp&amp;rsquo;s face, but the background hasn&amp;rsquo;t been masked out, since &lt;code&gt;patternize&lt;/code&gt; will do that when we do the alignment.&lt;/p&gt;
@@ -151,8 +329,8 @@ The variance of the distribution is $\sigma^{2}$.
 &lt;p&gt;Note that even on this dataset—which is highly standardized—the images have slight variations in the size, shape, and angle of the head, making it difficult to differentiate variation due to color pattern differences from that due to other factors.&lt;/p&gt;
 &lt;p&gt;To use the &lt;code&gt;alignLan()&lt;/code&gt; function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the &lt;a href=&#34;https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;multi-point tool&lt;/a&gt;, but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and &lt;strong&gt;no header&lt;/strong&gt;. Our landmarking scheme for the wasp faces only had 8 points:
 &lt;img src=&#34;images/F03_wasps_landmarking.png&#34; alt=&#34;&#34; width=&#34;40%&#34;/&gt;
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
 &lt;p&gt;Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using &lt;code&gt;patternize&lt;/code&gt;. I organized my files into separate folders (images in the &lt;code&gt;original_images/&lt;/code&gt; folder, landmark text files in the &lt;code&gt;landmarks&lt;/code&gt; folder, etc), but you don&amp;rsquo;t have to do that so long as your files are organized and named in a way that works with the &lt;code&gt;makeList()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
 library(patternize)
@@ -245,7 +423,7 @@ all_sizes &amp;lt;- do.call(c, lapply(rc_list, function(i) i$sizes))
 par(mar = rep(2, 4))
 cluster_list &amp;lt;- hclust_color(all_palettes, n_final = 3)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;cluster_list&lt;/code&gt; object is a list, each element of which is a vector of which of the original colors should be clustered together. See the rest of the &lt;code&gt;hclust_color()&lt;/code&gt; options to various ways to combine colors by similarity—by default, it calculates the Euclidean distance matrix between all provided color centers in &lt;a href=&#34;https://cran.r-project.org/web/packages/colordistance/vignettes/lab-analyses.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;CIE Lab&lt;/a&gt; color space. We can use that list to combine all the colors and come up with our universal palette:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# make an empty matrix for storing the new palette
 wasp_palette &amp;lt;- matrix(NA, ncol = 3, nrow = length(cluster_list))
@@ -269,7 +447,7 @@ for (i in 1:length(cluster_list)) {
 par(mar = rep(0, 4))
 plotColorPalette(wasp_palette)
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;288&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;288&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;And now, we can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to the same set of three colors:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;impose_list &amp;lt;- lapply(imgs, function(i) imposeColors(i, wasp_palette, 
                                                      adjust_centers = FALSE, 
@@ -282,7 +460,7 @@ for (i in impose_list) {
   plotColorPalette(i$centers, i$sizes)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-13-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
 &lt;p&gt;Although the proportions of each color vary by image, the order/value of the colors does not (unlike with k-means). This is the key step. As long as you can provide a color palette to which all of your images should be mapped, you can use &lt;code&gt;imposeColors()&lt;/code&gt; to map every image to those colors. The earlier portion where we did an initial fit and used &lt;code&gt;hclust_color&lt;/code&gt; is a good option when you want to come up with a color palette intrinsic to your original images, but it may still take some toying around before you find a palette that works.&lt;/p&gt;
 &lt;p&gt;The last step is to convert each &lt;code&gt;recolorize&lt;/code&gt; fit in back to a &lt;code&gt;patternize&lt;/code&gt; format, which we can do with the &lt;code&gt;recolorize_to_patternize()&lt;/code&gt; function:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# convert to patternize:
@@ -310,7 +488,7 @@ wasp_pca &amp;lt;- patPCA_total(patternize_list, quietly = FALSE)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;pre&gt;&lt;code&gt;## done
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-16-1.png&#34; width=&#34;672&#34; /&gt;
 That&amp;rsquo;s it! The &lt;code&gt;wasp_pca&lt;/code&gt; object is a &lt;code&gt;prcomp&lt;/code&gt; object (the standard class for principal components analysis in R).&lt;/p&gt;
 &lt;h2 id=&#34;bonus-visualization&#34;&gt;Bonus: visualization&lt;/h2&gt;
 &lt;p&gt;It can be hard to tell whether the PCA is capturing relevant axes of color pattern variation from a scatterplot; I find it more intuitive to plot some version the actual images. The &lt;code&gt;add_image()&lt;/code&gt; function is an easy way to do that:&lt;/p&gt;
@@ -334,7 +512,7 @@ for (i in 1:length(impose_list)) {
             width = 20)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-18-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-17-1.png&#34; width=&#34;672&#34; /&gt;
 You could also plot images from a folder on your computer:&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(wasp_pca$x[ , c(PCx, PCy)], type = &amp;quot;n&amp;quot;,
      asp = 1,
@@ -355,7 +533,7 @@ for (i in 1:length(images)) {
             width = 20)
 }
 &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-20-1.png&#34; width=&#34;672&#34; /&gt;
+&lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-19-1.png&#34; width=&#34;672&#34; /&gt;
 (If I were to use these images for a paper figure, though, I would go through and mask out the background using transparencies—these are a little hard to see on a white background.)&lt;/p&gt;
 &lt;p&gt;That&amp;rsquo;s it for the tutorial. I would recommend downloading the example code and files from the linked GitHub repository if you want to try it out: there are a few steps involved, but ultimately it&amp;rsquo;s a reasonably simple procedure. I&amp;rsquo;d love to be able to write a one-and-done version of this process, but if you&amp;rsquo;ve been reading &lt;a href=&#34;https://hiweller.github.io/recolorize/articles/Introduction.html#general-guidelines&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;the other recolorize documentation&lt;/a&gt;, you&amp;rsquo;ll be familiar with my perspective on this. Basically, if I try to impose a general structure for how to do this every time, that&amp;rsquo;s not going to be flexible enough to encompass many use cases, and I prefer to keep things modular. Still, if you have any ideas for how to make this a more friendly process, I&amp;rsquo;m all ears!&lt;/p&gt;
 </description>
@@ -1707,24 +1885,23 @@ Three
   &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/cv.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;hannah-weller&#34;&gt;Hannah Weller&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: the role of biomechanical
-constraints in life history evolution; paths of least
-resistance in the evolution of new traits; methods
-development for analyzing organism color and pattern.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: the role of biomechanical constraints in life  history evolution;
+paths of least resistance in the evolution of new traits;  image processing in organismal
+biology, with a focus on methods development for quantifying color and pattern.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
 &lt;dl&gt;
-&lt;dt&gt;2019 – Present&lt;/dt&gt;
-&lt;dd&gt;&lt;strong&gt;PhD candidate, Ecology and Evolutionary Biology&lt;/strong&gt;&lt;br&gt;
+&lt;dt&gt;2019—2023 (expected)&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;PhD, Ecology and Evolutionary Biology&lt;/strong&gt;&lt;br&gt;
 Brown University (Providence, RI) &lt;br&gt;
 &lt;em&gt;Thesis: How much does functional morphology matter to the evolution of mouthbrooding?&lt;/em&gt;&lt;/dd&gt;
-&lt;dt&gt;2017 – 2019&lt;/dt&gt;
+&lt;dt&gt;2017—2019&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Transitional M.Sc., Ecology and Evolutionary Biology&lt;/strong&gt;&lt;br&gt;
 Brown University (Providence, RI) &lt;br&gt;
 &lt;em&gt;Thesis: How do feeding adaptations influence the convergent evolution of mouthbrooding?&lt;/em&gt;&lt;/dd&gt;
-&lt;dt&gt;2012 – 2016&lt;/dt&gt;
+&lt;dt&gt;2012—2016&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Honors B.Sc., Biology&lt;/strong&gt;&lt;br&gt;
 University of Chicago (Chicago, IL) &lt;br&gt;
 &lt;em&gt;Thesis: Winnowing in the eartheater cichlids&lt;/em&gt;&lt;/dd&gt;
@@ -1732,6 +1909,9 @@ University of Chicago (Chicago, IL) &lt;br&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;awards-and-fellowships&#34;&gt;Awards and Fellowships&lt;/h2&gt;
 &lt;dl&gt;
+&lt;dt&gt;January 2022&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Doctoral Dissertation Enhancement Grant&lt;/strong&gt;&lt;br&gt;
+$10,000, Bushnell Fund at Brown University&lt;/dd&gt;
 &lt;dt&gt;April 2019&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Graduate Research Fellowship&lt;/strong&gt;&lt;br&gt;
 $138,000, National Science Foundation&lt;/dd&gt;
@@ -1755,24 +1935,27 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;peer-reviewed-publications&#34;&gt;Peer-reviewed publications&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2021). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. The American Naturalist. In press.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. Integrative Organismal Biology. DOI: &lt;a href=&#34;https://doi.org/10.1093/iob/obaa018&#34;&gt;https://doi.org/10.1093/iob/obaa018&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of &lt;em&gt;Halichoeres&lt;/em&gt; Wrasses. Integrative and Comparative Biology. &lt;a href=&#34;https://doi.org/10.1093/icb/icaa137&#34;&gt;https://doi.org/10.1093/icb/icaa137&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Hooper, S.E.*, and Amelon, S.K* (2020). Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats. Journal of Wildlife Diseases. &lt;a href=&#34;https://doi.org/10.7589/2019-09-231&#34;&gt;https://doi.org/10.7589/2019-09-231&lt;/a&gt;&lt;br&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. &lt;em&gt;In review at eLife&lt;/em&gt;. Preprint DOI: &lt;a href=&#34;https://doi.org/10.1101/2022.04.03.486906&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1101/2022.04.03.486906&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;The American Naturalist&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1086/719235&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1086/719235&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Capano, J.G., Boback, S.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Cieri, R.L., Zemer, C.F., and Brainerd, E.L.  (2022). Modular lung ventilation in &lt;em&gt;Boa constrictor&lt;/em&gt;. &lt;em&gt;Journal of Experimental Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1242/jeb.243119&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1242/jeb.243119&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2021). Evidence for a selective link between cooperation and individual recognition. &lt;em&gt;In review&lt;/em&gt;. Preprint DOI: &lt;a href=&#34;https://doi.org/10.1101/2021.09.07.459327&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1101/2021.09.07.459327&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. &lt;em&gt;Integrative Organismal Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1093/iob/obaa018&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1093/iob/obaa018&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of &lt;em&gt;Halichoeres&lt;/em&gt; Wrasses. &lt;em&gt;Integrative and Comparative Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1093/icb/icaa137&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1093/icb/icaa137&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Hooper, S.E.*, and Amelon, S.K* (2020). Countcolors, an R package for quantification of the fluorescence emitted by *Pseudogymnoascus destructans* lesions on the wing membranes of hibernating bats. *Journal of Wildlife Diseases*. DOI: &lt;a href=&#34;https://doi.org/10.7589/2019-09-231&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.7589/2019-09-231&lt;/a&gt;&lt;br&gt;
 &lt;sup&gt;*These authors contributed equally to this work.&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont. Journal of Anatomy. DOI: &lt;a href=&#34;https://doi.org/10.1111/joa.13248&#34;&gt;https://doi.org/10.1111/joa.13248&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;van Meer, N.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Brainerd, E.B., and Camp, A.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. Journal of Experimental Biology. DOI: &lt;a href=&#34;10.1242/jeb.201426&#34;&gt;10.1242/jeb.201426&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. PeerJ. DOI: &lt;a href=&#34;10.7717/peerj.6398&#34;&gt;10.7717/peerj.6398&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid &lt;em&gt;Satanoperca daemon&lt;/em&gt; and evolutionary implications. Zoomorphology. DOI: &lt;a href=&#34;10.1007/s00435-016-0335-6&#34;&gt;10.1007/s00435-016-0335-6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont.* Journal of Anatomy*. DOI: &lt;a href=&#34;https://doi.org/10.1111/joa.13248&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/joa.13248&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;van Meer, N.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Brainerd, E.B., and Camp, A.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. &lt;em&gt;Journal of Experimental Biology&lt;/em&gt;. DOI: &lt;a href=&#34;10.1242/jeb.201426&#34;&gt;10.1242/jeb.201426&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. &lt;em&gt;PeerJ&lt;/em&gt;. DOI: &lt;a href=&#34;10.7717/peerj.6398&#34;&gt;10.7717/peerj.6398&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid &lt;em&gt;Satanoperca daemon&lt;/em&gt; and evolutionary implications. &lt;em&gt;Zoomorphology&lt;/em&gt;. DOI: &lt;a href=&#34;10.1007/s00435-016-0335-6&#34;&gt;10.1007/s00435-016-0335-6&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;software&#34;&gt;Software&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2020). recolorize: Simplify and Remap Image Colors for Biological Analysis (ver. 0.9.000). Compiled and installable; CRAN release planned. &lt;a href=&#34;https://github.com/hiweller/recolorize&#34;&gt;https://github.com/hiweller/recolorize&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2021). recolorize: Simplify and Remap Image Colors for Biological Analysis (ver. 0.9.000). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=recolorize&#34;&gt;https://CRAN.R-project.org/package=recolorize&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;O&amp;rsquo;Sullivan, D., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Lord, N.P. Insect Color Database (ICDB). In development. &lt;a href=&#34;https://insectcolor.com/&#34;&gt;https://insectcolor.com/&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2019). colordistance: Distance Metrics for Image Color Similarity (ver. 1.1.0). CRAN repository. &lt;a href=&#34;https://CRAN.R-project.org/package=colordistance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://CRAN.R-project.org/package=colordistance&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2018). countcolors: Locates and Counts Pixels Within Color Range(s) in Images (ver. 0.9.1). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=countcolors&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://CRAN.R-project.org/package=countcolors&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2019). colordistance: Distance Metrics for Image Color Similarity (ver. 1.1.0). CRAN repository. &lt;a href=&#34;https://CRAN.R-project.org/package=colordistance&#34;&gt;https://CRAN.R-project.org/package=colordistance&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2018). countcolors: Locates and Counts Pixels Within Color Range(s) in Images (ver. 0.9.1). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=countcolors&#34;&gt;https://CRAN.R-project.org/package=countcolors&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;presentations&#34;&gt;Presentations&lt;/h2&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Wham, D., Ezray-Wham, B., and Lord, N.P. (August 2021). Talk: Greater than the sum of their parts? Unpacking the “black box” of perceptual similarity using classical color pattern metrics. &lt;em&gt;Living Light Early Career Reserachers&lt;/em&gt;, virtual conference.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Wham, D., Ezray-Wham, B., and Lord, N.P. (August 2021). Talk: Greater than the sum of their parts? Unpacking the “black box” of perceptual similarity using classical color pattern metrics. &lt;em&gt;Living Light Early Career Researchers&lt;/em&gt;, virtual conference.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Schwartz, S.T., Karan, E., and Lord, N.P. (Jan. 2021). Talk: Recolorize: a flexible R package for color classification. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, virtual conference.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;,  Karan, E., Schwartz, S. and Lord, N.P. (Jan. 2021). Talk: &lt;code&gt;recolorize&lt;/code&gt;: color-based image segmentation (for people with other things to do). &lt;em&gt;Society for Integrative and Comparative Biology (Virtual).&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan&amp;rsquo;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;Society for Integrative and Comparative Biology, Austin, TX.&lt;/em&gt;&lt;/p&gt;
@@ -1785,6 +1968,14 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;invited-talks-lectures--workshops&#34;&gt;Invited talks, lectures, &amp;amp; workshops&lt;/h2&gt;
 &lt;dl&gt;
+&lt;dt&gt;June 2022&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Workshop: Statistics for Biologists&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;University of Washington, Friday Harbor Laboratories&lt;/em&gt; (Friday Harbor, WA) &lt;br&gt;
+R workshop focusing on practical statistical approaches to messy biological data. Instructors: Matthew Kolmann and Cassandra Donatelli.&lt;/dd&gt;
+&lt;dt&gt;May 2022&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Podcast: Naturalist Selections&lt;/strong&gt;&lt;br&gt;
+&lt;em&gt;American Society of Naturalists&lt;/em&gt; &lt;br&gt;
+Podcast interview about 2022 American Naturalist paper on the co-evolution of feeding and mouthbrooding in cichlids.&lt;/dd&gt;
 &lt;dt&gt;July 2020&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Workshop: Phylogenetic Comparative Methods in R&lt;/strong&gt;&lt;br&gt;
 &lt;em&gt;University of Washington, Friday Harbor Laboratories&lt;/em&gt; (Friday Harbor, WA) &lt;br&gt;
@@ -1809,19 +2000,19 @@ Organizer. Day-long workshop on data analysis and visualization in R.&lt;/dd&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;research-experience&#34;&gt;Research experience&lt;/h2&gt;
 &lt;dl&gt;
-&lt;dt&gt;2017 – Present&lt;/dt&gt;
+&lt;dt&gt;2017—Present&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;PhD candidate, Brainerd Lab&lt;/strong&gt;; advisor: Elizabeth Brainerd&lt;br&gt;
 &lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt;&lt;br&gt;
 Comparative morphology, kinematics, and biomechanics of mouthbrooding fishes; XROMM fish feeding and transport.&lt;/dd&gt;
-&lt;dt&gt;September 2013 – July 2017&lt;/dt&gt;
+&lt;dt&gt;September 2013—July 2017&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Research assistant&lt;/strong&gt;; advisor: Mark Westneat&lt;br&gt;
 &lt;em&gt;University of Chicago, Dept. of Organismal Biology &amp;amp; Anatomy&lt;/em&gt;&lt;br&gt;
 Quantitative color analysis; geometric morphometrics; high-speed video kinematics.&lt;/dd&gt;
-&lt;dt&gt;June 2015 – September 2015&lt;/dt&gt;
+&lt;dt&gt;June 2015—September 2015&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Jeff Metcalf Summer Research Fellow&lt;/strong&gt;; advisor: Roger Hanlon&lt;br&gt;
 &lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt;&lt;br&gt;
 Hyperspectral imaging; image analysis pipelines; camouflage analyses.&lt;/dd&gt;
-&lt;dt&gt;June 2014 – September 2014&lt;/dt&gt;
+&lt;dt&gt;June 2014—September 2014&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Summer Research Fellow, Westneat Lab&lt;/strong&gt;; advisor: Mark Westneat&lt;br&gt;
 &lt;em&gt;University of Chicago, Dept. of Organismal Biology &amp;amp; Anatomy&lt;/em&gt;&lt;br&gt;
 Ontogenetic scaling; biomechanical modeling; geometric morphometrics.&lt;/dd&gt;
@@ -1829,28 +2020,28 @@ Ontogenetic scaling; biomechanical modeling; geometric morphometrics.&lt;/dd&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;teaching-and-outreach&#34;&gt;Teaching and outreach&lt;/h2&gt;
 &lt;dl&gt;
-&lt;dt&gt;June 2021 – July 2021&lt;/dt&gt;
+&lt;dt&gt;June 2021 &amp;amp; July 2022&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Instructor&lt;/strong&gt;, &lt;em&gt;Brown University, Summer@Brown Program&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Anatomy, Behavior, and Evolution: Fishy Solutions to Life Underwater&lt;br&gt;
 Intensive high school course including labs, assignments, and mentoring of final project (preparation of research proposals and presentations).&lt;/dd&gt;
-&lt;dt&gt;August 2020 – April 2020&lt;/dt&gt;
+&lt;dt&gt;August 2020—April 2020&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 COVID-modified Human Anatomy (lecture and lab)&lt;br&gt;
 Restructuring the traditional gross anatomy curriculum, including remote/small group work and prosection-based staggered labs.&lt;/dd&gt;
-&lt;dt&gt;September 2019 – Present&lt;/dt&gt;
+&lt;dt&gt;September 2019—Present&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;R User Group&lt;/strong&gt;, &lt;em&gt;Brown University, Dept. of Ecology and Evolutionary Biology&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Organizing and running monthly R workshops for graduate and undergraduate students, focusing on techniques for biological analysis (e.g., data organization, statistics, and visualization).&lt;/dd&gt;
-&lt;dt&gt;August 2019 – April 2020&lt;/dt&gt;
+&lt;dt&gt;August 2019—April 2020&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Human Anatomy (lecture and lab)&lt;br&gt;
 Guiding medical students through cadaver-based human anatomy labs.&lt;/dd&gt;
-&lt;dt&gt;September 2018 – Present&lt;/dt&gt;
+&lt;dt&gt;September 2018—Present&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Marine Science Club&lt;/strong&gt;, &lt;em&gt;Paul Cuffee High School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Collaborating with high school teachers for weekly science activities with high school students.&lt;/dd&gt;
-&lt;dt&gt;September 2017 – Dec. 2017&lt;/dt&gt;
+&lt;dt&gt;September 2017—Dec. 2017&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Diversity of Life (lecture)&lt;/dd&gt;
-&lt;dt&gt;January 2015 – April 2017&lt;/dt&gt;
+&lt;dt&gt;January 2015—April 2017&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;University of Chicago, Dept. of Biological Sciences&lt;/em&gt; (Chicago, IL)&lt;br&gt;
 Presenting and supervising lab experiments; writing and grading assignments; lecturing; leading paper discussions and review sessions; guiding dissection-based anatomy labs.
 &lt;p&gt;Genetic and Developmental Biology (lab &amp;amp; lecture)&lt;br&gt;
@@ -1858,7 +2049,7 @@ Multiscale Modeling of Biological Systems (lecture)&lt;br&gt;
 Molecular Biology of the Cell (lab)&lt;br&gt;
 Comparative Vertebrate Anatomy (lab &amp;amp; lecture)&lt;/p&gt;
 &lt;/dd&gt;
-&lt;dt&gt;June 2013 – September 2013&lt;/dt&gt;
+&lt;dt&gt;June 2013—September 2013&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Animal care intern&lt;/strong&gt;, &lt;em&gt;New England Aquarium&lt;/em&gt; (Boston, MA)&lt;br&gt;
 Daily animal care and maintenance; visitor outreach; collection trips.&lt;/dd&gt;
 &lt;/dl&gt;
@@ -1877,7 +2068,7 @@ Daily animal care and maintenance; visitor outreach; collection trips.&lt;/dd&gt
 &lt;blockquote&gt;
 &lt;p&gt;&lt;em&gt;Lab&lt;/em&gt;: Biomedical Center 426, 171 Meeting St.,  Providence, RI 02906&lt;br&gt;
 &lt;em&gt;Email&lt;/em&gt;: &lt;a href=&#34;mailto:hannahiweller@gmail.com&#34;&gt;hannahiweller@gmail.com&lt;/a&gt;&lt;br&gt;
-&lt;em&gt;Website&lt;/em&gt;: &lt;a href=&#34;hiweller.github.io&#34;&gt;hiweller.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;em&gt;Website&lt;/em&gt;: &lt;a href=&#34;https://hiweller.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;hiweller.github.io&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

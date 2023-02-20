@@ -38,7 +38,7 @@ Let's do it!
 
 ## Example files
 
-All the data and code used in this tutorial can be found here: https://github.com/hiweller/recolorize_examples/tree/main/05_wasps
+All the data and code used in this tutorial can be found here: https://github.com/hiweller/recolorize_examples/02_wasps
 
 ## Step 1: Image alignment in `patternize`
 
@@ -48,7 +48,7 @@ We're starting with a folder of unaltered images of wasp faces. These images hav
 
 ```{r, echo = FALSE}
 library(recolorize)
-wasps <- dir("~/Dropbox/color/recolorize_examples/wasps/original_images/",
+wasps <- dir("~/Dropbox/color/recolorize_examples/02_wasps/original_images/",
              pattern = "jpg",
              full.names = TRUE)
 layout(matrix(1:20, nrow = 4))
@@ -62,9 +62,9 @@ Note that even on this dataset—which is highly standardized—the images have 
 
 To use the `alignLan()` function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the [multi-point tool](https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5), but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and **no header**. Our landmarking scheme for the wasp faces only had 8 points:
 <img src="images/F03_wasps_landmarking.png" alt="" width="40%"/>
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/wasps/landmarks/polistes_01_landmarks.txt)).
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt)).
 
-I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
+I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
 
 Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using `patternize`. I organized my files into separate folders (images in the `original_images/` folder, landmark text files in the `landmarks` folder, etc), but you don't have to do that so long as your files are organized and named in a way that works with the `makeList()` function.
 
@@ -169,7 +169,7 @@ These colors are definitely similar across images, but they're not consistent, e
 
 Instead, we'll come up with our list of 3 colors by combining color palettes across images, and then use the `imposeColors()` function in `recolorize` to map each of our images to the same color palette. First, generate a color palette for each image:
 
-```{r, eval = FALSE, message=FALSE}
+```{r, eval = TRUE, message=FALSE}
 # make an empty list for storing the recolorize objects
 rc_list <- vector("list", length(imgs))
 names(rc_list) <- names(imgs)
@@ -179,9 +179,6 @@ for (i in 1:length(imgs)) {
   rc_list[[i]] <- recolorize2(imgs[[i]], bins = 3,
                               cutoff = 35, plotting = FALSE)
 }
-```
-```{r, echo = FALSE, message = FALSE}
-rc_list <- readRDS("~/Dropbox/color/recolorize_examples/wasps/rds_files/recolorize_fits_original.rds")
 ```
 
 I kept it pretty simple for this example (we're just calling `recolorize2()` with the same parameters for each image), but you could get more complicated with what you put in the for loop. (You could even choose to use k-means clustering as the method here by setting `method = "k"` and specifying the number of colors, since we're just using it as a starting point, but since k-means is not deterministic that poses problems for repeatability.)
@@ -241,7 +238,7 @@ for (i in impose_list) {
 }
 ```
 ```{r, echo = FALSE}
-impose_list <- readRDS("~/Dropbox/color/recolorize_examples/wasps/rds_files/recolorize_fits.rds")
+impose_list <- readRDS("~/Dropbox/color/recolorize_examples/02_wasps/rds_files/recolorize_fits.rds")
 
 # let's look at our palettes and color maps!
 layout(matrix(1:40, nrow = 4, byrow = TRUE),
@@ -269,15 +266,7 @@ for (i in 1:length(patternize_list)) {
 ```
 ```{r, echo = FALSE}
 # convert to patternize:
-patternize_list <- lapply(impose_list, recolorize_to_patternize)
-extent_list <- readRDS("~/Dropbox/color/recolorize_examples/wasps/rds_files/extent.rds")
-
-# and set extents again:
-for (i in 1:length(patternize_list)) {
-  for (j in 1:length(patternize_list[[1]])) {
-    raster::extent(patternize_list[[i]][[j]]) <- extent_list[[i]]
-  }
-}
+patternize_list <- readRDS("~/Dropbox/color/recolorize_examples/02_wasps/rds_files/patternize_list.rds")
 ```
 This is a list of lists: there is one element per sample ID in `patternize_list` (20 total), and each of those elements is a list of `RasterLayer` objects, one per color class (3 per sample ID). You may need to reshuffle these depending on what you want to do.
 
@@ -292,7 +281,7 @@ source("patPCA_total.R")
 wasp_pca <- patPCA_total(patternize_list, quietly = FALSE)
 ```
 ```{r, echo=FALSE}
-source("~/Dropbox/color/recolorize_examples/wasps/patPCA_total.R")
+source("~/Dropbox/color/recolorize_examples/patPCA_total.R")
 wasp_pca <- patPCA_total(patternize_list, quietly = FALSE)
 ```
 That's it! The `wasp_pca` object is a `prcomp` object (the standard class for principal components analysis in R).
@@ -354,7 +343,7 @@ plot(wasp_pca$x[ , c(PCx, PCy)], type = "n",
      ylab=paste0('PC2 (', round(pca_summary$importance[2, PCy]*100, 1), ' %)'))
 
 # read in images from the original folder:
-images <- lapply(dir("~/Dropbox/color/recolorize_examples/wasps/original_images/", 
+images <- lapply(dir("~/Dropbox/color/recolorize_examples/02_wasps/original_images/", 
                      full.names = TRUE),
                  readImage)
 
@@ -369,16 +358,3 @@ for (i in 1:length(images)) {
 (If I were to use these images for a paper figure, though, I would go through and mask out the background using transparencies—these are a little hard to see on a white background.)
 
 That's it for the tutorial. I would recommend downloading the example code and files from the linked GitHub repository if you want to try it out: there are a few steps involved, but ultimately it's a reasonably simple procedure. I'd love to be able to write a one-and-done version of this process, but if you've been reading [the other recolorize documentation](https://hiweller.github.io/recolorize/articles/Introduction.html#general-guidelines), you'll be familiar with my perspective on this. Basically, if I try to impose a general structure for how to do this every time, that's not going to be flexible enough to encompass many use cases, and I prefer to keep things modular. Still, if you have any ideas for how to make this a more friendly process, I'm all ears! 
-
-
-
-
-
-
-
-
-
-
-
-
-

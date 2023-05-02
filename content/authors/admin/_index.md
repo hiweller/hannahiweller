@@ -1,10 +1,10 @@
 ---
-bio: I'm a graduate student studying parental care in fishes and color in beetles.
+bio: I'm a postdoc in the Integrative Evolutionary Biology group at the University of Helsinki studying the evolution of fish color.
 education:
   courses:
   - course: PhD in Ecology and Evolutionary Biology
     institution: Brown University
-    year: 2023 (expected)
+    year: 2023
   - course: MSc in Ecology and Evolutionary Biology
     institution: Brown University
     year: 2019
@@ -20,9 +20,9 @@ interests:
 - Historical contingency
 - Image processing
 organizations:
-- name: Brown University
-  url: https://www.brown.edu/
-role: PhD Candidate
+- name: University of Helsinki
+  url: http://www.intevobio.fi/
+role: Postdoctoral researcher
 social:
 - icon: envelope
   icon_pack: fas

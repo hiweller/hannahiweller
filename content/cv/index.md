@@ -28,13 +28,21 @@ Hannah Weller
 
 <br>  
 
+Present Position
+---------
+
+2023—2025
+:   **Postdoctoral researcher, Integrative Evolutionary Biology Group**  
+  University of Helsinki (Helsinki, Finland)    
+
+
 Education
 ---------
 
-2019—2023 (expected)
+2019—2023
 :   **PhD, Ecology and Evolutionary Biology**  
   Brown University (Providence, RI)    
-    *Thesis: How much does functional morphology matter to the evolution of mouthbrooding?*
+    *Thesis: The opportunities of evolutionary constraint, with a focus on the evolution of mouthbrooding in cichlids*
 
 2017—2019
 :   **Transitional M.Sc., Ecology and Evolutionary Biology**  
@@ -89,7 +97,7 @@ June 2014
 Peer-reviewed publications
 --------------------------
 
-**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. *In review at eLife*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
+**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. *In revision*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
 
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. *The American Naturalist*. DOI: [https://doi.org/10.1086/719235](https://doi.org/10.1086/719235). 
 
@@ -130,6 +138,13 @@ O'Sullivan, D., **Weller, H.I.**, and Lord, N.P. Insect Color Database (ICDB). I
 
 Presentations
 -------------
+**Weller, H.I.**, and Van Belleghem, S. (January 2023). Poster: Flexible color segmentation of biological images with the R package recolorize. *Society for Integrative and Comparative Biology*, Austin, TX, USA.
+
+**Weller, H.I.**, Weissman, M., and López-Fernández, H. (January 2023). Talk: Bet-hedging theory helps explain life history differences among mouthbrooding cichlids. *Society for Integrative and Comparative Biology*, Austin, TX, USA.
+
+**Weller, H.I.** and López-Fernández, H. (September 2022). Invited symposium talk: How (and how much) does feeding influence the evolution of mouthbrooding in Neotropical cichlids? *Encontra Brasileiro de Ictiologia*, Gramado, Brazil.
+
+**Weller, H.I.**, Brainerd, E.L, and López-Fernández, H. (January 2022). Talk: Does feeding mediate life history tradeoffs in mouthbrooding cichlids? *Society for Integrative and Comparative Biology*, virtual conference.  
 
 **Weller, H.I.**, Wham, D., Ezray-Wham, B., and Lord, N.P. (August 2021). Talk: Greater than the sum of their parts? Unpacking the “black box” of perceptual similarity using classical color pattern metrics. *Living Light Early Career Researchers*, virtual conference.
 
@@ -199,7 +214,12 @@ December 2019
 
 Research experience
 -------------------
-2017—Present
+2023—Present
+:   **Postdoctoral researcher**; advisor: Claudius Kratochwil  
+  *University of Helsinki, HiLIFE Institute*  
+  Evolution and development of color pattern robustness in colorful fishes.
+
+2017—2023
 :   **PhD candidate, Brainerd Lab**; advisor: Elizabeth Brainerd  
   *Brown University, Dept. of Ecology & Evolutionary Biology*  
   Comparative morphology, kinematics, and biomechanics of mouthbrooding fishes; XROMM fish feeding and transport.

@@ -18,9 +18,15 @@ header:
   
 <br>  
 
+### Pivoting to a postdoc!
+
+I defended my PhD dissertation in April 2023, and am taking a slow summer to move, reset, and embark on my postdoctoral research. In September 2023 I am joining the Integrative Evolutionary Biology group led by Claudius Kratochwil at the University of Helsinki, Finland. Here I will study the evolution and development of color patterns in fishes, and focus especially on the interplay robustness (the persistence of a phenotype under perturbation) with evolutionary changes. So here's an important Finnish sentence for you: tämä kala on jotenkin outo!
+
+Lab webpage [here](https://www.helsinki.fi/en/researchgroups/integrative-evolutionary-biology).
+
 ### The evolution of mouthbrooding in fishes
 
-Right now I'm studying the evolution of mouthbrooding (a kind of parental care where parents incubate offspring in their mouths), and how much feeding phenotypes influence that evolution. I think that mouthbrooding is a beautiful example of an extraordinary behavior (using a mouth as a nursery!) that arises from co-opting existing traits. Specifically, it seems like mouthbrooding is more likely to evolve in species whose feeding adaptations already make them good at mouthbrooding. And the further I dive into the whys and hows, the more I appreciate how much this behavior seems to be the result of the interplay of morphology, behavior, and environment. I have a somewhat out-there idea for why only some fishes in a given environemtn will evolve mouthbrooding, and it's what I'm testing now.
+Right now I'm studying the evolution of mouthbrooding (a kind of parental care where parents incubate offspring in their mouths), and how much feeding phenotypes influence that evolution. I think that mouthbrooding is a beautiful example of an extraordinary behavior (using a mouth as a nursery!) that arises from co-opting existing traits. Specifically, it seems like mouthbrooding is more likely to evolve in species whose feeding adaptations already make them good at mouthbrooding. And the further I dive into the whys and hows, the more I appreciate how much this behavior seems to be the result of the interplay of morphology, behavior, and environment. I have a somewhat out-there idea for why only some fishes in a given environment will evolve mouthbrooding, and it's what I'm testing now.
 
 More [here](/category/mouthbrooding/).
 

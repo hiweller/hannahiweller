@@ -63,6 +63,10 @@ Awards and Fellowships
 January 2022
 : **Doctoral Dissertation Enhancement Grant**  
     $10,000, Bushnell Fund at Brown University
+    
+May 2021
+: **Dean's Excellence in Teaching Award**
+    Brown University, Alpert Medical School
 
 April 2019
 : **Graduate Research Fellowship**  
@@ -97,13 +101,9 @@ June 2014
 Peer-reviewed publications
 --------------------------
 
-**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. *In revision*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
-
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. *The American Naturalist*. DOI: [https://doi.org/10.1086/719235](https://doi.org/10.1086/719235). 
 
 Capano, J.G., Boback, S.M., **Weller, H.I.**, Cieri, R.L., Zemer, C.F., and Brainerd, E.L.  (2022). Modular lung ventilation in *Boa constrictor*. *Journal of Experimental Biology*. DOI: [https://doi.org/10.1242/jeb.243119](https://doi.org/10.1242/jeb.243119).
-
-Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2021). Evidence for a selective link between cooperation and individual recognition. *In review*. Preprint DOI: [https://doi.org/10.1101/2021.09.07.459327](https://doi.org/10.1101/2021.09.07.459327).
 
 **Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. *Integrative Organismal Biology*. DOI: [https://doi.org/10.1093/iob/obaa018](https://doi.org/10.1093/iob/obaa018).
 
@@ -121,6 +121,20 @@ van Meer, N.M., **Weller, H.I.**, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., 
 **Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid *Satanoperca daemon* and evolutionary implications. *Zoomorphology*. DOI: [10.1007/s00435-016-0335-6](10.1007/s00435-016-0335-6)
 
 <br>  
+
+
+Preprints and publications in review
+---------------------------
+
+Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., **Weller, H.I**, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. *Revised and resubmitted.* 
+
+**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. *In revision*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
+
+Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2021). Evidence for a selective link between cooperation and individual recognition. *In review*. Preprint DOI: [https://doi.org/10.1101/2021.09.07.459327](https://doi.org/10.1101/2021.09.07.459327).
+
+
+<br>
+
 
 Software
 ---------------------------

@@ -109,7 +109,7 @@ Capano, J.G., Boback, S.M., **Weller, H.I.**, Cieri, R.L., Zemer, C.F., and Brai
 
 Cohen, K.E., **Weller, H.I.**, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of *Halichoeres* Wrasses. *Integrative and Comparative Biology*. DOI: [https://doi.org/10.1093/icb/icaa137](https://doi.org/10.1093/icb/icaa137).
 
-**Weller, H.I.**\*, Hooper, S.E.\*, and Amelon, S.K* (2020). Countcolors, an R package for quantification of the fluorescence emitted by *Pseudogymnoascus destructans* lesions on the wing membranes of hibernating bats. *Journal of Wildlife Diseases*. DOI: [https://doi.org/10.7589/2019-09-231](https://doi.org/10.7589/2019-09-231)  
+**Weller, H.I.**\*, Hooper, S.E.\*, and Amelon, S.K\* (2020). Countcolors, an R package for quantification of the fluorescence emitted by *Pseudogymnoascus destructans* lesions on the wing membranes of hibernating bats. *Journal of Wildlife Diseases*. DOI: [https://doi.org/10.7589/2019-09-231](https://doi.org/10.7589/2019-09-231)  
 <sup>\*These authors contributed equally to this work.</sup>
 
 Cohen, K.E., **Weller, H.I.**, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont.* Journal of Anatomy*. DOI: [https://doi.org/10.1111/joa.13248](https://doi.org/10.1111/joa.13248)

@@ -2,16 +2,14 @@
 title: ''
 summary: My current CV.
 date: "2018-06-28T00:00:00Z"
-
-reading_time: false  # Show estimated reading time?
-share: false  # Show social sharing links?
-profile: true  # Show author profile?
-comments: false  # Show comments?
-
-# Optional header image (relative to `assets/media/` folder).
+output: pdf_document
+share: no
+profile: yes
+comments: no
 header:
-  caption: ""
-  image: ""
+  caption: ''
+  image: ''
+reading_time: no
 ---
 
 {{< icon name="download" pack="fas" >}} {{< staticref "media/cv.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
@@ -31,7 +29,7 @@ Hannah Weller
 Present Position
 ---------
 
-2023—2025
+2023—Present
 :   **Postdoctoral researcher, Integrative Evolutionary Biology Group**  
   University of Helsinki (Helsinki, Finland)    
 
@@ -100,6 +98,13 @@ June 2014
 
 Peer-reviewed publications
 --------------------------
+**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2023). Recolorize: flexible color segmentation of biological images. *Ecology Letters (accepted)*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
+
+Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., **Weller, H.I**, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. *Environmental Health Perspectives.* DOI: [https://doi.org/10.1289/EHP1286](https://doi.org/10.1289/EHP1286). 
+
+Crowell, H.L., Curlis, J.D., **Weller, H.I.**, Davis Rabosky, A.R.  (2023). Predators drive the evolution of ultraviolet colouration in snakes. *Nature Communications (accepted)*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
+
+Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2023). Evidence for a selective link between cooperation and individual recognition. *Current Biology (accepted)*. Preprint DOI: [https://doi.org/10.1101/2021.09.07.459327](https://doi.org/10.1101/2021.09.07.459327).
 
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. *The American Naturalist*. DOI: [https://doi.org/10.1086/719235](https://doi.org/10.1086/719235). 
 
@@ -123,19 +128,6 @@ van Meer, N.M., **Weller, H.I.**, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., 
 <br>  
 
 
-Preprints and publications in review
----------------------------
-
-Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., **Weller, H.I**, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. *Revised and resubmitted.* 
-
-**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. *In revision*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
-
-Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2021). Evidence for a selective link between cooperation and individual recognition. *In review*. Preprint DOI: [https://doi.org/10.1101/2021.09.07.459327](https://doi.org/10.1101/2021.09.07.459327).
-
-
-<br>
-
-
 Software
 ---------------------------
 
@@ -152,6 +144,8 @@ O'Sullivan, D., **Weller, H.I.**, and Lord, N.P. Insect Color Database (ICDB). I
 
 Presentations
 -------------
+**Weller, H.I.**, Van Belleghem, S. (July 2023). Invited symposium talk: One way to measure color pattern variation in coral reef fishes. *International Conference for Vertebrate Morphology*, Cairns, Australia.
+
 **Weller, H.I.**, and Van Belleghem, S. (January 2023). Poster: Flexible color segmentation of biological images with the R package recolorize. *Society for Integrative and Comparative Biology*, Austin, TX, USA.
 
 **Weller, H.I.**, Weissman, M., and López-Fernández, H. (January 2023). Talk: Bet-hedging theory helps explain life history differences among mouthbrooding cichlids. *Society for Integrative and Comparative Biology*, Austin, TX, USA.
@@ -231,7 +225,7 @@ Research experience
 2023—Present
 :   **Postdoctoral researcher**; advisor: Claudius Kratochwil  
   *University of Helsinki, HiLIFE Institute*  
-  Evolution and development of color pattern robustness in colorful fishes.
+  Evolution and development of color pattern robustness in fishes.
 
 2017—2023
 :   **PhD candidate, Brainerd Lab**; advisor: Elizabeth Brainerd  

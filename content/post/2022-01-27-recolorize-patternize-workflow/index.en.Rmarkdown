@@ -48,7 +48,7 @@ We're starting with a folder of unaltered images of wasp faces. These images hav
 
 ```{r, echo = FALSE}
 library(recolorize)
-wasps <- dir("~/Dropbox/color/recolorize_examples/02_wasps/original_images/",
+wasps <- dir("~/Dropbox/color/recolorize_examples/04_wasps/original_images/",
              pattern = "jpg",
              full.names = TRUE)
 layout(matrix(1:20, nrow = 4))
@@ -62,9 +62,9 @@ Note that even on this dataset—which is highly standardized—the images have 
 
 To use the `alignLan()` function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the [multi-point tool](https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5), but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and **no header**. Our landmarking scheme for the wasp faces only had 8 points:
 <img src="images/F03_wasps_landmarking.png" alt="" width="40%"/>
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt)).
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/04_wasps/landmarks/polistes_01_landmarks.txt)).
 
-I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
+I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/04_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
 
 Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using `patternize`. I organized my files into separate folders (images in the `original_images/` folder, landmark text files in the `landmarks` folder, etc), but you don't have to do that so long as your files are organized and named in a way that works with the `makeList()` function.
 
@@ -238,7 +238,7 @@ for (i in impose_list) {
 }
 ```
 ```{r, echo = FALSE}
-impose_list <- readRDS("~/Dropbox/color/recolorize_examples/02_wasps/rds_files/recolorize_fits.rds")
+impose_list <- readRDS("~/Dropbox/color/recolorize_examples/04_wasps/rds_files/recolorize_fits.rds")
 
 # let's look at our palettes and color maps!
 layout(matrix(1:40, nrow = 4, byrow = TRUE),
@@ -266,7 +266,7 @@ for (i in 1:length(patternize_list)) {
 ```
 ```{r, echo = FALSE}
 # convert to patternize:
-patternize_list <- readRDS("~/Dropbox/color/recolorize_examples/02_wasps/rds_files/patternize_list.rds")
+patternize_list <- readRDS("~/Dropbox/color/recolorize_examples/04_wasps/rds_files/patternize_list.rds")
 ```
 This is a list of lists: there is one element per sample ID in `patternize_list` (20 total), and each of those elements is a list of `RasterLayer` objects, one per color class (3 per sample ID). You may need to reshuffle these depending on what you want to do.
 
@@ -343,7 +343,7 @@ plot(wasp_pca$x[ , c(PCx, PCy)], type = "n",
      ylab=paste0('PC2 (', round(pca_summary$importance[2, PCy]*100, 1), ' %)'))
 
 # read in images from the original folder:
-images <- lapply(dir("~/Dropbox/color/recolorize_examples/02_wasps/original_images/", 
+images <- lapply(dir("~/Dropbox/color/recolorize_examples/04_wasps/original_images/", 
                      full.names = TRUE),
                  readImage)
 

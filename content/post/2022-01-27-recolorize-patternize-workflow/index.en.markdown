@@ -22,7 +22,7 @@ image:
 projects: [recolorize]
 ---
 
-This tutorial will go through the process of combining `patternize` and `recolorize` tools to produce a PCA quantifying color pattern variation in wasp faces (*Polistes fuscatus*). This subset of 20 images (and workflow) is excerpted from ['Evidence for a selective link between cooperation and individual recognition'](https://www.biorxiv.org/content/10.1101/2021.09.07.459327v1.abstract) (Tumulty et al. 2021),  with permission from the lead author. (Thanks James!)
+This tutorial will go through the process of combining `patternize` and `recolorize` tools to produce a PCA quantifying color pattern variation in wasp faces (*Polistes fuscatus*). This subset of 20 images (and workflow) is excerpted from ['Evidence for a selective link between cooperation and individual recognition'](https://doi.org/10.1016/j.cub.2023.11.032) (Tumulty et al. 2023),  with permission from the lead author. (Thanks James!)
 
 ![figures illustrating steps in the quantification of wasp facial patterns using recolorize and patternize](images/wasps.png)
 
@@ -38,7 +38,7 @@ Let's do it!
 
 ## Example files
 
-All the data and code used in this tutorial can be found here: https://github.com/hiweller/recolorize_examples/02_wasps
+All the data and code used in this tutorial can be found here in the 'wasps' subfolder: https://github.com/hiweller/recolorize_examples
 
 ## Step 1: Image alignment in `patternize`
 
@@ -52,9 +52,9 @@ Note that even on this dataset—which is highly standardized—the images have 
 
 To use the `alignLan()` function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the [multi-point tool](https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5), but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and **no header**. Our landmarking scheme for the wasp faces only had 8 points:
 <img src="images/F03_wasps_landmarking.png" alt="" width="40%"/>
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt)).
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for `polistes_01.jpg` is called `polites_01_landmarks.txt` ([you can see it here](https://github.com/hiweller/recolorize_examples/blob/main/04_wasps/landmarks/polistes_01_landmarks.txt)).
 
-I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
+I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well ([here](https://github.com/hiweller/recolorize_examples/tree/main/04_wasps/masks)). Because we're aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!
 
 Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using `patternize`. I organized my files into separate folders (images in the `original_images/` folder, landmark text files in the `landmarks` folder, etc), but you don't have to do that so long as your files are organized and named in a way that works with the `makeList()` function.
 

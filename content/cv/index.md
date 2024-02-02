@@ -2,7 +2,11 @@
 title: ''
 summary: My current CV.
 date: "2018-06-28T00:00:00Z"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
+  word_document: default
+  pdf_document: default
 share: no
 profile: yes
 comments: no

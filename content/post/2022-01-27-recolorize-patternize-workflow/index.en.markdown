@@ -125,7 +125,7 @@ imgs <- lapply(imageList_aligned, brick_to_array)
 names(imgs) <- names(imageList_aligned)
 
 # save raster extents for later conversion:
-extent_list <- lapply(imageList_aligned, extent)
+extent_list <- lapply(imageList_aligned, raster::extent)
 ```
 
 Now we have a list of image arrays. Plotting them using `plotImageArray()` helps us to see what the `alignLan()` step did for our original images:

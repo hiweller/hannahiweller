@@ -1,0 +1,129 @@
+---
+title: Editing zone maps with user-selected regions
+author: Hannah Weller
+date: '2025-03-21'
+slug: editing-zone-maps-with-user-selected-regions
+categories:
+  - recolorize
+tags:
+  - color
+  - image processing
+  - R
+  - r packages
+subtitle: ''
+summary: 'Sometimes you just need to tweak things by hand.'
+authors: [Hannah Weller]
+lastmod: '2024-03-21T15:49:43+02:00'
+featured: no
+draft: no
+image:
+  caption: ''
+  focal_point: ''
+  preview_only: no
+projects: []
+---
+
+```{r}
+recolor_selection <- function(rc_obj, color_to = 1, 
+                       selection = "rect", 
+                       locator_color = "red",
+                       n_polygons = 1,
+                       plotting = TRUE,
+                       recolor_background = FALSE) {
+  # store old map
+  rc_original_pix <- rc_obj$pixel_assignments
+  
+  # choose region selection method:
+  selection <- match.arg(arg = selection, choices = c("rectangle", "polygon"))
+  
+  # make image:
+  img <- recoloredImage(rc_obj, type = "raster")
+  layout(1); par(mar = rep(0, 4))
+  plot(img)
+  abline(h = c(0, dim(img)[1]), v = c(0, dim(img)[2]), col = "darkgrey")
+  
+  # user-select area and change color of pixels inside region of interest
+  if (selection == "rectangle") {
+    
+    u <- spatstat.geom::clickbox(add = TRUE, col = locator_color)
+    u$xrange <- round(u$xrange)
+    u$yrange <- round(u$yrange)
+    u$yrange <- dim(img)[1] - u$yrange
+    rc_obj$pixel_assignments[u$yrange[1]:u$yrange[2],
+                             u$xrange[1]:u$xrange[2]] <- color_to
+    
+  } else if (selection == "polygon") {
+    
+    u <- spatstat.geom::clickpoly(add = TRUE, col = locator_color, np = n_polygons)
+    u$xrange <- round(u$xrange)
+    u$yrange <- round(u$yrange)
+    u$bdry <- lapply(u$bdry, \(x) lapply(x, round))
+    xy <- expand.grid(u$xrange[1]:u$xrange[2], u$yrange[1]:u$yrange[2])
+    for (i in 1:length(u$bdry)) {
+      pol <- u$bdry[[i]]
+      if (i == 1) {
+        col_idx <- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+      } else {
+        new_idx <- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+        col_idx <- rbind(col_idx, new_idx)
+      }
+    }
+      
+      col_idx <- as.matrix(col_idx[ , 2:1])
+      col_idx[,1] <- dim(img)[1] - col_idx[,1]
+      
+      rc_obj$pixel_assignments[col_idx] <- color_to
+      
+  }
+  
+  # make sure the background is still transparent
+  if (!recolor_background) {
+    rc_obj$pixel_assignments[rc_original_pix == 0] <- 0
+  }
+  
+  # if plotting, plot
+  if (plotting) {
+    
+    plot_region <- function() {
+      xdim <- dim(rc_obj$pixel_assignments)[2]
+      ydim <- dim(rc_obj$pixel_assignments)[1]
+      if (selection == "rectangle") {
+        rect(xleft = u$xrange[1] / xdim, xright = u$xrange[2] / xdim,
+             ybottom = 1 - u$yrange[1] / ydim, ytop = 1 - u$yrange[2] / ydim,
+             border = locator_color)
+      } else {
+        for (i in 1:length(u$bdry)) {
+          polygon(u$bdry[[i]]$x / xdim, 
+                  u$bdry[[i]]$y / ydim, border = locator_color)
+        }
+      }
+    }
+    # reset graphical parameters when function exits:
+    current_par <- graphics::par(no.readonly = TRUE)
+    on.exit(graphics::par(current_par))
+    
+    # set layout
+    graphics::layout(matrix(1:3, nrow = 1),
+                     widths = rep(1, 3))
+    
+    # plot original image
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(rc_obj$original_img,
+                               main = "Recolored original")
+    plot_region()
+    
+    # plot old zone map with polygon/rectangle
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(constructImage(rc_original_pix, rc_obj$centers),
+                               main = "Input")
+    plot_region()
+    
+    # plot new color map & palette
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(recoloredImage(rc_obj),
+                               main = "Output")
+    plot_region()
+  }
+  return(rc_obj)
+}
+```

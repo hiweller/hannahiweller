@@ -16,15 +16,15 @@ header:
 reading_time: no
 ---
 
-{{< icon name="download" pack="fas" >}} {{< staticref "media/cv.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
+{{< icon name="download" pack="fas" >}} {{< staticref "media/Hannah_Weller_cv.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
 
 
 Hannah Weller
 ============
 
-> **Research interests**: the role of biomechanical constraints in life  history evolution; 
-> paths of least resistance in the evolution of new traits;  image processing in organismal 
-> biology, with a focus on methods development for quantifying color and pattern.
+> **Research interests**: Evolution, development, and ecology of color patterns;
+> broadly, how traits interact to shape evolutionary trajectories;
+> method and software development for accessible phenotyping approaches.
 
 ----
 
@@ -102,13 +102,16 @@ June 2014
 
 Peer-reviewed publications
 --------------------------
-**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2023). Recolorize: flexible color segmentation of biological images. *Ecology Letters (accepted)*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
+Crowell, H.L.\*, Curlis, J.D.\*, **Weller, H.I.**\*, Davis Rabosky, A.R.\*  (2024). Predators drive the evolution of ultraviolet colouration in snakes. *Nature Communications*. DOI: [https://doi.org/10.1038/](https://doi.org/10.1038/).  
+<sup>\*These authors contributed equally to this work.</sup>
+
+**Weller, H.I.**, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2024). Recolorize: flexible color segmentation of biological images. *Ecology Letters*. DOI: [https://doi.org/10.1111/ele.14378](https://doi.org/10.1111/ele.14378).  
+<sup>This article was featured on the cover of the journal:</sup> 
+<img src="images/ele14398-toc-0001-m.jpg" alt="Cover image of Ecology Letters (February 2024)." width="30%"/>
 
 Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., **Weller, H.I**, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. *Environmental Health Perspectives.* DOI: [https://doi.org/10.1289/EHP1286](https://doi.org/10.1289/EHP1286). 
 
-Crowell, H.L., Curlis, J.D., **Weller, H.I.**, Davis Rabosky, A.R.  (2023). Predators drive the evolution of ultraviolet colouration in snakes. *Nature Communications (accepted)*. Preprint DOI: [https://doi.org/10.1101/2022.04.03.486906](https://doi.org/10.1101/2022.04.03.486906). 
-
-Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2023). Evidence for a selective link between cooperation and individual recognition. *Current Biology (accepted)*. Preprint DOI: [https://doi.org/10.1101/2021.09.07.459327](https://doi.org/10.1101/2021.09.07.459327).
+Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., **Weller, H.I.**, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2023). Evidence for a selective link between cooperation and individual recognition. *Current Biology*. DOI: [https://doi.org/10.1016/j.cub.2023.11.032](https://doi.org/10.1016/j.cub.2023.11.032).
 
 **Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. *The American Naturalist*. DOI: [https://doi.org/10.1086/719235](https://doi.org/10.1086/719235). 
 
@@ -121,13 +124,13 @@ Cohen, K.E., **Weller, H.I.**, Westneat, M.W., and Summers, A.P (2020). The Evol
 **Weller, H.I.**\*, Hooper, S.E.\*, and Amelon, S.K\* (2020). Countcolors, an R package for quantification of the fluorescence emitted by *Pseudogymnoascus destructans* lesions on the wing membranes of hibernating bats. *Journal of Wildlife Diseases*. DOI: [https://doi.org/10.7589/2019-09-231](https://doi.org/10.7589/2019-09-231)  
 <sup>\*These authors contributed equally to this work.</sup>
 
-Cohen, K.E., **Weller, H.I.**, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont.* Journal of Anatomy*. DOI: [https://doi.org/10.1111/joa.13248](https://doi.org/10.1111/joa.13248)
+Cohen, K.E., **Weller, H.I.**, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont. *Journal of Anatomy*. DOI: [https://doi.org/10.1111/joa.13248](https://doi.org/10.1111/joa.13248)
 
-van Meer, N.M., **Weller, H.I.**, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Brainerd, E.B., and Camp, A.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. *Journal of Experimental Biology*. DOI: [10.1242/jeb.201426](10.1242/jeb.201426)
+van Meer, N.M., **Weller, H.I.**, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Camp, A.L., and Brainerd, E.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. *Journal of Experimental Biology*. DOI: [10.1242/jeb.201426](https://doi.org/10.1242/jeb.201426)
 
-**Weller, H.I.**, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. *PeerJ*. DOI: [10.7717/peerj.6398](10.7717/peerj.6398)
+**Weller, H.I.**, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. *PeerJ*. DOI: [10.7717/peerj.6398](https://doi.org/10.7717/peerj.6398)
 
-**Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid *Satanoperca daemon* and evolutionary implications. *Zoomorphology*. DOI: [10.1007/s00435-016-0335-6](10.1007/s00435-016-0335-6)
+**Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (2017). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid *Satanoperca daemon* and evolutionary implications. *Zoomorphology*. DOI: [10.1007/s00435-016-0335-6](https://doi.org/10.1007/s00435-016-0335-6)
 
 <br>  
 
@@ -148,6 +151,8 @@ O'Sullivan, D., **Weller, H.I.**, and Lord, N.P. Insect Color Database (ICDB). I
 
 Presentations
 -------------
+**Weller, H.I.**, Van Belleghem, S. (April 2024). Talk: recolorize: An R package for flexible colour segmentation of biological images. *Finnish Molecular Ecology Symposium*, Joensuu, Finland.
+
 **Weller, H.I.**, Van Belleghem, S. (July 2023). Invited symposium talk: One way to measure color pattern variation in coral reef fishes. *International Conference for Vertebrate Morphology*, Cairns, Australia.
 
 **Weller, H.I.**, and Van Belleghem, S. (January 2023). Poster: Flexible color segmentation of biological images with the R package recolorize. *Society for Integrative and Comparative Biology*, Austin, TX, USA.
@@ -162,21 +167,19 @@ Presentations
 
 **Weller, H.I.**, Schwartz, S.T., Karan, E., and Lord, N.P. (Jan. 2021). Talk: Recolorize: a flexible R package for color classification. *Society for Integrative and Comparative Biology*, virtual conference. 
 
-**Weller, H.I.**,  Karan, E., Schwartz, S. and Lord, N.P. (Jan. 2021). Talk: `recolorize`: color-based image segmentation (for people with other things to do). *Society for Integrative and Comparative Biology (Virtual).*
+**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan's perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. *Society for Integrative and Comparative Biology*, Austin, TX.
 
-**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan's perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. *Society for Integrative and Comparative Biology, Austin, TX.*
+**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Oct. 2019). Talk: Does mouthbrooding constrain or complement feeding morphology? *Regional Division of Vertebrate Morphology (Northeast)*, Newton, MA.
 
-**Weller, H.I.**, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Oct. 2019). Talk: Does mouthbrooding constrain or complement feeding morphology? *Regional Division of Vertebrate Morphology (Northeast), Newton, MA.*
+**Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (Jan. 2019). Talk: 3D-Intra-oral Prey Trajectories Indicate Distinct Phases in how Channel Catfish (Ictalurus punctatus, Siluriformes: Ictaluridae) Swallow Food. *International Congress of Vertebrate Morphology*, Prague, CZ.
 
-**Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (Jan. 2019). Talk: 3D-Intra-oral Prey Trajectories Indicate Distinct Phases in how Channel Catfish (Ictalurus punctatus, Siluriformes: Ictaluridae) Swallow Food. *International Congress of Vertebrate Morphology, Prague, CZ.*
+**Weller, H.I.**, Cohen, K.E., Gibb, A., and Brainerd, E.L. (Jan. 2019). Poster: Using tethers to measure food transport in a flatfish. *Society for Integrative and Comparative Biology*, Tampa, FL.
 
-**Weller, H.I.**, Cohen, K.E., Gibb, A., and Brainerd, E.L. (Jan. 2019). Poster: Using tethers to measure food transport in a flatfish. *Society for Integrative and Comparative Biology, Tampa, FL.*
+**Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L.(Jan. 2019). Talk: An XROMM study of intra-oral transport and swallowing in catfish. *Society for Integrative and Comparative Biology*, Tampa, FL.
 
-**Weller, H.I.**, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L.(Jan. 2019). Talk: An XROMM study of intra-oral transport and swallowing in catfish. *Society for Integrative and Comparative Biology, Tampa, FL.*
+**Weller, H.I.** and Brainerd, E.L. (Oct. 2017). Talk: How do fish swallow food? *Regional Division of Vertebrate Morphology (Northeast)*, Lowell, MA.
 
-**Weller, H.I.** and Brainerd, E.L. (Oct. 2017). Talk: How do fish swallow food? *Regional Division of Vertebrate Morphology (Northeast), Lowell, MA.*
-
-**Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. *American Society of Ichthyologists and Herpetologists, New Orleans, LA.*
+**Weller, H.I.**, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. *American Society of Ichthyologists and Herpetologists*, New Orleans, LA.
 
 
 <br>  
@@ -254,19 +257,27 @@ June 2014—September 2014
 
 <br>  
 
-Teaching and outreach
+Teaching, service, and outreach
 ---------------------
+September 2023—Present
+:   **Postdoctoral representative**, *University of Helsinki, Wellbeing Committee* (Helsinki, Finland)  
+  Organizing events and awareness campaigns around wellbeing resources (e.g. mental health, mentorship, exercise) for Helsinki Institute of Life Sciences research community.
+
+September 2023—June 2024
+:   **Local organizer**, *Meeting of the European Society of Evolutionary and Developmental Biology, 2024* (Helsinki, Finland)  
+  Organized outreach events and coordinated conference activities.
+
 June 2021 \& July 2022
 :   **Instructor**, *Brown University, Summer@Brown Program* (Providence, RI)  
   Anatomy, Behavior, and Evolution: Fishy Solutions to Life Underwater  
-    Intensive high school course including labs, assignments, and mentoring of final project (preparation of research proposals and presentations).
+    Intensive high school course including labs, assignments, and mentoring of final project. Responsible for proposal, design, and implementation of entire course.
 
-August 2020—April 2020
+August 2020—April 2021
 :   **Teaching assistant**, *Brown University, Alpert Medical School* (Providence, RI)  
   COVID-modified Human Anatomy (lecture and lab)  
     Restructuring the traditional gross anatomy curriculum, including remote/small group work and prosection-based staggered labs.
 
-September 2019—Present
+September 2019—2023
 :   **R User Group**, *Brown University, Dept. of Ecology and Evolutionary Biology* (Providence, RI)  
   Organizing and running monthly R workshops for graduate and undergraduate students, focusing on techniques for biological analysis (e.g., data organization, statistics, and visualization).
 
@@ -275,7 +286,7 @@ August 2019—April 2020
   Human Anatomy (lecture and lab)  
     Guiding medical students through cadaver-based human anatomy labs.
 
-September 2018—Present
+September 2018—June 2022
 :   **Marine Science Club**, *Paul Cuffee High School* (Providence, RI)  
     Collaborating with high school teachers for weekly science activities with high school students.
 
@@ -309,12 +320,12 @@ Software
 :   Latex, Maya, FIJI/ImageJ, Horos, 3DSlicer, XMALab, Mesquite, Pandoc, Microsoft Office
 
 Languages
-:   English (native), French (intermediate)
+:   English (native), French (intermediate), Finnish (basic)
 
 ----
 
 <br>  
 
->*Lab*: Biomedical Center 426, 171 Meeting St.,  Providence, RI 02906  
+>*Lab*: Viikinkaari 5, 00790 Helsinki, Finland  
 >*Email*: <hannahiweller@gmail.com>  
->*Website*: [hiweller.github.io](https://hiweller.github.io)
+>*Website*: [hiweller.rbind.io](https://hiweller.rbind.io)

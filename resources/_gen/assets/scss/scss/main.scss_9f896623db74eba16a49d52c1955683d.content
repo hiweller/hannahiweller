@@ -7195,7 +7195,7 @@ a.text-dark:hover, a.text-dark:focus {
  *  Wowchemy's Core Style
  **************************************************/
 html {
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-size: 16.17px;
   color: rgba(0, 0, 0, 0.8);
   line-height: 1.65;
@@ -7292,7 +7292,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-weight: 400;
   margin-top: 1rem;
   margin-bottom: 0.5rem;
@@ -8954,7 +8954,7 @@ html[dir='rtl'] body {
 
 .section-subheading {
   font-size: 1.25rem;
-  font-family: "Nanum Gothic", sans-serif;
+  font-family: "Barlow", sans-serif;
   font-weight: bold;
   margin-top: 1rem;
   margin-bottom: 0.5rem; }

@@ -5,7 +5,7 @@
     <link>/tag/r-packages/</link>
       <atom:link href="/tag/r-packages/index.xml" rel="self" type="application/rss+xml" />
     <description>r packages</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 27 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 22 Mar 2024 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
       <title>r packages</title>
@@ -13,11 +13,212 @@
     </image>
     
     <item>
+      <title>Editing zone maps with user-selected regions</title>
+      <link>/post/editing-zone-maps-with-user-selected-regions/</link>
+      <pubDate>Fri, 22 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/post/editing-zone-maps-with-user-selected-regions/</guid>
+      <description>&lt;p&gt;As much as I would like &lt;code&gt;recolorize&lt;/code&gt; to provide a single perfect solution to color segmentation that requires no user input, I made it modular for a reason. Supposed &amp;ldquo;one-click&amp;rdquo; methods can be really frustrating when they just barely don&amp;rsquo;t work for your use case and offer no simple way to fix their output.&lt;/p&gt;
+&lt;p&gt;I know that &lt;code&gt;recolorize&lt;/code&gt; will often produce results that are pretty good but not quite right: maybe a part of your image is in deep shadows or a specimen was damaged in preservation. I have certainly had cases where I wanted to open up a &lt;code&gt;recolorize&lt;/code&gt; object in ImageJ to just outline a particularly troublesome region of an image, and others using the package have voiced similar suggestions.&lt;/p&gt;
+&lt;p&gt;With that in mind, I wrote an (experimental) function to allow the user to select a region of the image to alter. This is obviously not as sophisticated as image analysis software with a dedicated user interface, but I think it works really well when you have small fixes to implement, because it means you don&amp;rsquo;t have to clumsily go between a bunch of different softwares for different things.&lt;/p&gt;
+&lt;p&gt;I tried to keep this function as lightweight as possible, so it&amp;rsquo;s not fancy, but maybe it will be useful. Let&amp;rsquo;s define the function first and then I&amp;rsquo;ll demonstrate how it works:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(recolorize)
+recolor_selection &amp;lt;- function(rc_obj, color_to = 1, 
+                       selection = &amp;quot;rect&amp;quot;, 
+                       locator_color = &amp;quot;red&amp;quot;,
+                       n_polygons = 1,
+                       plotting = TRUE,
+                       recolor_background = FALSE) {
+  # store old map
+  rc_original_pix &amp;lt;- rc_obj$pixel_assignments
+  
+  # choose region selection method:
+  selection &amp;lt;- match.arg(arg = selection, choices = c(&amp;quot;rectangle&amp;quot;, &amp;quot;polygon&amp;quot;))
+  
+  # make image:
+  img &amp;lt;- recoloredImage(rc_obj, type = &amp;quot;raster&amp;quot;)
+  layout(1); par(mar = rep(0, 4))
+  plot(img)
+  
+  # plot horizontal and vertical bounds to keep user from selecting
+  # outside the image boundaries:
+  abline(h = c(0, dim(img)[1]), v = c(0, dim(img)[2]), col = &amp;quot;darkgrey&amp;quot;)
+  
+  # user-select area and change color of pixels inside region of interest
+  if (selection == &amp;quot;rectangle&amp;quot;) {
+    
+    # select a rectangle
+    u &amp;lt;- spatstat.geom::clickbox(add = TRUE, col = locator_color)
+    
+    # store the input
+    u$xrange &amp;lt;- round(u$xrange)
+    u$yrange &amp;lt;- round(u$yrange)
+    
+    # flip the yrange (in the image, y is numbered bottom to top, but in an array
+    # it&#39;s indexed top to bottom)
+    u$yrange &amp;lt;- dim(img)[1] - u$yrange
+    
+    # and change pixel assignments to new color
+    rc_obj$pixel_assignments[u$yrange[1]:u$yrange[2],
+                             u$xrange[1]:u$xrange[2]] &amp;lt;- color_to
+    
+  } else if (selection == &amp;quot;polygon&amp;quot;) {
+    
+    # select polygon(s)
+    u &amp;lt;- spatstat.geom::clickpoly(add = TRUE, col = locator_color, np = n_polygons)
+    u$xrange &amp;lt;- round(u$xrange)
+    u$yrange &amp;lt;- round(u$yrange)
+    u$bdry &amp;lt;- lapply(u$bdry, \(x) lapply(x, round))
+    
+    # find all pixels inside of the bounding box for the polygon(s)
+    xy &amp;lt;- expand.grid(u$xrange[1]:u$xrange[2], u$yrange[1]:u$yrange[2])
+    
+    # for every polygon...
+    for (i in 1:length(u$bdry)) {
+      pol &amp;lt;- u$bdry[[i]]
+      # find which points in the bounding box fall inside the polygon
+      if (i == 1) {
+        col_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+      } else {
+        new_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+        col_idx &amp;lt;- rbind(col_idx, new_idx)
+      }
+    }
+      
+      # reverse x/y order, y
+      col_idx &amp;lt;- as.matrix(col_idx[ , 2:1])
+      col_idx[,1] &amp;lt;- dim(img)[1] - col_idx[,1]
+      
+      # and change color
+      rc_obj$pixel_assignments[col_idx] &amp;lt;- color_to
+      
+  }
+  
+  # make sure the background is still transparent
+  if (!recolor_background) {
+    rc_obj$pixel_assignments[rc_original_pix == 0] &amp;lt;- 0
+  }
+  
+  # if plotting, plot
+  if (plotting) {
+    
+    # draw box or polygon around the region that was changed
+    plot_region &amp;lt;- function() {
+      xdim &amp;lt;- dim(rc_obj$pixel_assignments)[2]
+      ydim &amp;lt;- dim(rc_obj$pixel_assignments)[1]
+      if (selection == &amp;quot;rectangle&amp;quot;) {
+        rect(xleft = u$xrange[1] / xdim, xright = u$xrange[2] / xdim,
+             ybottom = 1 - u$yrange[1] / ydim, ytop = 1 - u$yrange[2] / ydim,
+             border = locator_color)
+      } else {
+        for (i in 1:length(u$bdry)) {
+          polygon(u$bdry[[i]]$x / xdim, 
+                  u$bdry[[i]]$y / ydim, border = locator_color)
+        }
+      }
+    }
+    
+    # reset graphical parameters when function exits:
+    current_par &amp;lt;- graphics::par(no.readonly = TRUE)
+    on.exit(graphics::par(current_par))
+    
+    # set layout
+    graphics::layout(matrix(1:3, nrow = 1),
+                     widths = rep(1, 3))
+    
+    # plot original image
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(rc_obj$original_img,
+                               main = &amp;quot;Recolored original&amp;quot;)
+    plot_region()
+    
+    # plot old zone map with polygon/rectangle
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(constructImage(rc_original_pix, rc_obj$centers),
+                               main = &amp;quot;Input&amp;quot;)
+    plot_region()
+    
+    # plot new color map &amp;amp; palette
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(recoloredImage(rc_obj),
+                               main = &amp;quot;Output&amp;quot;)
+    plot_region()
+  }
+  return(rc_obj)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To demonstrate, let&amp;rsquo;s take one of the beetle images that come with the package:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;img &amp;lt;- system.file(&amp;quot;extdata/fulgidissima.png&amp;quot;, package = &amp;quot;recolorize&amp;quot;)
+rc &amp;lt;- recolorize2(img, bins = 3, cutoff = 60, plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Using 3^3 = 27 total bins
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc2 &amp;lt;- mergeLayers(rc, list(c(3, 6)), plotting = FALSE)
+plot(rc2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+A couple of things bother me in the resulting zone map. These images are of pinned specimens, so when initially processing them, I removed the region of the pin as &amp;ldquo;background&amp;rdquo;, leaving this somewhat awkward-looking hole on the right side of the beetle. Second, in real life, apparently that pin created a shadow when the photograph was taken, because we can see it apparently created enough of a shadow that some pixels on that right side got clustered with the dark red/brown color of the bands on the elytra.&lt;/p&gt;
+&lt;p&gt;We can use the polygon selection option of the &lt;code&gt;recolor_selection&lt;/code&gt; function to select that area and force all pixels inside that region to change to color class 2 (green).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc3 &amp;lt;- recolor_selection(rc2, selection = &amp;quot;polygon&amp;quot;, locator_color = &amp;quot;yellow&amp;quot;, 
+                         n_polygons = 1, plotting = TRUE, color_to = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will pop up a plot of the recolorize object and prompt you to draw a region (in this case, a single polygon). A blog post can&amp;rsquo;t recreate the user interface aspect where I actually selected a polygon, but here&amp;rsquo;s a screenshot just before I clicked &amp;lsquo;Finish&amp;rsquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/sc01.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here, I selected the area around the pin that I want to change to green. (I&amp;rsquo;m ignoring the groove between the elytra, which is also clustered with class 5; if I were actually trying to analyse this image with respect to a specific biological question I&amp;rsquo;d have to decide how to handle it, since obviously it doesn&amp;rsquo;t belong to the same color class as the red bands. But this is an example! I do what I want!)&lt;/p&gt;
+&lt;p&gt;Then I get a diagnostic plot of the region I recolored:
+&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;You can see that the pinhole is still present though. That&amp;rsquo;s the default behavior of the function as I wrote it, since you might be trying to fix something on the border of the image and you don&amp;rsquo;t want to accidentally color in the background. But you can turn that off by setting &lt;code&gt;recolor_background = TRUE&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc4 &amp;lt;- recolor_selection(rc2, selection = &amp;quot;polygon&amp;quot;, locator_color = &amp;quot;yellow&amp;quot;, 
+                         n_polygons = 1, plotting = TRUE, color_to = 2,
+                         recolor_background = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Now the pinhole is filled in.&lt;/p&gt;
+&lt;p&gt;And that&amp;rsquo;s it! You can use rectangles instead by setting &lt;code&gt;selection = &amp;quot;rectangle&amp;quot;&lt;/code&gt;, and you can select more than one polygon at a time. This is not currently a formal part of the package because I think it would need way more fine-tuning before that&amp;rsquo;s feasible (and at that point, I might as well make an R Shiny app). For example, right now this function doesn&amp;rsquo;t record the changes as part of the &lt;code&gt;call&lt;/code&gt; element of a recolorize object, which otherwise records everything that produced it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# these are different:
+print(rc$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;print(rc2$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# but these are exactly like rc2:
+print(rc3$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;print(rc4$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I don&amp;rsquo;t necessarily want to build out a whole suite of tools for taking manual input like this. I think that would defeat the purpose of the broader package (to automate what can be automated), and I think it could lead down the unproductive road of me trying to recreate a worse version of ImageJ. But I can definitely appreciate the need for something like this, and hopefully it is useful to multiple people.&lt;/p&gt;
+&lt;p&gt;If you do use this tool and have some feedback for what else you&amp;rsquo;d need from it, or if you implement your own solution, please do get in touch. I think this could eventually be a useful addition to the package and feedback is the best way for me to know what&amp;rsquo;s working and what&amp;rsquo;s missing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Recolorize &amp; patternize workflow</title>
       <link>/post/recolorize-patternize-workflow/</link>
       <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
       <guid>/post/recolorize-patternize-workflow/</guid>
-      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://www.biorxiv.org/content/10.1101/2021.09.07.459327v1.abstract&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2021),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
+      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://doi.org/10.1016/j.cub.2023.11.032&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2023),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;images/wasps.png&#34; alt=&#34;figures illustrating steps in the quantification of wasp facial patterns using recolorize and patternize&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12853&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;patternize&lt;/code&gt; package&lt;/a&gt; is an excellent tool for quantifying variation in color patterns. I use it frequently, because it&amp;rsquo;s a consistent, scaleable method for quantification that works for almost any organism, and it allows you to control for variation in shape, orientation, and size by first aligning all of your color patterns to a RasterStack—analogous to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Procrustes_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Procrustes fit step of geometric morphometrics&lt;/a&gt;. It also helps that the package author, Steven Van Belleghem, is extremely friendly!&lt;/p&gt;
 &lt;p&gt;In practice, the most difficult step of using &lt;code&gt;patternize&lt;/code&gt; is often the color segmentation: like several other color analysis packages and tools, &lt;code&gt;patternize&lt;/code&gt; frequently relies on k-means clustering to extract color patches from images (especially for batch processing). That&amp;rsquo;s where &lt;code&gt;recolorize&lt;/code&gt; comes in. In order to use &lt;code&gt;recolorize&lt;/code&gt; to do the segmentation step for &lt;code&gt;patternize&lt;/code&gt;, we have to follow three steps:&lt;/p&gt;
@@ -28,7 +229,7 @@
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s do it!&lt;/p&gt;
 &lt;h2 id=&#34;example-files&#34;&gt;Example files&lt;/h2&gt;
-&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/02_wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/02_wasps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All the data and code used in this tutorial can be found here in the &amp;lsquo;wasps&amp;rsquo; subfolder: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples&#34;&gt;https://github.com/hiweller/recolorize_examples&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;step-1-image-alignment-in-patternize&#34;&gt;Step 1: Image alignment in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Make sure you have installed the development version of &lt;code&gt;patternize&lt;/code&gt; (e.g. by running &lt;code&gt;devtools::install_github(&amp;quot;StevenVB12/patternize&amp;quot;)&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;re starting with a folder of unaltered images of wasp faces. These images have been color-corrected and cropped to the wasp&amp;rsquo;s face, but the background hasn&amp;rsquo;t been masked out, since &lt;code&gt;patternize&lt;/code&gt; will do that when we do the alignment.&lt;/p&gt;
@@ -36,8 +237,8 @@
 &lt;p&gt;Note that even on this dataset—which is highly standardized—the images have slight variations in the size, shape, and angle of the head, making it difficult to differentiate variation due to color pattern differences from that due to other factors.&lt;/p&gt;
 &lt;p&gt;To use the &lt;code&gt;alignLan()&lt;/code&gt; function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the &lt;a href=&#34;https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;multi-point tool&lt;/a&gt;, but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and &lt;strong&gt;no header&lt;/strong&gt;. Our landmarking scheme for the wasp faces only had 8 points:
 &lt;img src=&#34;images/F03_wasps_landmarking.png&#34; alt=&#34;&#34; width=&#34;40%&#34;/&gt;
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/04_wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/04_wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
 &lt;p&gt;Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using &lt;code&gt;patternize&lt;/code&gt;. I organized my files into separate folders (images in the &lt;code&gt;original_images/&lt;/code&gt; folder, landmark text files in the &lt;code&gt;landmarks&lt;/code&gt; folder, etc), but you don&amp;rsquo;t have to do that so long as your files are organized and named in a way that works with the &lt;code&gt;makeList()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
 library(patternize)
@@ -94,7 +295,7 @@ imgs &amp;lt;- lapply(imageList_aligned, brick_to_array)
 names(imgs) &amp;lt;- names(imageList_aligned)
 
 # save raster extents for later conversion:
-extent_list &amp;lt;- lapply(imageList_aligned, extent)
+extent_list &amp;lt;- lapply(imageList_aligned, raster::extent)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we have a list of image arrays. Plotting them using &lt;code&gt;plotImageArray()&lt;/code&gt; helps us to see what the &lt;code&gt;alignLan()&lt;/code&gt; step did for our original images:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;480&#34; /&gt;

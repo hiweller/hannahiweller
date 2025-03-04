@@ -5,12 +5,190 @@
     <link>/tag/plotting/</link>
       <atom:link href="/tag/plotting/index.xml" rel="self" type="application/rss+xml" />
     <description>plotting</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 13 Apr 2021 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 16 May 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
       <title>plotting</title>
       <link>/tag/plotting/</link>
     </image>
+    
+    <item>
+      <title>Using the dichromat package to check if your plot is colorblind-friendly</title>
+      <link>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</link>
+      <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+      <guid>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to demonstrate how I use the &lt;a href=&#34;https://CRAN.R-project.org/package=dichromat&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;dichromat&lt;/a&gt; R package to check if my custom color palettes are colorblind-friendly.&lt;/p&gt;
+&lt;p&gt;A lot has been written about choosing colorblind-friendly color palettes when visualizing data, and I won&amp;rsquo;t rehash here why it&amp;rsquo;s important. Honestly, the colorblind scientists I know tend to be pretty pragmatic about this problem (most of them will tell me a version of &amp;ldquo;I can usually figure it out from context&amp;rdquo;), and I do think that folks can get a little intense about this particular aspect of visual accessibility, sometimes at the expense of other aspects. But since choosing colorblind-friendly palettes is easy, I don&amp;rsquo;t see why we shouldn&amp;rsquo;t do it any time color is being used to indicate something on a graph.&lt;/p&gt;
+&lt;p&gt;A lot of the advice that I run into when I&amp;rsquo;m trying to choose a color palette reduces down to three general categories: 1) use a pre-generated palette that has been carefully checked for being distinguishable for all the most common types of colorblindness, 2) rules of thumb like &amp;ldquo;stay away from green and orange,&amp;rdquo; or 3) print it out in black and white and/or run your graph through an online color blindness simulator to see if it looks okay. Personally, I find the second one too vague, the third one too cumbersome for tweaking, and the first one too inflexible when I want the colors to represent something specific, like habitat type. If you are also stubborn and detail-oriented, you know what I mean.&lt;/p&gt;
+&lt;p&gt;As for the dichromat package: nothing I write here is prescriptive! But this is an option I happen to use a lot, and the dichromat package has been incredibly useful for me in this context, so I wanted to show how I use it.&lt;/p&gt;
+&lt;h2 id=&#34;the-dichromat-package&#34;&gt;The dichromat package&lt;/h2&gt;
+&lt;p&gt;The main function of the dichromat package is &lt;code&gt;dichromat&lt;/code&gt; (I love when packages do this), and it approximates the effects of three of the most common forms of color blindness.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(dichromat)
+red_green_colors &amp;lt;- RColorBrewer::brewer.pal(11, &amp;quot;RdYlGn&amp;quot;)
+
+# convert to the three dichromacy approximations
+protan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;protan&amp;quot;)
+deutan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;deutan&amp;quot;)
+tritan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;tritan&amp;quot;)
+
+# plot for comparison
+layout(matrix(1:4, nrow = 4)); par(mar = rep(1, 4))
+recolorize::plotColorPalette(red_green_colors, main = &amp;quot;Trichromacy&amp;quot;)
+recolorize::plotColorPalette(protan, main = &amp;quot;Protanopia&amp;quot;)
+recolorize::plotColorPalette(deutan, main = &amp;quot;Deutanopia&amp;quot;)
+recolorize::plotColorPalette(tritan, main = &amp;quot;Tritanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;m demonstrating the functions on a red-yellow-green color palette, which unsurprisingly is pretty terrible for red-green colorblindness (protanopia, or red-down, and deutanopia, or green-down).&lt;/p&gt;
+&lt;p&gt;For convenience if I&amp;rsquo;m tweaking colors, I&amp;rsquo;ll usually write a function to do this automatically:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;check_cb &amp;lt;- function(palette, return_cb_palettes = FALSE, ...) {
+  
+  # make an empty list
+  cb_palettes &amp;lt;- setNames(vector(&amp;quot;list&amp;quot;, length = 3), 
+                          nm = c(&amp;quot;protan&amp;quot;, &amp;quot;deutan&amp;quot;, &amp;quot;tritan&amp;quot;))
+  
+  # generate colorblindness approximations
+  for (i in 1:length(cb_palettes)) {
+    cb_palettes[[i]] &amp;lt;- dichromat::dichromat(palette, names(cb_palettes)[i])
+  }
+  
+  # reset graphical parameters when function exits:
+  current_par &amp;lt;- graphics::par(no.readonly = TRUE)
+  on.exit(graphics::par(current_par))
+  
+  # plot for comparison
+  layout(matrix(1:4, nrow = 4)); par(mar = rep(1, 4))
+  recolorize::plotColorPalette(palette, main = &amp;quot;Trichromacy&amp;quot;, ...)
+  pnames &amp;lt;- c(&amp;quot;Protanopia&amp;quot;, &amp;quot;Deutanopia&amp;quot;, &amp;quot;Tritanopia&amp;quot;)
+  for (i in 1:3) {
+    recolorize::plotColorPalette(cb_palettes[[i]], main = pnames[i], ...)
+  }
+
+  if (return_cb_palettes) {
+    return(cb_palettes)
+  }
+}
+
+check_cb(RColorBrewer::brewer.pal(9, &amp;quot;RdBu&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These are only simulations, and individuals vary in the type and severity of their colorblindness. In particular, these approximations are for types of color blindness where one of the cone types is completely absent, but it&amp;rsquo;s much more common for people to just have reduced sensitivity in one of these cone types (protanomaly, deuteranomaly, and tritanomaly). But as far as I&amp;rsquo;m aware, you can generally assume that if two colors are distinguishable to a protanopic viewer they will also be distinguishable to a protanomalous viewer, and so on.&lt;/p&gt;
+&lt;p&gt;Still, although most of us would probably know to stay away from a red-green color palette, plenty of other common examples are just as egregious. For example, the default ggplot2 color scale is about the worst thing you could possibly use, because all of the colors vary only in hue and not at all in luminance:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot_colors &amp;lt;- scales::hue_pal()(10)
+check_cb(ggplot_colors)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To be fair, a lot of these are hard to distinguish for trichromatic viewers. (I don&amp;rsquo;t actually know why the developers chose this palette, but I actually wonder if it&amp;rsquo;s because it&amp;rsquo;s so obviously bad that they were hoping users would always change it to suit their needs?)&lt;/p&gt;
+&lt;p&gt;The terrain palette, mostly used for terrestrial maps, is also particularly bad:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;terrain &amp;lt;- terrain.colors(10)
+check_cb(terrain)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+The same is true of red-green-blue palettes, which are often the default when we need three colors:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# ggplot strikes again, but this time the colors look deceptively different for trichromats!
+check_cb(scales::hue_pal()(3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+Let&amp;rsquo;s take this last example, because it&amp;rsquo;s one that I&amp;rsquo;ve run into a version of many times. Let&amp;rsquo;s say it&amp;rsquo;s the standard in your field to represent something with red, green, and blue (e.g. rotational axes). You don&amp;rsquo;t have to just stay away from red and green as a rule—you just need to tweak the particular colors you use so that something other than color distinguishes them. In practice the easiest thing is usually the brightness of the color.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# convert to an RGB matrix:
+original_rgb &amp;lt;- t(col2rgb(scales::hue_pal()(3)) / 255)
+
+# decrease brightness of green:
+tweaked_rgb &amp;lt;- recolorize::adjust_color(original_rgb, which_colors = 2,
+                                        brightness = 0.7)
+tweaked_rgb &amp;lt;- rgb(tweaked_rgb)
+
+# check again - looks much better
+check_cb(tweaked_rgb)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes even color palettes that intuitively seem like they should be really robust to color blindness turn out not to be! For example, check out red vs. a medium (60%) grey:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;red_grey &amp;lt;- c(&amp;quot;#FF0000&amp;quot;, &amp;quot;#636363&amp;quot;)
+check_cb(red_grey)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
+They&amp;rsquo;re not identical, but for protanopic viewers, they are very similar. I remember being taught a rule of thumb that any bright color + a greyscale value were pretty much always a safe combination, but if you are not sensitive to long-wavelength light, the difference between a deep red and a dark grey is not much. I didn&amp;rsquo;t realize this until I was navigating a digital interface where reserved spots where marked with grey and open ones with red, and the protanopic person I was with made a comment about wishing the interface had different colors for reserved seats!&lt;/p&gt;
+&lt;h2 id=&#34;trying-the-color-palettes-out-in-your-actual-graphs&#34;&gt;Trying the color palettes out in your actual graphs&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s perfectly reasonable to look at the last example and point out that although the red and grey colors for the protanopic viewer are very &lt;em&gt;similar&lt;/em&gt;, they are not &lt;em&gt;actually&lt;/em&gt; identical, and therefore you could get away with them. That&amp;rsquo;s true! This is where things start to get subjective. Personally, I find that I have to actually try the color palettes out in the graphs where I intend to use them. This is where the &lt;code&gt;dichromat()&lt;/code&gt; function really comes in handy, since you can just swap out the different color palettes.&lt;/p&gt;
+&lt;p&gt;Sometimes the color is redundant with some other way that information is arranged—in that case, it doesn&amp;rsquo;t really matter if your color palette is colorblind-friendly:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# create a dataset
+# feat. creatures from Animal Land Where There Are No People (1897)
+species &amp;lt;- c(rep(&amp;quot;womp&amp;quot;, 2),
+            rep(&amp;quot;boddle&amp;quot;, 2), 
+            rep(&amp;quot;temmalunk&amp;quot;, 2))
+anatomy &amp;lt;- rep(c(&amp;quot;legs&amp;quot; , &amp;quot;eyes&amp;quot;) , 3)
+number &amp;lt;- abs(rnorm(6, 2, 2))
+size &amp;lt;- abs(rnorm(6, 5, 2))
+data &amp;lt;- data.frame(species, anatomy, number, size)
+ 
+# graph
+library(ggplot2)
+p &amp;lt;- ggplot(data, aes(fill = anatomy, y = number, x = anatomy)) + 
+    geom_bar(position = &amp;quot;dodge&amp;quot;, stat = &amp;quot;identity&amp;quot;) +
+    facet_wrap(~species) + theme_bw() +
+    xlab(&amp;quot;&amp;quot;)
+
+# trichomatic:
+p + scale_fill_manual(values = red_grey) + ggtitle(&amp;quot;Trichromacy&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# and protanopic:
+p + scale_fill_manual(values = dichromat(red_grey, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Protanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;But in some cases, color is the only thing that identifies groups, so having near-identical colors actually makes it really hard to understand the graph:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- rnorm(40, 5)
+df &amp;lt;- data.frame(x = x,
+                 group = c(rep(&amp;quot;y1&amp;quot;, 20), rep(&amp;quot;y2&amp;quot;, 20)),
+                 value = c(x[1:20] + rnorm(10, sd = 2),
+                           x[21:40]*2 + rnorm(10, sd = 2)))
+
+p &amp;lt;- ggplot(df, aes(x = x, y = value, color = group)) +
+  geom_point(size = 3) + theme_bw()
+
+p + scale_color_manual(values = red_grey) + ggtitle(&amp;quot;Trichromacy&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(red_grey, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Protanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;
+Like I said—at this point, this is a subjective matter of how much you care about aesthetics and this particular form of accessibility. If I really wanted to use a red and grey color palette, I would choose a darker grey and a more orange-y red. If I just wanted two colors that are easy to distinguish, I would choose a light grey and a dark grey, or blue and red:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;red_grey_2 &amp;lt;- c(&amp;quot;tomato&amp;quot;, &amp;quot;grey30&amp;quot;)
+grey2 &amp;lt;- c(&amp;quot;grey70&amp;quot;, &amp;quot;grey20&amp;quot;)
+red_blue &amp;lt;- c(&amp;quot;tomato&amp;quot;, &amp;quot;dodgerblue&amp;quot;)
+
+p + scale_color_manual(values = dichromat(red_grey_2, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Altered red/grey palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(grey2, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;&amp;quot;) + ggtitle(&amp;quot;Greyscale palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(red_blue, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Blue and red palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Feel free to try out the above code using the other two types of color blindness—I found they still made the two groups easy to distinguish.&lt;/p&gt;
+&lt;p&gt;But with all that said, I don&amp;rsquo;t think that this in particular is worth agonizing about too much. You&amp;rsquo;ll always be able to find some advice that this color combination or that one is totally unacceptable, whether it&amp;rsquo;s because they are not colorblind-friendly, or not &lt;a href=&#34;https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;perceptually uniform&lt;/a&gt;, or won&amp;rsquo;t print out well for a greyscale printer. At a certain point you have to declare something is good enough for a reasonable viewer, move on, and brace for whatever reviewer pet peeve you happen to encounter.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use the &lt;code&gt;dichromat()&lt;/code&gt; function in the &lt;code&gt;dichromat&lt;/code&gt; R package to convert a color palette to approximations of how it would be seen by three types of color blindness.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Try the resulting colorblind approximation color palettes out in the graphs you intend to make.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you discover that your chosen colors don&amp;rsquo;t work well for your intended purpose, try increasing the contrast in brightness between the colors by making one much darker or lighter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When in doubt, just use the viridis palette!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;check_cb(viridisLite::viridis(10), cex_text = 0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Modifying pixel plots</title>

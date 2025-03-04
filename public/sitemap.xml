@@ -20,19 +20,67 @@
     <loc>/event/</loc>
     <lastmod>2030-06-01T13:00:00+00:00</lastmod>
   </url><url>
+    <loc>/post/an-anecdote-about-irradiance/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/tag/art/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/authors/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
     <loc>/categories/</loc>
-    <lastmod>2022-03-14T14:28:03-04:00</lastmod>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
   </url><url>
-    <loc>/tag/image-processing/</loc>
-    <lastmod>2022-03-14T14:28:03-04:00</lastmod>
+    <loc>/tag/color/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
   </url><url>
-    <loc>/tag/images/</loc>
-    <lastmod>2022-03-14T14:28:03-04:00</lastmod>
+    <loc>/author/hannah-weller/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/tag/light/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/category/misc/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
   </url><url>
     <loc>/post/</loc>
-    <lastmod>2022-03-14T14:28:03-04:00</lastmod>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/tag/risd/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/tags/</loc>
+    <lastmod>2024-05-03T16:39:52+03:00</lastmod>
+  </url><url>
+    <loc>/post/editing-zone-maps-with-user-selected-regions/</loc>
+    <lastmod>2024-03-21T15:49:43+02:00</lastmod>
+  </url><url>
+    <loc>/tag/image-processing/</loc>
+    <lastmod>2024-03-21T15:49:43+02:00</lastmod>
+  </url><url>
+    <loc>/tag/r/</loc>
+    <lastmod>2024-03-21T15:49:43+02:00</lastmod>
+  </url><url>
+    <loc>/tag/r-packages/</loc>
+    <lastmod>2024-03-21T15:49:43+02:00</lastmod>
   </url><url>
     <loc>/category/recolorize/</loc>
+    <lastmod>2024-03-21T15:49:43+02:00</lastmod>
+  </url><url>
+    <loc>/post/march-2024-update/</loc>
+    <lastmod>2024-03-21T15:52:03+02:00</lastmod>
+  </url><url>
+    <loc>/category/personal/</loc>
+    <lastmod>2024-03-21T15:52:03+02:00</lastmod>
+  </url><url>
+    <loc>/tag/plotting/</loc>
+    <lastmod>2023-05-16T17:04:20-04:00</lastmod>
+  </url><url>
+    <loc>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</loc>
+    <lastmod>2023-05-16T17:04:20-04:00</lastmod>
+  </url><url>
+    <loc>/tag/images/</loc>
     <lastmod>2022-03-14T14:28:03-04:00</lastmod>
   </url><url>
     <loc>/tag/resizing/</loc>
@@ -44,26 +92,8 @@
     <loc>/post/scaling-images-to-a-uniform-resolution/</loc>
     <lastmod>2022-03-14T14:28:03-04:00</lastmod>
   </url><url>
-    <loc>/tags/</loc>
-    <lastmod>2022-03-14T14:28:03-04:00</lastmod>
-  </url><url>
     <loc>/tag/tutorial/</loc>
     <lastmod>2022-03-14T14:28:03-04:00</lastmod>
-  </url><url>
-    <loc>/authors/</loc>
-    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
-  </url><url>
-    <loc>/tag/color/</loc>
-    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
-  </url><url>
-    <loc>/author/hannah-weller/</loc>
-    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
-  </url><url>
-    <loc>/tag/r/</loc>
-    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
-  </url><url>
-    <loc>/tag/r-packages/</loc>
-    <lastmod>2022-01-27T14:04:22-05:00</lastmod>
   </url><url>
     <loc>/tag/recolorize/</loc>
     <lastmod>2022-01-27T14:04:22-05:00</lastmod>
@@ -90,9 +120,6 @@
     <lastmod>2021-04-13T17:24:29-04:00</lastmod>
   </url><url>
     <loc>/post/modifying-pixel-plots/</loc>
-    <lastmod>2021-04-13T12:06:09-04:00</lastmod>
-  </url><url>
-    <loc>/tag/plotting/</loc>
     <lastmod>2021-04-13T12:06:09-04:00</lastmod>
   </url><url>
     <loc>/currently/</loc>

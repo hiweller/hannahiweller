@@ -128,6 +128,453 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
+      <title>An anecdote about irradiance</title>
+      <link>/post/an-anecdote-about-irradiance/</link>
+      <pubDate>Thu, 30 May 2024 00:00:00 +0000</pubDate>
+      <guid>/post/an-anecdote-about-irradiance/</guid>
+      <description>&lt;h1 id=&#34;the-anecdote&#34;&gt;The anecdote&lt;/h1&gt;
+&lt;p&gt;A couple of years ago, I got an email from my friend Anna Rose, at the time a textiles curator at the Rhode Island School of Design (RISD), asking me if I knew anything about infrared photography. She wanted to know if she could use it to uncover some lost history, which was such an exciting idea my mind immediately rejected it a fantasy that I was going to have to shoot down.&lt;/p&gt;
+&lt;p&gt;The context here was that a team of researchers from &lt;a href=&#34;https://www.faasamoaarts.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Fa&amp;rsquo;asamoa Arts&lt;/a&gt; (Su&amp;rsquo;a Uilisone Fitiao, Reggie Meredith Fitiao, and Mary Anne Bordonaro) were cataloging the painted barkcloths (siapo) from American Samoa in RISD&amp;rsquo;s textile collections. I could not be less qualified to describe the history or cultural significance of the siapo tradition in American Samoa, or to speak on the appropriateness of RISD having these particular examples (although the Fa&amp;rsquo;asamoa Arts site and &lt;a href=&#34;https://www.loc.gov/item/84073325/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this book by Mary J. Pritchard&lt;/a&gt; seem like excellent places to start learning more, and I&amp;rsquo;ve put the full explanation for the project that I was sent at the end of this post). Here&amp;rsquo;s an example they had out when I went to visit:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/IMG_1343.JPG&#34; alt=&#34;A circular siapo with a central checkerboard pattern, a border of leaves, and a scalloped design around the edge&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The reason she had contacted me, though, was because o&amp;rsquo;a&amp;ndash;&lt;a href=&#34;https://www.faasamoaarts.com/post/brown-dye-american-samoa-art&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;a brown dye&lt;/a&gt; used in creating siapo, made from a tree of the same name&amp;ndash;oxidizes to near-black over time. So rather than intricate geometric patterns, some of the siapo the research team were cataloging looked like this:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/IMG_1328.JPG&#34; alt=&#34;A painted barkcloth (siapo) that appears completely black due to oxidized dye&#34;&gt;&lt;/p&gt;
+&lt;p&gt;But RISD also had, although apparently nobody knew how to use it, a professionally converted full-spectrum camera capable of imaging in ultraviolet and infrared. For imaging nerds: it was specifically a MaxMax-modified Canon UV-VIS-IR camera with an X-Nite 1000 infrared lens. IR photography has been &lt;a href=&#34;https://mci.si.edu/infrared-and-ultraviolet-imaging&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;plenty often&lt;/a&gt; in art conservation, so they thought it was worth trying to see if we could uncover the hidden siapo designs using this camera. So one afternoon I walked the ten or so minutes from Brown&amp;rsquo;s campus to RISD&amp;rsquo;s collections to help out with this.&lt;/p&gt;
+&lt;p&gt;I will be honest: I thought I would show them how to use the camera, and then be the wet blanket explaining why it didn&amp;rsquo;t reveal the design. I think when we photograph things in UV or IR, we&amp;rsquo;re always hoping to reveal a hidden world, the hyperspectral equivalent of the numbers on the &lt;a href=&#34;https://en.wikipedia.org/wiki/Ishihara_test&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ishihara colorblindness test cards&lt;/a&gt;. And as a scientist I think I&amp;rsquo;m inclined to be skeptical of anything I want badly to be true. In this case, for the design to be visible, there would need to be a difference in infrared absorption between the two dyes, which seemed unlikely since lama (the black dye) is a combination of o&amp;rsquo;a (the brown dye) and burned candlenut kernels. Differences in IR absorption would probably be minor and hard to see without an intense source of infrared light.&lt;/p&gt;
+&lt;p&gt;And guess what! Yeah, we saw nothing. I didn&amp;rsquo;t take a picture, but fortunately, I can recreate for you almost exactly what it looked like when we popped the IR lens on the camera and pointed it at the siapo, because it was literally just black:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/black.JPG&#34; alt=&#34;A black rectangle.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;At this point I said something like well, haha, that&amp;rsquo;s usually how it goes, sorry, although if you want to try something else, I guess you could get a light source with a lot of infrared light instead of photographing it just under your presumably fluorescent ceiling lights, but I wouldn&amp;rsquo;t get your hopes up.&lt;/p&gt;
+&lt;p&gt;And Anna Rose asked me &amp;ldquo;Well, what&amp;rsquo;s the cheapest source of infrared light?&amp;rdquo; and I said, &amp;ldquo;THE SUN, I guess, but it&amp;rsquo;s not like you can take this 150-year-old barkcloth outside,&amp;rdquo; and she said oh we totally can, as long as it stays on museum grounds, and she and her intern promptly wheeled it through the museum cafe and onto the patio where people were having their lunch.&lt;/p&gt;
+&lt;p&gt;It was fine, but this move felt so illegal to me at the time that I honestly feel like writing about it now is incriminating. I don&amp;rsquo;t know the statute of limitations on taking a piece of preserved cultural heritage onto a museum cafe patio. On the other hand it worked.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/IMG_1325.JPG&#34; alt=&#34;The solid black siapo from before, this time with the underlying geometric design revealed in a purple-tinted infrared photo.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I distinctly remember that her intern pulled over a chair from an empty table, stood on top of it, flipped open the camera with the IR lens still on, and actually gasped out loud. And then she showed me, and I also gasped out loud.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/IMG_0946.JPG&#34; alt=&#34;A DSLR camera pointed at a barkcloth, with the infrared preview showing the revealed design.&#34;&gt;&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m not even sure how to describe how satisfying this moment was. It was like a scenario I would make up in a daydream about all my esoteric color knowledge suddenly feeling useful. A lot of science is working for months or years on something you find interesting only to show it to other people and have most of them say at most, &amp;ldquo;oh, nice,&amp;rdquo; and this took about fifteen minutes to provide something tangible that everyone found exciting. This is how science works in like, forensic TV shows.&lt;/p&gt;
+&lt;h1 id=&#34;the-irradiance&#34;&gt;The irradiance&lt;/h1&gt;
+&lt;p&gt;The first image we took with the IR lens was indoors with a standard fluorescent ceiling light. Fluorescent lights are meant to more or less emulate the way that daylight appears to our eyes by providing peaks of emitted light around the peak wavelength sensitivities of our cone cells (around 430, 540, and 570 nm; image from &lt;a href=&#34;https://www.waveformlighting.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Waveform Lighting&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/waveformlighting_fluorescent.png&#34; alt=&#34;Irradiance spectrum for a typical fluorescent light, from https://www.waveformlighting.com&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Those peaks do a great job of illuminating objects for human vision so that they appear more or less as they would under natural sunlight. But they provide very little light outside of those peaks, especially for red and infrared wavelengths (&amp;gt;650nm). Compare that to the amount of light above 650nm in sunlight:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/waveformlighting_daylight.png&#34; alt=&#34;Irradiance spectrum for sunlight, from https://www.waveformlighting.com&#34;&gt;&lt;/p&gt;
+&lt;p&gt;People can&amp;rsquo;t see infrared light, so this doesn&amp;rsquo;t make a big practical difference in how things look indoors vs. outdoors. But the IR lens on the camera filters out any non-infrared light, which under a fluorescent lightsource means it&amp;rsquo;s just filtering out ALL of the available environmental light. Even if a surface differs in how much it absorbs and reflects IR wavelengths&amp;ndash;leading to a difference in infrared &amp;ldquo;color&amp;rdquo;&amp;ndash;we weren&amp;rsquo;t able to see that when there was no available infrared light to absorb or reflect.&lt;/p&gt;
+&lt;p&gt;I like this example because it&amp;rsquo;s just enough outside the normal human sensory experience to feel non-obvious, but it&amp;rsquo;s a phenomenon that happens all the time with imaging without us ever clocking it. We think of color as an inherent property of an object (e.g. &amp;ldquo;my dress &lt;em&gt;is&lt;/em&gt; green, it just looks black with the bad lighting in the hallway&amp;rdquo;), but it&amp;rsquo;s not purely academic to point out that color is an emergent property of how a surface interacts with available environmental light. It can have practical consequences!&lt;/p&gt;
+&lt;p&gt;A much more succinct, intuitive example is Olfaur Eliasson&amp;rsquo;s &amp;ldquo;Room for One Colour&amp;rdquo;, which he very neatly demonstrated in about ten seconds of a &lt;a href=&#34;https://www.youtube.com/watch?v=fDE7A68hVaw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Netflix trailer&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/monochromatic1.png&#34; alt=&#34;Olafur Eliasson turning on a lightbulb in a room lit with yellow light.&#34;&gt;
+&lt;img src=&#34;images/monochromatic2.png&#34; alt=&#34;Turning on the white light reveals a rainbow.&#34;&gt;&lt;/p&gt;
+&lt;h3 id=&#34;information-about-the-siapo-project&#34;&gt;Information about the siapo project&lt;/h3&gt;
+&lt;p&gt;Here&amp;rsquo;s the info that RISD sent me when I asked. Any questions about the project should certainly go to the research team or possibly the museum, not me.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;On June 7th, 2022, researchers froman indigenous arts nonprofit in American Samoa came to the RISD Museum to view Samoan barkcloth, called siapo. Their organization, known as Folauga o le Tatau Malaga Aganu’u Fa’asamoa (a.k.a. Fa’asamoa Arts), seeks to educate others about the indigenous arts of American Samoa and promote the integration of these ancient art forms into modern lives.Their travel was funded by the Amerika Samoa Humanities Council, and will culminate in a new creative nonfiction book: &lt;em&gt;U’A: Ancient Art through Contemporary Eyes&lt;/em&gt;. The research team consists of three people. Su’a Uilisone Fitiao is a Tufuga Ta Tatau (a traditional tattoo master), a siapo maker, and woodcarver. Reggie Meredith Fitiao (MFA) is a siapo maker and art educator. Mary Anne Bordonaro is a grant writer, short story writer, and will be the author of the book being funded by this grant.&lt;/p&gt;
+&lt;/blockquote&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Editing zone maps with user-selected regions</title>
+      <link>/post/editing-zone-maps-with-user-selected-regions/</link>
+      <pubDate>Fri, 22 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/post/editing-zone-maps-with-user-selected-regions/</guid>
+      <description>&lt;p&gt;As much as I would like &lt;code&gt;recolorize&lt;/code&gt; to provide a single perfect solution to color segmentation that requires no user input, I made it modular for a reason. Supposed &amp;ldquo;one-click&amp;rdquo; methods can be really frustrating when they just barely don&amp;rsquo;t work for your use case and offer no simple way to fix their output.&lt;/p&gt;
+&lt;p&gt;I know that &lt;code&gt;recolorize&lt;/code&gt; will often produce results that are pretty good but not quite right: maybe a part of your image is in deep shadows or a specimen was damaged in preservation. I have certainly had cases where I wanted to open up a &lt;code&gt;recolorize&lt;/code&gt; object in ImageJ to just outline a particularly troublesome region of an image, and others using the package have voiced similar suggestions.&lt;/p&gt;
+&lt;p&gt;With that in mind, I wrote an (experimental) function to allow the user to select a region of the image to alter. This is obviously not as sophisticated as image analysis software with a dedicated user interface, but I think it works really well when you have small fixes to implement, because it means you don&amp;rsquo;t have to clumsily go between a bunch of different softwares for different things.&lt;/p&gt;
+&lt;p&gt;I tried to keep this function as lightweight as possible, so it&amp;rsquo;s not fancy, but maybe it will be useful. Let&amp;rsquo;s define the function first and then I&amp;rsquo;ll demonstrate how it works:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(recolorize)
+recolor_selection &amp;lt;- function(rc_obj, color_to = 1, 
+                       selection = &amp;quot;rect&amp;quot;, 
+                       locator_color = &amp;quot;red&amp;quot;,
+                       n_polygons = 1,
+                       plotting = TRUE,
+                       recolor_background = FALSE) {
+  # store old map
+  rc_original_pix &amp;lt;- rc_obj$pixel_assignments
+  
+  # choose region selection method:
+  selection &amp;lt;- match.arg(arg = selection, choices = c(&amp;quot;rectangle&amp;quot;, &amp;quot;polygon&amp;quot;))
+  
+  # make image:
+  img &amp;lt;- recoloredImage(rc_obj, type = &amp;quot;raster&amp;quot;)
+  layout(1); par(mar = rep(0, 4))
+  plot(img)
+  
+  # plot horizontal and vertical bounds to keep user from selecting
+  # outside the image boundaries:
+  abline(h = c(0, dim(img)[1]), v = c(0, dim(img)[2]), col = &amp;quot;darkgrey&amp;quot;)
+  
+  # user-select area and change color of pixels inside region of interest
+  if (selection == &amp;quot;rectangle&amp;quot;) {
+    
+    # select a rectangle
+    u &amp;lt;- spatstat.geom::clickbox(add = TRUE, col = locator_color)
+    
+    # store the input
+    u$xrange &amp;lt;- round(u$xrange)
+    u$yrange &amp;lt;- round(u$yrange)
+    
+    # flip the yrange (in the image, y is numbered bottom to top, but in an array
+    # it&#39;s indexed top to bottom)
+    u$yrange &amp;lt;- dim(img)[1] - u$yrange
+    
+    # and change pixel assignments to new color
+    rc_obj$pixel_assignments[u$yrange[1]:u$yrange[2],
+                             u$xrange[1]:u$xrange[2]] &amp;lt;- color_to
+    
+  } else if (selection == &amp;quot;polygon&amp;quot;) {
+    
+    # select polygon(s)
+    u &amp;lt;- spatstat.geom::clickpoly(add = TRUE, col = locator_color, np = n_polygons)
+    u$xrange &amp;lt;- round(u$xrange)
+    u$yrange &amp;lt;- round(u$yrange)
+    u$bdry &amp;lt;- lapply(u$bdry, \(x) lapply(x, round))
+    
+    # find all pixels inside of the bounding box for the polygon(s)
+    xy &amp;lt;- expand.grid(u$xrange[1]:u$xrange[2], u$yrange[1]:u$yrange[2])
+    
+    # for every polygon...
+    for (i in 1:length(u$bdry)) {
+      pol &amp;lt;- u$bdry[[i]]
+      # find which points in the bounding box fall inside the polygon
+      if (i == 1) {
+        col_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+      } else {
+        new_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
+        col_idx &amp;lt;- rbind(col_idx, new_idx)
+      }
+    }
+      
+      # reverse x/y order, y
+      col_idx &amp;lt;- as.matrix(col_idx[ , 2:1])
+      col_idx[,1] &amp;lt;- dim(img)[1] - col_idx[,1]
+      
+      # and change color
+      rc_obj$pixel_assignments[col_idx] &amp;lt;- color_to
+      
+  }
+  
+  # make sure the background is still transparent
+  if (!recolor_background) {
+    rc_obj$pixel_assignments[rc_original_pix == 0] &amp;lt;- 0
+  }
+  
+  # if plotting, plot
+  if (plotting) {
+    
+    # draw box or polygon around the region that was changed
+    plot_region &amp;lt;- function() {
+      xdim &amp;lt;- dim(rc_obj$pixel_assignments)[2]
+      ydim &amp;lt;- dim(rc_obj$pixel_assignments)[1]
+      if (selection == &amp;quot;rectangle&amp;quot;) {
+        rect(xleft = u$xrange[1] / xdim, xright = u$xrange[2] / xdim,
+             ybottom = 1 - u$yrange[1] / ydim, ytop = 1 - u$yrange[2] / ydim,
+             border = locator_color)
+      } else {
+        for (i in 1:length(u$bdry)) {
+          polygon(u$bdry[[i]]$x / xdim, 
+                  u$bdry[[i]]$y / ydim, border = locator_color)
+        }
+      }
+    }
+    
+    # reset graphical parameters when function exits:
+    current_par &amp;lt;- graphics::par(no.readonly = TRUE)
+    on.exit(graphics::par(current_par))
+    
+    # set layout
+    graphics::layout(matrix(1:3, nrow = 1),
+                     widths = rep(1, 3))
+    
+    # plot original image
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(rc_obj$original_img,
+                               main = &amp;quot;Recolored original&amp;quot;)
+    plot_region()
+    
+    # plot old zone map with polygon/rectangle
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(constructImage(rc_original_pix, rc_obj$centers),
+                               main = &amp;quot;Input&amp;quot;)
+    plot_region()
+    
+    # plot new color map &amp;amp; palette
+    graphics::par(mar = c(0, 0, 2, 0))
+    recolorize::plotImageArray(recoloredImage(rc_obj),
+                               main = &amp;quot;Output&amp;quot;)
+    plot_region()
+  }
+  return(rc_obj)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;To demonstrate, let&amp;rsquo;s take one of the beetle images that come with the package:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;img &amp;lt;- system.file(&amp;quot;extdata/fulgidissima.png&amp;quot;, package = &amp;quot;recolorize&amp;quot;)
+rc &amp;lt;- recolorize2(img, bins = 3, cutoff = 60, plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## 
+## Using 3^3 = 27 total bins
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc2 &amp;lt;- mergeLayers(rc, list(c(3, 6)), plotting = FALSE)
+plot(rc2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+A couple of things bother me in the resulting zone map. These images are of pinned specimens, so when initially processing them, I removed the region of the pin as &amp;ldquo;background&amp;rdquo;, leaving this somewhat awkward-looking hole on the right side of the beetle. Second, in real life, apparently that pin created a shadow when the photograph was taken, because we can see it apparently created enough of a shadow that some pixels on that right side got clustered with the dark red/brown color of the bands on the elytra.&lt;/p&gt;
+&lt;p&gt;We can use the polygon selection option of the &lt;code&gt;recolor_selection&lt;/code&gt; function to select that area and force all pixels inside that region to change to color class 2 (green).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc3 &amp;lt;- recolor_selection(rc2, selection = &amp;quot;polygon&amp;quot;, locator_color = &amp;quot;yellow&amp;quot;, 
+                         n_polygons = 1, plotting = TRUE, color_to = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;This will pop up a plot of the recolorize object and prompt you to draw a region (in this case, a single polygon). A blog post can&amp;rsquo;t recreate the user interface aspect where I actually selected a polygon, but here&amp;rsquo;s a screenshot just before I clicked &amp;lsquo;Finish&amp;rsquo;:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;images/sc01.png&#34; alt=&#34;&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Here, I selected the area around the pin that I want to change to green. (I&amp;rsquo;m ignoring the groove between the elytra, which is also clustered with class 5; if I were actually trying to analyse this image with respect to a specific biological question I&amp;rsquo;d have to decide how to handle it, since obviously it doesn&amp;rsquo;t belong to the same color class as the red bands. But this is an example! I do what I want!)&lt;/p&gt;
+&lt;p&gt;Then I get a diagnostic plot of the region I recolored:
+&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;You can see that the pinhole is still present though. That&amp;rsquo;s the default behavior of the function as I wrote it, since you might be trying to fix something on the border of the image and you don&amp;rsquo;t want to accidentally color in the background. But you can turn that off by setting &lt;code&gt;recolor_background = TRUE&lt;/code&gt;.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;rc4 &amp;lt;- recolor_selection(rc2, selection = &amp;quot;polygon&amp;quot;, locator_color = &amp;quot;yellow&amp;quot;, 
+                         n_polygons = 1, plotting = TRUE, color_to = 2,
+                         recolor_background = TRUE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/editing-zone-maps-with-user-selected-regions/index.en_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Now the pinhole is filled in.&lt;/p&gt;
+&lt;p&gt;And that&amp;rsquo;s it! You can use rectangles instead by setting &lt;code&gt;selection = &amp;quot;rectangle&amp;quot;&lt;/code&gt;, and you can select more than one polygon at a time. This is not currently a formal part of the package because I think it would need way more fine-tuning before that&amp;rsquo;s feasible (and at that point, I might as well make an R Shiny app). For example, right now this function doesn&amp;rsquo;t record the changes as part of the &lt;code&gt;call&lt;/code&gt; element of a recolorize object, which otherwise records everything that produced it:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# these are different:
+print(rc$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;print(rc2$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# but these are exactly like rc2:
+print(rc3$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;print(rc4$call)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## [[1]]
+## recolorize2(img = img, bins = 3, cutoff = 60, plotting = FALSE)
+## 
+## [[2]]
+## mergeLayers(recolorize_obj = rc, merge_list = list(c(3, 6)), 
+##     plotting = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I don&amp;rsquo;t necessarily want to build out a whole suite of tools for taking manual input like this. I think that would defeat the purpose of the broader package (to automate what can be automated), and I think it could lead down the unproductive road of me trying to recreate a worse version of ImageJ. But I can definitely appreciate the need for something like this, and hopefully it is useful to multiple people.&lt;/p&gt;
+&lt;p&gt;If you do use this tool and have some feedback for what else you&amp;rsquo;d need from it, or if you implement your own solution, please do get in touch. I think this could eventually be a useful addition to the package and feedback is the best way for me to know what&amp;rsquo;s working and what&amp;rsquo;s missing.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>March 2024 update</title>
+      <link>/post/march-2024-update/</link>
+      <pubDate>Thu, 21 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>/post/march-2024-update/</guid>
+      <description>&lt;p&gt;I wanted to write an update for three general reasons:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Make sure I still know how to use my own website.&lt;/li&gt;
+&lt;li&gt;Indicate to anyone visiting my website that it&amp;rsquo;s still an active repository of my academic activities. I think if I were looking at someone&amp;rsquo;s website and it hadn&amp;rsquo;t been updated for a year, I&amp;rsquo;d want the reassurance.&lt;/li&gt;
+&lt;li&gt;Writing gets harder the less of it you do.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;I defended my dissertation more or less a year ago (April 4th, 2023), finished up my work at Brown University, and took the summer off to recover. This was not as restful as I was hoping it would be. A couple of weeks after I defended, I got back some paper reviews that made me doubt myself so hard they triggered like four panic attacks in the space of a week. Then I had a family health situation that drained the color out of the whole world for a while.&lt;/p&gt;
+&lt;p&gt;Good things happened, too. I got to meet my postdoc lab in Helsinki for the first time, and after that I got to go to Cairns for a conference (ICVM), and Sydney for two days after that. The conference was good&amp;ndash;I presented &lt;a href=&#34;https://onlinelibrary.wiley.com/doi/10.1111/ele.14378&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;recolorize&lt;/a&gt; and it was received much better than I&amp;rsquo;d hoped it would be, and I saw a lot of people I really like. Australia, as people told me ahead of time, was like a mashup of visiting an alien planet and meeting a bunch of the A-list celebrities of charismatic megafauna&amp;ndash;mudskippers, fruit bats, ibises, echidnas, you get it.&lt;/p&gt;
+&lt;p&gt;(A personal highlight was seeing some archerfish in an awful ditch next to a highway. I had never seen these iconic freshwater fish outside of an aquarium, and there were like three of them there, spitting insects off the riverbank foliage, hiding underneath a rusty shopping cart that had been overturned in the water. It reminded me of a Lewis Thomas essay called &lt;em&gt;Ponds&lt;/em&gt; where he describes city-wide disgust for goldfish in a pond that had formed on an abandoned lot:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Goldfish in a glass bowl are harmless to the human mind, maybe even helpful to minds casting about for something, anything, to think about. But goldfish let loose, propagating themselves, worst of all &lt;em&gt;surviving&lt;/em&gt; in what has to be a sessile eddy of the East River, somehow threaten us all. We do not like to think that life is possible under some conditions, especially the conditions of a Manhattan pond. There are four abandoned tires, any number of broken beer bottles, fourteen shoes and a single sneaker, and a visible layer, all over the surface, of that grayish-green film that settles on all New York surfaces.&lt;/p&gt;
+&lt;p&gt;The mud at the banks of the pond is not proper country mud but reconstituted Manhattan landfill, ancient garbage, fossilized coffee grounds and grapefruit rind, the defecation of a city. For goldfish to be swimming in such water, streaking back and forth mysteriously in small schools, feeding, obviously feeding, looking as healthy and well-off as goldfish in the costliest kind of window-box aquarium, means something is wrong with our standards. It is, in some deep sense beyond words, insulting.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;But I have maybe too much to say about that.)&lt;/p&gt;
+&lt;p&gt;Summer was anyways a transitional period, and maybe it&amp;rsquo;s good that I had to deal with multiple kinds of transitions. I did respond successfully to the reviews in the end, and learned how to deal with the intensity of the family health thing. I also moved to Helsinki in September.&lt;/p&gt;
+&lt;p&gt;I have so much to say about living in Helsinki and starting my postdoc that I don&amp;rsquo;t really know how to say it. I know doing a PhD is stressful for most people, but in different ways. I spent most of mine feeling useless and irrelevant. I was worried, really worried, when I started my postdoc, that I would feel like that again. I don&amp;rsquo;t. The specifics aren&amp;rsquo;t really worth elaborating&amp;ndash;but I think any moment of transition is a time to figure out how much of your stress you carry with you, and how much of it comes from around you. What I can say is that I really like it here. I feel like my skills are valued, and like I&amp;rsquo;m learning a lot from the people I work with. I don&amp;rsquo;t feel like a crab in the crabs-in-a-bucket metaphor anymore. I feel like, you know, one of those cool decorator crabs that takes good pieces of their environment and sticks them on their carapace and walks around with it. I also feel more resilient, which is not something I expected to be able to say.&lt;/p&gt;
+&lt;p&gt;Helsinki is restorative for someone like me. It&amp;rsquo;s very open and quiet, and there are trees everywhere. Obviously the social welfare is good, once you get into the bureaucracy, and obviously it&amp;rsquo;s cold and dark in the winter. I like how quickly the days change length. Right now we&amp;rsquo;re getting like six more minutes of sunlight every day.&lt;/p&gt;
+&lt;p&gt;I&amp;rsquo;m gaining the skills I know I&amp;rsquo;ll need if I want a tenure-track job: I&amp;rsquo;m mentoring master&amp;rsquo;s students, gaining skills with genomic data, learning how to do genotype-phenotype mapping, and getting deeper into various machine learning models for image analysis. I think those better belong on a less personal update. Hopefully in papers!&lt;/p&gt;
+&lt;p&gt;So I&amp;rsquo;ll end by just saying how surprised I am that I&amp;rsquo;ve recovered so fully from how I felt during my PhD. I don&amp;rsquo;t feel like I&amp;rsquo;m wasting my time on things that don&amp;rsquo;t matter. I don&amp;rsquo;t feel like nobody cares what I do. I still get joy from science&amp;ndash;I still can&amp;rsquo;t shut up about projects I find interesting. I&amp;rsquo;m starting to think with more tools and at bigger scales. I think I was worried I&amp;rsquo;d let that part of myself&amp;mdash;I don&amp;rsquo;t know. Atrophy. I so long gritting my teeth and just trying not to freak out. It&amp;rsquo;s hard for creativity to really drive your actions when your primary workplace emotion is &amp;ldquo;biting on a stick&amp;rdquo; and you think of yourself as fragile. I made so many decisions out of fear and thinking about it makes me sad.&lt;/p&gt;
+&lt;p&gt;I was talking with someone important to me about what constitutes an unacceptably bad PhD experience. He pointed out that some people, even years after finishing their PhDs, can&amp;rsquo;t talk about that time in their lives with clarity: the stress is so intense that it seems to warp their ability to describe what happened. I don&amp;rsquo;t think that&amp;rsquo;s me, but I was worried it would be. I think I came out okay. It doesn&amp;rsquo;t hurt to think about that time, even though I have plenty of things I would like to change. I made it. I want to keep going. That&amp;rsquo;s the update.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Using the dichromat package to check if your plot is colorblind-friendly</title>
+      <link>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</link>
+      <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
+      <guid>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</guid>
+      <description>&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;The goal of this post is to demonstrate how I use the &lt;a href=&#34;https://CRAN.R-project.org/package=dichromat&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;dichromat&lt;/a&gt; R package to check if my custom color palettes are colorblind-friendly.&lt;/p&gt;
+&lt;p&gt;A lot has been written about choosing colorblind-friendly color palettes when visualizing data, and I won&amp;rsquo;t rehash here why it&amp;rsquo;s important. Honestly, the colorblind scientists I know tend to be pretty pragmatic about this problem (most of them will tell me a version of &amp;ldquo;I can usually figure it out from context&amp;rdquo;), and I do think that folks can get a little intense about this particular aspect of visual accessibility, sometimes at the expense of other aspects. But since choosing colorblind-friendly palettes is easy, I don&amp;rsquo;t see why we shouldn&amp;rsquo;t do it any time color is being used to indicate something on a graph.&lt;/p&gt;
+&lt;p&gt;A lot of the advice that I run into when I&amp;rsquo;m trying to choose a color palette reduces down to three general categories: 1) use a pre-generated palette that has been carefully checked for being distinguishable for all the most common types of colorblindness, 2) rules of thumb like &amp;ldquo;stay away from green and orange,&amp;rdquo; or 3) print it out in black and white and/or run your graph through an online color blindness simulator to see if it looks okay. Personally, I find the second one too vague, the third one too cumbersome for tweaking, and the first one too inflexible when I want the colors to represent something specific, like habitat type. If you are also stubborn and detail-oriented, you know what I mean.&lt;/p&gt;
+&lt;p&gt;As for the dichromat package: nothing I write here is prescriptive! But this is an option I happen to use a lot, and the dichromat package has been incredibly useful for me in this context, so I wanted to show how I use it.&lt;/p&gt;
+&lt;h2 id=&#34;the-dichromat-package&#34;&gt;The dichromat package&lt;/h2&gt;
+&lt;p&gt;The main function of the dichromat package is &lt;code&gt;dichromat&lt;/code&gt; (I love when packages do this), and it approximates the effects of three of the most common forms of color blindness.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(dichromat)
+red_green_colors &amp;lt;- RColorBrewer::brewer.pal(11, &amp;quot;RdYlGn&amp;quot;)
+
+# convert to the three dichromacy approximations
+protan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;protan&amp;quot;)
+deutan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;deutan&amp;quot;)
+tritan &amp;lt;- dichromat(red_green_colors, type = &amp;quot;tritan&amp;quot;)
+
+# plot for comparison
+layout(matrix(1:4, nrow = 4)); par(mar = rep(1, 4))
+recolorize::plotColorPalette(red_green_colors, main = &amp;quot;Trichromacy&amp;quot;)
+recolorize::plotColorPalette(protan, main = &amp;quot;Protanopia&amp;quot;)
+recolorize::plotColorPalette(deutan, main = &amp;quot;Deutanopia&amp;quot;)
+recolorize::plotColorPalette(tritan, main = &amp;quot;Tritanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Here I&amp;rsquo;m demonstrating the functions on a red-yellow-green color palette, which unsurprisingly is pretty terrible for red-green colorblindness (protanopia, or red-down, and deutanopia, or green-down).&lt;/p&gt;
+&lt;p&gt;For convenience if I&amp;rsquo;m tweaking colors, I&amp;rsquo;ll usually write a function to do this automatically:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;check_cb &amp;lt;- function(palette, return_cb_palettes = FALSE, ...) {
+  
+  # make an empty list
+  cb_palettes &amp;lt;- setNames(vector(&amp;quot;list&amp;quot;, length = 3), 
+                          nm = c(&amp;quot;protan&amp;quot;, &amp;quot;deutan&amp;quot;, &amp;quot;tritan&amp;quot;))
+  
+  # generate colorblindness approximations
+  for (i in 1:length(cb_palettes)) {
+    cb_palettes[[i]] &amp;lt;- dichromat::dichromat(palette, names(cb_palettes)[i])
+  }
+  
+  # reset graphical parameters when function exits:
+  current_par &amp;lt;- graphics::par(no.readonly = TRUE)
+  on.exit(graphics::par(current_par))
+  
+  # plot for comparison
+  layout(matrix(1:4, nrow = 4)); par(mar = rep(1, 4))
+  recolorize::plotColorPalette(palette, main = &amp;quot;Trichromacy&amp;quot;, ...)
+  pnames &amp;lt;- c(&amp;quot;Protanopia&amp;quot;, &amp;quot;Deutanopia&amp;quot;, &amp;quot;Tritanopia&amp;quot;)
+  for (i in 1:3) {
+    recolorize::plotColorPalette(cb_palettes[[i]], main = pnames[i], ...)
+  }
+
+  if (return_cb_palettes) {
+    return(cb_palettes)
+  }
+}
+
+check_cb(RColorBrewer::brewer.pal(9, &amp;quot;RdBu&amp;quot;))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;These are only simulations, and individuals vary in the type and severity of their colorblindness. In particular, these approximations are for types of color blindness where one of the cone types is completely absent, but it&amp;rsquo;s much more common for people to just have reduced sensitivity in one of these cone types (protanomaly, deuteranomaly, and tritanomaly). But as far as I&amp;rsquo;m aware, you can generally assume that if two colors are distinguishable to a protanopic viewer they will also be distinguishable to a protanomalous viewer, and so on.&lt;/p&gt;
+&lt;p&gt;Still, although most of us would probably know to stay away from a red-green color palette, plenty of other common examples are just as egregious. For example, the default ggplot2 color scale is about the worst thing you could possibly use, because all of the colors vary only in hue and not at all in luminance:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;ggplot_colors &amp;lt;- scales::hue_pal()(10)
+check_cb(ggplot_colors)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To be fair, a lot of these are hard to distinguish for trichromatic viewers. (I don&amp;rsquo;t actually know why the developers chose this palette, but I actually wonder if it&amp;rsquo;s because it&amp;rsquo;s so obviously bad that they were hoping users would always change it to suit their needs?)&lt;/p&gt;
+&lt;p&gt;The terrain palette, mostly used for terrestrial maps, is also particularly bad:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;terrain &amp;lt;- terrain.colors(10)
+check_cb(terrain)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;672&#34; /&gt;
+The same is true of red-green-blue palettes, which are often the default when we need three colors:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# ggplot strikes again, but this time the colors look deceptively different for trichromats!
+check_cb(scales::hue_pal()(3))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;
+Let&amp;rsquo;s take this last example, because it&amp;rsquo;s one that I&amp;rsquo;ve run into a version of many times. Let&amp;rsquo;s say it&amp;rsquo;s the standard in your field to represent something with red, green, and blue (e.g. rotational axes). You don&amp;rsquo;t have to just stay away from red and green as a rule—you just need to tweak the particular colors you use so that something other than color distinguishes them. In practice the easiest thing is usually the brightness of the color.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# convert to an RGB matrix:
+original_rgb &amp;lt;- t(col2rgb(scales::hue_pal()(3)) / 255)
+
+# decrease brightness of green:
+tweaked_rgb &amp;lt;- recolorize::adjust_color(original_rgb, which_colors = 2,
+                                        brightness = 0.7)
+tweaked_rgb &amp;lt;- rgb(tweaked_rgb)
+
+# check again - looks much better
+check_cb(tweaked_rgb)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Sometimes even color palettes that intuitively seem like they should be really robust to color blindness turn out not to be! For example, check out red vs. a medium (60%) grey:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;red_grey &amp;lt;- c(&amp;quot;#FF0000&amp;quot;, &amp;quot;#636363&amp;quot;)
+check_cb(red_grey)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;
+They&amp;rsquo;re not identical, but for protanopic viewers, they are very similar. I remember being taught a rule of thumb that any bright color + a greyscale value were pretty much always a safe combination, but if you are not sensitive to long-wavelength light, the difference between a deep red and a dark grey is not much. I didn&amp;rsquo;t realize this until I was navigating a digital interface where reserved spots where marked with grey and open ones with red, and the protanopic person I was with made a comment about wishing the interface had different colors for reserved seats!&lt;/p&gt;
+&lt;h2 id=&#34;trying-the-color-palettes-out-in-your-actual-graphs&#34;&gt;Trying the color palettes out in your actual graphs&lt;/h2&gt;
+&lt;p&gt;It&amp;rsquo;s perfectly reasonable to look at the last example and point out that although the red and grey colors for the protanopic viewer are very &lt;em&gt;similar&lt;/em&gt;, they are not &lt;em&gt;actually&lt;/em&gt; identical, and therefore you could get away with them. That&amp;rsquo;s true! This is where things start to get subjective. Personally, I find that I have to actually try the color palettes out in the graphs where I intend to use them. This is where the &lt;code&gt;dichromat()&lt;/code&gt; function really comes in handy, since you can just swap out the different color palettes.&lt;/p&gt;
+&lt;p&gt;Sometimes the color is redundant with some other way that information is arranged—in that case, it doesn&amp;rsquo;t really matter if your color palette is colorblind-friendly:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# create a dataset
+# feat. creatures from Animal Land Where There Are No People (1897)
+species &amp;lt;- c(rep(&amp;quot;womp&amp;quot;, 2),
+            rep(&amp;quot;boddle&amp;quot;, 2), 
+            rep(&amp;quot;temmalunk&amp;quot;, 2))
+anatomy &amp;lt;- rep(c(&amp;quot;legs&amp;quot; , &amp;quot;eyes&amp;quot;) , 3)
+number &amp;lt;- abs(rnorm(6, 2, 2))
+size &amp;lt;- abs(rnorm(6, 5, 2))
+data &amp;lt;- data.frame(species, anatomy, number, size)
+ 
+# graph
+library(ggplot2)
+p &amp;lt;- ggplot(data, aes(fill = anatomy, y = number, x = anatomy)) + 
+    geom_bar(position = &amp;quot;dodge&amp;quot;, stat = &amp;quot;identity&amp;quot;) +
+    facet_wrap(~species) + theme_bw() +
+    xlab(&amp;quot;&amp;quot;)
+
+# trichomatic:
+p + scale_fill_manual(values = red_grey) + ggtitle(&amp;quot;Trichromacy&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# and protanopic:
+p + scale_fill_manual(values = dichromat(red_grey, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Protanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-9-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;But in some cases, color is the only thing that identifies groups, so having near-identical colors actually makes it really hard to understand the graph:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;x &amp;lt;- rnorm(40, 5)
+df &amp;lt;- data.frame(x = x,
+                 group = c(rep(&amp;quot;y1&amp;quot;, 20), rep(&amp;quot;y2&amp;quot;, 20)),
+                 value = c(x[1:20] + rnorm(10, sd = 2),
+                           x[21:40]*2 + rnorm(10, sd = 2)))
+
+p &amp;lt;- ggplot(df, aes(x = x, y = value, color = group)) +
+  geom_point(size = 3) + theme_bw()
+
+p + scale_color_manual(values = red_grey) + ggtitle(&amp;quot;Trichromacy&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-10-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(red_grey, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Protanopia&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-10-2.png&#34; width=&#34;672&#34; /&gt;
+Like I said—at this point, this is a subjective matter of how much you care about aesthetics and this particular form of accessibility. If I really wanted to use a red and grey color palette, I would choose a darker grey and a more orange-y red. If I just wanted two colors that are easy to distinguish, I would choose a light grey and a dark grey, or blue and red:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;red_grey_2 &amp;lt;- c(&amp;quot;tomato&amp;quot;, &amp;quot;grey30&amp;quot;)
+grey2 &amp;lt;- c(&amp;quot;grey70&amp;quot;, &amp;quot;grey20&amp;quot;)
+red_blue &amp;lt;- c(&amp;quot;tomato&amp;quot;, &amp;quot;dodgerblue&amp;quot;)
+
+p + scale_color_manual(values = dichromat(red_grey_2, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Altered red/grey palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(grey2, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;&amp;quot;) + ggtitle(&amp;quot;Greyscale palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-2.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;p + scale_color_manual(values = dichromat(red_blue, type = &amp;quot;protan&amp;quot;)) + ggtitle(&amp;quot;Blue and red palette&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-11-3.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Feel free to try out the above code using the other two types of color blindness—I found they still made the two groups easy to distinguish.&lt;/p&gt;
+&lt;p&gt;But with all that said, I don&amp;rsquo;t think that this in particular is worth agonizing about too much. You&amp;rsquo;ll always be able to find some advice that this color combination or that one is totally unacceptable, whether it&amp;rsquo;s because they are not colorblind-friendly, or not &lt;a href=&#34;https://programmingdesignsystems.com/color/perceptually-uniform-color-spaces/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;perceptually uniform&lt;/a&gt;, or won&amp;rsquo;t print out well for a greyscale printer. At a certain point you have to declare something is good enough for a reasonable viewer, move on, and brace for whatever reviewer pet peeve you happen to encounter.&lt;/p&gt;
+&lt;h2 id=&#34;summary&#34;&gt;Summary&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Use the &lt;code&gt;dichromat()&lt;/code&gt; function in the &lt;code&gt;dichromat&lt;/code&gt; R package to convert a color palette to approximations of how it would be seen by three types of color blindness.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Try the resulting colorblind approximation color palettes out in the graphs you intend to make.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;If you discover that your chosen colors don&amp;rsquo;t work well for your intended purpose, try increasing the contrast in brightness between the colors by making one much darker or lighter.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;When in doubt, just use the viridis palette!&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;check_cb(viridisLite::viridis(10), cex_text = 0)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/index_files/figure-html/unnamed-chunk-12-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>Scaling images to a uniform resolution</title>
       <link>/post/scaling-images-to-a-uniform-resolution/</link>
       <pubDate>Mon, 14 Mar 2022 00:00:00 +0000</pubDate>
@@ -310,7 +757,7 @@ for (i in 1:length(images)) {
       <link>/post/recolorize-patternize-workflow/</link>
       <pubDate>Thu, 27 Jan 2022 00:00:00 +0000</pubDate>
       <guid>/post/recolorize-patternize-workflow/</guid>
-      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://www.biorxiv.org/content/10.1101/2021.09.07.459327v1.abstract&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2021),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
+      <description>&lt;p&gt;This tutorial will go through the process of combining &lt;code&gt;patternize&lt;/code&gt; and &lt;code&gt;recolorize&lt;/code&gt; tools to produce a PCA quantifying color pattern variation in wasp faces (&lt;em&gt;Polistes fuscatus&lt;/em&gt;). This subset of 20 images (and workflow) is excerpted from &lt;a href=&#34;https://doi.org/10.1016/j.cub.2023.11.032&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&amp;lsquo;Evidence for a selective link between cooperation and individual recognition&amp;rsquo;&lt;/a&gt; (Tumulty et al. 2023),  with permission from the lead author. (Thanks James!)&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;images/wasps.png&#34; alt=&#34;figures illustrating steps in the quantification of wasp facial patterns using recolorize and patternize&#34;&gt;&lt;/p&gt;
 &lt;p&gt;The &lt;a href=&#34;https://besjournals.onlinelibrary.wiley.com/doi/full/10.1111/2041-210X.12853&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;patternize&lt;/code&gt; package&lt;/a&gt; is an excellent tool for quantifying variation in color patterns. I use it frequently, because it&amp;rsquo;s a consistent, scaleable method for quantification that works for almost any organism, and it allows you to control for variation in shape, orientation, and size by first aligning all of your color patterns to a RasterStack—analogous to the &lt;a href=&#34;https://en.wikipedia.org/wiki/Procrustes_analysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Procrustes fit step of geometric morphometrics&lt;/a&gt;. It also helps that the package author, Steven Van Belleghem, is extremely friendly!&lt;/p&gt;
 &lt;p&gt;In practice, the most difficult step of using &lt;code&gt;patternize&lt;/code&gt; is often the color segmentation: like several other color analysis packages and tools, &lt;code&gt;patternize&lt;/code&gt; frequently relies on k-means clustering to extract color patches from images (especially for batch processing). That&amp;rsquo;s where &lt;code&gt;recolorize&lt;/code&gt; comes in. In order to use &lt;code&gt;recolorize&lt;/code&gt; to do the segmentation step for &lt;code&gt;patternize&lt;/code&gt;, we have to follow three steps:&lt;/p&gt;
@@ -321,7 +768,7 @@ for (i in 1:length(images)) {
 &lt;/ol&gt;
 &lt;p&gt;Let&amp;rsquo;s do it!&lt;/p&gt;
 &lt;h2 id=&#34;example-files&#34;&gt;Example files&lt;/h2&gt;
-&lt;p&gt;All the data and code used in this tutorial can be found here: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples/02_wasps&#34;&gt;https://github.com/hiweller/recolorize_examples/02_wasps&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All the data and code used in this tutorial can be found here in the &amp;lsquo;wasps&amp;rsquo; subfolder: &lt;a href=&#34;https://github.com/hiweller/recolorize_examples&#34;&gt;https://github.com/hiweller/recolorize_examples&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&#34;step-1-image-alignment-in-patternize&#34;&gt;Step 1: Image alignment in &lt;code&gt;patternize&lt;/code&gt;&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Make sure you have installed the development version of &lt;code&gt;patternize&lt;/code&gt; (e.g. by running &lt;code&gt;devtools::install_github(&amp;quot;StevenVB12/patternize&amp;quot;)&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;We&amp;rsquo;re starting with a folder of unaltered images of wasp faces. These images have been color-corrected and cropped to the wasp&amp;rsquo;s face, but the background hasn&amp;rsquo;t been masked out, since &lt;code&gt;patternize&lt;/code&gt; will do that when we do the alignment.&lt;/p&gt;
@@ -329,8 +776,8 @@ for (i in 1:length(images)) {
 &lt;p&gt;Note that even on this dataset—which is highly standardized—the images have slight variations in the size, shape, and angle of the head, making it difficult to differentiate variation due to color pattern differences from that due to other factors.&lt;/p&gt;
 &lt;p&gt;To use the &lt;code&gt;alignLan()&lt;/code&gt; function, we need to provide XY coordinates of landmarks (one set per image). I did these in ImageJ using the &lt;a href=&#34;https://imagej.nih.gov/ij/docs/guide/146-19.html#toc-Subsection-19.5&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;multi-point tool&lt;/a&gt;, but really you just need a two-column, tab-delimited text file with X coordinates on the left and Y coordinates on the right, and &lt;strong&gt;no header&lt;/strong&gt;. Our landmarking scheme for the wasp faces only had 8 points:
 &lt;img src=&#34;images/F03_wasps_landmarking.png&#34; alt=&#34;&#34; width=&#34;40%&#34;/&gt;
-So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/02_wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
-&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/02_wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
+So, I opened up each image in ImageJ, selected those landmarks using the multi-point tool, then saved those pixel coordinates as a plain text file with the same suffix. For example, the pixel coordinates for &lt;code&gt;polistes_01.jpg&lt;/code&gt; is called &lt;code&gt;polites_01_landmarks.txt&lt;/code&gt; (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/blob/main/04_wasps/landmarks/polistes_01_landmarks.txt&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;you can see it here&lt;/a&gt;).&lt;/p&gt;
+&lt;p&gt;I also made a mask for the images using the polygon selection tool in ImageJ, which will allow us to do the batch background masking. In this case, we only want to retain the frons and clypeus of the head (masking out the eyes and antennae openings), so I outlined them in a representative image (polistes_05) and saved those as XY coordinates as well (&lt;a href=&#34;https://github.com/hiweller/recolorize_examples/tree/main/04_wasps/masks&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). Because we&amp;rsquo;re aligning using landmarks, we only need to make one outline which will be applied to all images in the dataset—much faster than masking each image manually!&lt;/p&gt;
 &lt;p&gt;Once you have all those files (original images, XY landmark coordinates, and masking outline coordinates), we can combine them using &lt;code&gt;patternize&lt;/code&gt;. I organized my files into separate folders (images in the &lt;code&gt;original_images/&lt;/code&gt; folder, landmark text files in the &lt;code&gt;landmarks&lt;/code&gt; folder, etc), but you don&amp;rsquo;t have to do that so long as your files are organized and named in a way that works with the &lt;code&gt;makeList()&lt;/code&gt; function.&lt;/p&gt;
 &lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# load library
 library(patternize)
@@ -387,7 +834,7 @@ imgs &amp;lt;- lapply(imageList_aligned, brick_to_array)
 names(imgs) &amp;lt;- names(imageList_aligned)
 
 # save raster extents for later conversion:
-extent_list &amp;lt;- lapply(imageList_aligned, extent)
+extent_list &amp;lt;- lapply(imageList_aligned, raster::extent)
 &lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Now we have a list of image arrays. Plotting them using &lt;code&gt;plotImageArray()&lt;/code&gt; helps us to see what the &lt;code&gt;alignLan()&lt;/code&gt; step did for our original images:&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;/post/recolorize-patternize-workflow/index.en_files/figure-html/unnamed-chunk-5-1.png&#34; width=&#34;480&#34; /&gt;
@@ -1885,18 +2332,18 @@ Three
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
       <guid>/cv/</guid>
       <description>&lt;p&gt;
-  &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/cv.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
+  &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/Hannah_Weller_cv.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;hannah-weller&#34;&gt;Hannah Weller&lt;/h1&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: the role of biomechanical constraints in life  history evolution;
-paths of least resistance in the evolution of new traits;  image processing in organismal
-biology, with a focus on methods development for quantifying color and pattern.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: Evolution, development, and ecology of color patterns;
+broadly, how traits interact to shape evolutionary trajectories;
+method and software development for accessible phenotyping approaches.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;present-position&#34;&gt;Present Position&lt;/h2&gt;
 &lt;dl&gt;
-&lt;dt&gt;2023—2025&lt;/dt&gt;
+&lt;dt&gt;2023—Present&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Postdoctoral researcher, Integrative Evolutionary Biology Group&lt;/strong&gt;&lt;br&gt;
 University of Helsinki (Helsinki, Finland)&lt;/dd&gt;
 &lt;/dl&gt;
@@ -1947,22 +2394,24 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;peer-reviewed-publications&#34;&gt;Peer-reviewed publications&lt;/h2&gt;
+&lt;p&gt;Crowell, H.L.*, Curlis, J.D.*, &lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Davis Rabosky, A.R.*  (2024). Predators drive the evolution of ultraviolet colouration in snakes. &lt;em&gt;Nature Communications&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1038/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1038/&lt;/a&gt;.&lt;br&gt;
+&lt;sup&gt;*These authors contributed equally to this work.&lt;/sup&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2024). Recolorize: flexible color segmentation of biological images. &lt;em&gt;Ecology Letters&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1111/ele.14378&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ele.14378&lt;/a&gt;.&lt;br&gt;
+&lt;sup&gt;This article was featured on the cover of the journal:&lt;/sup&gt;
+&lt;img src=&#34;images/ele14398-toc-0001-m.jpg&#34; alt=&#34;Cover image of Ecology Letters (February 2024).&#34; width=&#34;30%&#34;/&gt;&lt;/p&gt;
+&lt;p&gt;Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., &lt;strong&gt;Weller, H.I&lt;/strong&gt;, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. &lt;em&gt;Environmental Health Perspectives.&lt;/em&gt; DOI: &lt;a href=&#34;https://doi.org/10.1289/EHP1286&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1289/EHP1286&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2023). Evidence for a selective link between cooperation and individual recognition. &lt;em&gt;Current Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1016/j.cub.2023.11.032&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1016/j.cub.2023.11.032&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (2022). Relaxed feeding constraints facilitate the evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;The American Naturalist&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1086/719235&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1086/719235&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Capano, J.G., Boback, S.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Cieri, R.L., Zemer, C.F., and Brainerd, E.L.  (2022). Modular lung ventilation in &lt;em&gt;Boa constrictor&lt;/em&gt;. &lt;em&gt;Journal of Experimental Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1242/jeb.243119&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1242/jeb.243119&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (2020). An XROMM study of intra-oral transport and swallowing in catfish. &lt;em&gt;Integrative Organismal Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1093/iob/obaa018&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1093/iob/obaa018&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Westneat, M.W., and Summers, A.P (2020). The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of &lt;em&gt;Halichoeres&lt;/em&gt; Wrasses. &lt;em&gt;Integrative and Comparative Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1093/icb/icaa137&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1093/icb/icaa137&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Hooper, S.E.*, and Amelon, S.K* (2020). Countcolors, an R package for quantification of the fluorescence emitted by &lt;em&gt;Pseudogymnoascus destructans&lt;/em&gt; lesions on the wing membranes of hibernating bats. &lt;em&gt;Journal of Wildlife Diseases&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.7589/2019-09-231&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.7589/2019-09-231&lt;/a&gt;&lt;br&gt;
 &lt;sup&gt;*These authors contributed equally to this work.&lt;/sup&gt;&lt;/p&gt;
-&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont.* Journal of Anatomy*. DOI: &lt;a href=&#34;https://doi.org/10.1111/joa.13248&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/joa.13248&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;van Meer, N.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Brainerd, E.B., and Camp, A.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. &lt;em&gt;Journal of Experimental Biology&lt;/em&gt;. DOI: &lt;a href=&#34;10.1242/jeb.201426&#34;&gt;10.1242/jeb.201426&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. &lt;em&gt;PeerJ&lt;/em&gt;. DOI: &lt;a href=&#34;10.7717/peerj.6398&#34;&gt;10.7717/peerj.6398&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (2016). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid &lt;em&gt;Satanoperca daemon&lt;/em&gt; and evolutionary implications. &lt;em&gt;Zoomorphology&lt;/em&gt;. DOI: &lt;a href=&#34;10.1007/s00435-016-0335-6&#34;&gt;10.1007/s00435-016-0335-6&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Cohen, K.E., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Summers, A.P. (2020). Not your father’s homodonty—stress, tooth shape, and the functional homodont. &lt;em&gt;Journal of Anatomy&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1111/joa.13248&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/joa.13248&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;van Meer, N.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Manafzadeh, A.R., Kaczmarek, E.B., Scott, B., Gussekloo, S.W.S, Wilga, C.D., Camp, A.L., and Brainerd, E.L. (2019). Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks. &lt;em&gt;Journal of Experimental Biology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1242/jeb.201426&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.1242/jeb.201426&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Westneat, M.W. (2019). Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance. &lt;em&gt;PeerJ&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.7717/peerj.6398&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.7717/peerj.6398&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (2017). Dirt-sifting Devilfish: Winnowing in the geophagine cichlid &lt;em&gt;Satanoperca daemon&lt;/em&gt; and evolutionary implications. &lt;em&gt;Zoomorphology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1007/s00435-016-0335-6&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;10.1007/s00435-016-0335-6&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;  
-&lt;h2 id=&#34;preprints-and-publications-in-review&#34;&gt;Preprints and publications in review&lt;/h2&gt;
-&lt;p&gt;Paquette, S.E., Martin, N., Rodd, A., Manz, K.E., Camarillo, M., Allen, E., &lt;strong&gt;Weller, H.I&lt;/strong&gt;, Pennell, K., and Plavicki, J (2023). Neural dysregulation and aberrant microglial responses to brain injury following perfluorooctane sulfonate exposure in larval zebrafish. &lt;em&gt;Revised and resubmitted.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2022). Recolorize: flexible color segmentation of biological images. &lt;em&gt;In revision&lt;/em&gt;. Preprint DOI: &lt;a href=&#34;https://doi.org/10.1101/2022.04.03.486906&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1101/2022.04.03.486906&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Tumulty, J.P., Miller, S.E., Van Belleghem, S.M., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Jernigan, C.M., Vincent, S., Staudenraus, R.J., Legan, A.W., Polnaszek, T.J., Uy, F.M.K, Walton, A., and Sheehan, M.J. (2021). Evidence for a selective link between cooperation and individual recognition. &lt;em&gt;In review&lt;/em&gt;. Preprint DOI: &lt;a href=&#34;https://doi.org/10.1101/2021.09.07.459327&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1101/2021.09.07.459327&lt;/a&gt;.&lt;/p&gt;
-&lt;br&gt;
 &lt;h2 id=&#34;software&#34;&gt;Software&lt;/h2&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2021). recolorize: Simplify and Remap Image Colors for Biological Analysis (ver. 0.9.000). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=recolorize&#34;&gt;https://CRAN.R-project.org/package=recolorize&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;O&amp;rsquo;Sullivan, D., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Lord, N.P. Insect Color Database (ICDB). In development. &lt;a href=&#34;https://insectcolor.com/&#34;&gt;https://insectcolor.com/&lt;/a&gt;&lt;/p&gt;
@@ -1970,20 +2419,21 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; (2018). countcolors: Locates and Counts Pixels Within Color Range(s) in Images (ver. 0.9.1). CRAN Repository. &lt;a href=&#34;https://CRAN.R-project.org/package=countcolors&#34;&gt;https://CRAN.R-project.org/package=countcolors&lt;/a&gt;&lt;/p&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;presentations&#34;&gt;Presentations&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Van Belleghem, S. (April 2024). Talk: recolorize: An R package for flexible colour segmentation of biological images. &lt;em&gt;Finnish Molecular Ecology Symposium&lt;/em&gt;, Joensuu, Finland.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Van Belleghem, S. (July 2023). Invited symposium talk: One way to measure color pattern variation in coral reef fishes. &lt;em&gt;International Conference for Vertebrate Morphology&lt;/em&gt;, Cairns, Australia.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, and Van Belleghem, S. (January 2023). Poster: Flexible color segmentation of biological images with the R package recolorize. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, Austin, TX, USA.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Weissman, M., and López-Fernández, H. (January 2023). Talk: Bet-hedging theory helps explain life history differences among mouthbrooding cichlids. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, Austin, TX, USA.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; and López-Fernández, H. (September 2022). Invited symposium talk: How (and how much) does feeding influence the evolution of mouthbrooding in Neotropical cichlids? &lt;em&gt;Encontra Brasileiro de Ictiologia&lt;/em&gt;, Gramado, Brazil.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Brainerd, E.L, and López-Fernández, H. (January 2022). Talk: Does feeding mediate life history tradeoffs in mouthbrooding cichlids? &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, virtual conference.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Wham, D., Ezray-Wham, B., and Lord, N.P. (August 2021). Talk: Greater than the sum of their parts? Unpacking the “black box” of perceptual similarity using classical color pattern metrics. &lt;em&gt;Living Light Early Career Researchers&lt;/em&gt;, virtual conference.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Schwartz, S.T., Karan, E., and Lord, N.P. (Jan. 2021). Talk: Recolorize: a flexible R package for color classification. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, virtual conference.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;,  Karan, E., Schwartz, S. and Lord, N.P. (Jan. 2021). Talk: &lt;code&gt;recolorize&lt;/code&gt;: color-based image segmentation (for people with other things to do). &lt;em&gt;Society for Integrative and Comparative Biology (Virtual).&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan&amp;rsquo;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;Society for Integrative and Comparative Biology, Austin, TX.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Oct. 2019). Talk: Does mouthbrooding constrain or complement feeding morphology? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast), Newton, MA.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (Jan. 2019). Talk: 3D-Intra-oral Prey Trajectories Indicate Distinct Phases in how Channel Catfish (Ictalurus punctatus, Siluriformes: Ictaluridae) Swallow Food. &lt;em&gt;International Congress of Vertebrate Morphology, Prague, CZ.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Cohen, K.E., Gibb, A., and Brainerd, E.L. (Jan. 2019). Poster: Using tethers to measure food transport in a flatfish. &lt;em&gt;Society for Integrative and Comparative Biology, Tampa, FL.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L.(Jan. 2019). Talk: An XROMM study of intra-oral transport and swallowing in catfish. &lt;em&gt;Society for Integrative and Comparative Biology, Tampa, FL.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; and Brainerd, E.L. (Oct. 2017). Talk: How do fish swallow food? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast), Lowell, MA.&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. &lt;em&gt;American Society of Ichthyologists and Herpetologists, New Orleans, LA.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Jan. 2020). Talk: The spandrels of Satan&amp;rsquo;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, Austin, TX.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, López-Fernández, H., McMahan, C.D., and Brainerd, E.L. (Oct. 2019). Talk: Does mouthbrooding constrain or complement feeding morphology? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast)&lt;/em&gt;, Newton, MA.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L. (Jan. 2019). Talk: 3D-Intra-oral Prey Trajectories Indicate Distinct Phases in how Channel Catfish (Ictalurus punctatus, Siluriformes: Ictaluridae) Swallow Food. &lt;em&gt;International Congress of Vertebrate Morphology&lt;/em&gt;, Prague, CZ.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Cohen, K.E., Gibb, A., and Brainerd, E.L. (Jan. 2019). Poster: Using tethers to measure food transport in a flatfish. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, Tampa, FL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Olsen, A., Camp, A.L., Hernandez, L.P., Manafzadeh, A.R., and Brainerd, E.L.(Jan. 2019). Talk: An XROMM study of intra-oral transport and swallowing in catfish. &lt;em&gt;Society for Integrative and Comparative Biology&lt;/em&gt;, Tampa, FL.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt; and Brainerd, E.L. (Oct. 2017). Talk: How do fish swallow food? &lt;em&gt;Regional Division of Vertebrate Morphology (Northeast)&lt;/em&gt;, Lowell, MA.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, McMahan, C.D., and Westneat, M.W. (July 2016). Poster: Dirt-sifting devilfish: winnowing in eartheater cichlids. &lt;em&gt;American Society of Ichthyologists and Herpetologists&lt;/em&gt;, New Orleans, LA.&lt;/p&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;invited-talks-lectures--workshops&#34;&gt;Invited talks, lectures, &amp;amp; workshops&lt;/h2&gt;
 &lt;dl&gt;
@@ -2022,7 +2472,7 @@ Organizer. Day-long workshop on data analysis and visualization in R.&lt;/dd&gt;
 &lt;dt&gt;2023—Present&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Postdoctoral researcher&lt;/strong&gt;; advisor: Claudius Kratochwil&lt;br&gt;
 &lt;em&gt;University of Helsinki, HiLIFE Institute&lt;/em&gt;&lt;br&gt;
-Evolution and development of color pattern robustness in colorful fishes.&lt;/dd&gt;
+Evolution and development of color pattern robustness in fishes.&lt;/dd&gt;
 &lt;dt&gt;2017—2023&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;PhD candidate, Brainerd Lab&lt;/strong&gt;; advisor: Elizabeth Brainerd&lt;br&gt;
 &lt;em&gt;Brown University, Dept. of Ecology &amp;amp; Evolutionary Biology&lt;/em&gt;&lt;br&gt;
@@ -2041,24 +2491,30 @@ Hyperspectral imaging; image analysis pipelines; camouflage analyses.&lt;/dd&gt;
 Ontogenetic scaling; biomechanical modeling; geometric morphometrics.&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;br&gt;  
-&lt;h2 id=&#34;teaching-and-outreach&#34;&gt;Teaching and outreach&lt;/h2&gt;
+&lt;h2 id=&#34;teaching-service-and-outreach&#34;&gt;Teaching, service, and outreach&lt;/h2&gt;
 &lt;dl&gt;
+&lt;dt&gt;September 2023—Present&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Postdoctoral representative&lt;/strong&gt;, &lt;em&gt;University of Helsinki, Wellbeing Committee&lt;/em&gt; (Helsinki, Finland)&lt;br&gt;
+Organizing events and awareness campaigns around wellbeing resources (e.g. mental health, mentorship, exercise) for Helsinki Institute of Life Sciences research community.&lt;/dd&gt;
+&lt;dt&gt;September 2023—June 2024&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Local organizer&lt;/strong&gt;, &lt;em&gt;Meeting of the European Society of Evolutionary and Developmental Biology, 2024&lt;/em&gt; (Helsinki, Finland)&lt;br&gt;
+Organized outreach events and coordinated conference activities.&lt;/dd&gt;
 &lt;dt&gt;June 2021 &amp;amp; July 2022&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Instructor&lt;/strong&gt;, &lt;em&gt;Brown University, Summer@Brown Program&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Anatomy, Behavior, and Evolution: Fishy Solutions to Life Underwater&lt;br&gt;
-Intensive high school course including labs, assignments, and mentoring of final project (preparation of research proposals and presentations).&lt;/dd&gt;
-&lt;dt&gt;August 2020—April 2020&lt;/dt&gt;
+Intensive high school course including labs, assignments, and mentoring of final project. Responsible for proposal, design, and implementation of entire course.&lt;/dd&gt;
+&lt;dt&gt;August 2020—April 2021&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 COVID-modified Human Anatomy (lecture and lab)&lt;br&gt;
 Restructuring the traditional gross anatomy curriculum, including remote/small group work and prosection-based staggered labs.&lt;/dd&gt;
-&lt;dt&gt;September 2019—Present&lt;/dt&gt;
+&lt;dt&gt;September 2019—2023&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;R User Group&lt;/strong&gt;, &lt;em&gt;Brown University, Dept. of Ecology and Evolutionary Biology&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Organizing and running monthly R workshops for graduate and undergraduate students, focusing on techniques for biological analysis (e.g., data organization, statistics, and visualization).&lt;/dd&gt;
 &lt;dt&gt;August 2019—April 2020&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Teaching assistant&lt;/strong&gt;, &lt;em&gt;Brown University, Alpert Medical School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Human Anatomy (lecture and lab)&lt;br&gt;
 Guiding medical students through cadaver-based human anatomy labs.&lt;/dd&gt;
-&lt;dt&gt;September 2018—Present&lt;/dt&gt;
+&lt;dt&gt;September 2018—June 2022&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Marine Science Club&lt;/strong&gt;, &lt;em&gt;Paul Cuffee High School&lt;/em&gt; (Providence, RI)&lt;br&gt;
 Collaborating with high school teachers for weekly science activities with high school students.&lt;/dd&gt;
 &lt;dt&gt;September 2017—Dec. 2017&lt;/dt&gt;
@@ -2084,14 +2540,14 @@ Daily animal care and maintenance; visitor outreach; collection trips.&lt;/dd&gt
 &lt;dt&gt;Software&lt;/dt&gt;
 &lt;dd&gt;Latex, Maya, FIJI/ImageJ, Horos, 3DSlicer, XMALab, Mesquite, Pandoc, Microsoft Office&lt;/dd&gt;
 &lt;dt&gt;Languages&lt;/dt&gt;
-&lt;dd&gt;English (native), French (intermediate)&lt;/dd&gt;
+&lt;dd&gt;English (native), French (intermediate), Finnish (basic)&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;hr&gt;
 &lt;br&gt;  
 &lt;blockquote&gt;
-&lt;p&gt;&lt;em&gt;Lab&lt;/em&gt;: Biomedical Center 426, 171 Meeting St.,  Providence, RI 02906&lt;br&gt;
+&lt;p&gt;&lt;em&gt;Lab&lt;/em&gt;: Viikinkaari 5, 00790 Helsinki, Finland&lt;br&gt;
 &lt;em&gt;Email&lt;/em&gt;: &lt;a href=&#34;mailto:hannahiweller@gmail.com&#34;&gt;hannahiweller@gmail.com&lt;/a&gt;&lt;br&gt;
-&lt;em&gt;Website&lt;/em&gt;: &lt;a href=&#34;https://hiweller.github.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;hiweller.github.io&lt;/a&gt;&lt;/p&gt;
+&lt;em&gt;Website&lt;/em&gt;: &lt;a href=&#34;https://hiweller.rbind.io&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;hiweller.rbind.io&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
     </item>

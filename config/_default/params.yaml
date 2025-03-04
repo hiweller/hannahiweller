@@ -27,11 +27,6 @@ address:
   country: Finland
   country_code: FI
 
-contact_links:
-  - icon: twitter
-    icon_pack: fab
-    name: Twitter
-    link: 'https://twitter.com/hannahiweller'
 
 # Site header
 

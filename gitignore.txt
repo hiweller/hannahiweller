@@ -7,3 +7,4 @@ Thumbs.db
 /public/
 \.knit\.md$
 \.utf8\.md$
+secret_readme.md

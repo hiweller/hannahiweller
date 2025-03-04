@@ -1,5 +1,5 @@
 ---
-bio: I'm a postdoc in the Integrative Evolutionary Biology group at the University of Helsinki studying the evolution of fish color.
+bio: I'm a postdoc in the Integrative Evolutionary Biology group at the University of Helsinki studying the evo-devo of fish color.
 education:
   courses:
   - course: PhD in Ecology and Evolutionary Biology
@@ -14,15 +14,13 @@ education:
 email: hannahiweller@gmail.com
 highlight_name: false
 interests:
+- Evo-devo of coloration
 - Life history evolution
-- Visual signaling and perception
-- Macroevolutionary constraints & opportunities
-- Historical contingency
-- Image processing
+- Image processing and computer vision
 organizations:
 - name: University of Helsinki
   url: http://www.intevobio.fi/
-role: Postdoctoral researcher
+role: Postdoctoral research fellow
 social:
 - icon: envelope
   icon_pack: fas
@@ -60,5 +58,4 @@ I find it helpful to think about every living thing as being like a very, very o
 [View my most recent posts](/posts) 
 
 
-{{< icon name="paper-plane" pack="fas" >}} [Get in touch!](#contact)
-
+{{< icon name="paper-plane" pack="fas" >}} [Get in touch!](#contact)  

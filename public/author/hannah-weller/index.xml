@@ -1523,50 +1523,10 @@ plot_ly(data = clusters,
     </item>
     
     <item>
-      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
-      <link>/publication/sicb-2021/</link>
-      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
-      <guid>/publication/sicb-2021/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>An XROMM Study of Food Transport and Swallowing in Channel Catfish</title>
-      <link>/publication/catfish/</link>
-      <pubDate>Mon, 01 Jun 2020 19:18:37 -0400</pubDate>
-      <guid>/publication/catfish/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats</title>
-      <link>/publication/countcolors/</link>
-      <pubDate>Sat, 01 Feb 2020 19:36:14 -0400</pubDate>
-      <guid>/publication/countcolors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The spandrels of Satan&#39;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids</title>
-      <link>/publication/sicb-2020/</link>
-      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/sicb-2020/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
-      <link>/publication/colordistance/</link>
-      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/colordistance/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Winnowing in the geophagine cichlid Satanoperca daemon</title>
-      <link>/publication/winnowing/</link>
-      <pubDate>Fri, 01 Sep 2017 19:05:49 -0400</pubDate>
-      <guid>/publication/winnowing/</guid>
+      <link>/publication/weller-countcolors-2020/</link>
+      <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-countcolors-2020/</guid>
       <description></description>
     </item>
     

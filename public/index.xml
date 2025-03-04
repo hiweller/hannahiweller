@@ -128,6 +128,22 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
+      <title>Turtle Girdles: Comparing the Relationships Between Environment and Behavior on Forelimb Function in Loggerhead Sea Turtles (*Caretta caretta*) and River Cooters (*Pseudemys concinna*)</title>
+      <link>/publication/mayerl-turtle-2024/</link>
+      <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
+      <guid>/publication/mayerl-turtle-2024/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ecological drivers of ultraviolet colour evolution in snakes</title>
+      <link>/publication/crowell-ecological-2024/</link>
+      <pubDate>Sat, 01 Jun 2024 00:00:00 +0000</pubDate>
+      <guid>/publication/crowell-ecological-2024/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>An anecdote about irradiance</title>
       <link>/post/an-anecdote-about-irradiance/</link>
       <pubDate>Thu, 30 May 2024 00:00:00 +0000</pubDate>
@@ -397,6 +413,38 @@ print(rc3$call)
     </item>
     
     <item>
+      <title>recolorize: An R package for flexible colour segmentation of biological images</title>
+      <link>/publication/weller-recolorize-2024/</link>
+      <pubDate>Thu, 01 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-recolorize-2024/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evidence for a selective link between cooperation and individual recognition</title>
+      <link>/publication/tumulty-evidence-2023/</link>
+      <pubDate>Fri, 01 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>/publication/tumulty-evidence-2023/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evaluation of Neural Regulation and Microglial Responses to Brain Injury in Larval Zebrafish Exposed to Perfluorooctane Sulfonate</title>
+      <link>/publication/paquette-evaluation-2023/</link>
+      <pubDate>Wed, 01 Nov 2023 00:00:00 +0000</pubDate>
+      <guid>/publication/paquette-evaluation-2023/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The Evolutionary Continuum of Functional Homodonty to Heterodonty in the Dentition of textitHalichoeres Wrasses</title>
+      <link>/publication/cohen-evolutionary-2023/</link>
+      <pubDate>Sat, 01 Jul 2023 00:00:00 +0000</pubDate>
+      <guid>/publication/cohen-evolutionary-2023/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Using the dichromat package to check if your plot is colorblind-friendly</title>
       <link>/post/using-the-dichromat-package-to-check-if-your-plot-is-colorblind-friendly/</link>
       <pubDate>Tue, 16 May 2023 00:00:00 +0000</pubDate>
@@ -575,6 +623,14 @@ p + scale_color_manual(values = dichromat(red_grey_2, type = &amp;quot;protan&am
     </item>
     
     <item>
+      <title>Relaxed Feeding Constraints Facilitate the Evolution of Mouthbrooding in Neotropical Cichlids</title>
+      <link>/publication/weller-relaxed-2022/</link>
+      <pubDate>Wed, 01 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-relaxed-2022/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Scaling images to a uniform resolution</title>
       <link>/post/scaling-images-to-a-uniform-resolution/</link>
       <pubDate>Mon, 14 Mar 2022 00:00:00 +0000</pubDate>
@@ -750,6 +806,14 @@ for (i in 1:length(images)) {
 &lt;p&gt;It&amp;rsquo;s pretty easy to automate the renaming and rescaling. The only thing that would be difficult here is figuring out how to supply a different rescaling argument for each image (notice here I just divided the image width and height by 3). I&amp;rsquo;m sure you could do this by writing a short bash script, but I didn&amp;rsquo;t bother to do that for this post.&lt;/p&gt;
 &lt;p&gt;Hopefully this is helpful—I guess the takeaway is that you have to calculate a simple ratio and then use any of half a dozen tools to resize your image. Pretty straightforward!&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Modular lung ventilation in *Boa constrictor*</title>
+      <link>/publication/capano-modular-2022/</link>
+      <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
+      <guid>/publication/capano-modular-2022/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -2140,18 +2204,18 @@ plot_ly(data = clusters,
     </item>
     
     <item>
-      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
-      <link>/publication/sicb-2021/</link>
-      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
-      <guid>/publication/sicb-2021/</guid>
+      <title>Not your father’s homodonty—stress, tooth shape, and the functional homodont</title>
+      <link>/publication/cohen-not-2020/</link>
+      <pubDate>Sun, 01 Nov 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/cohen-not-2020/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>An XROMM Study of Food Transport and Swallowing in Channel Catfish</title>
-      <link>/publication/catfish/</link>
-      <pubDate>Mon, 01 Jun 2020 19:18:37 -0400</pubDate>
-      <guid>/publication/catfish/</guid>
+      <title>Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats</title>
+      <link>/publication/weller-countcolors-2020/</link>
+      <pubDate>Thu, 01 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-countcolors-2020/</guid>
       <description></description>
     </item>
     
@@ -2174,26 +2238,10 @@ plot_ly(data = clusters,
     </item>
     
     <item>
-      <title>Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats</title>
-      <link>/publication/countcolors/</link>
-      <pubDate>Sat, 01 Feb 2020 19:36:14 -0400</pubDate>
-      <guid>/publication/countcolors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>The spandrels of Satan&#39;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids</title>
-      <link>/publication/sicb-2020/</link>
+      <title>An XROMM Study of Food Transport and Swallowing in Channel Catfish</title>
+      <link>/publication/weller-xromm-2020/</link>
       <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
-      <guid>/publication/sicb-2020/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
-      <link>/publication/colordistance/</link>
-      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/colordistance/</guid>
+      <guid>/publication/weller-xromm-2020/</guid>
       <description></description>
     </item>
     
@@ -2324,6 +2372,22 @@ Three
 &lt;p&gt;&lt;a href=&#34;https://github.com/wowchemy/wowchemy-hugo-modules/discussions&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a href=&#34;https://wowchemy.com/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
 </description>
+    </item>
+    
+    <item>
+      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
+      <link>/publication/weller-quantitative-2019/</link>
+      <pubDate>Fri, 01 Feb 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-quantitative-2019/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Intra-oropharyngeal food transport and swallowing in white-spotted bamboo sharks</title>
+      <link>/publication/van-meer-intra-oropharyngeal-2019/</link>
+      <pubDate>Tue, 01 Jan 2019 00:00:00 +0000</pubDate>
+      <guid>/publication/van-meer-intra-oropharyngeal-2019/</guid>
+      <description></description>
     </item>
     
     <item>
@@ -2553,10 +2617,10 @@ Daily animal care and maintenance; visitor outreach; collection trips.&lt;/dd&gt
     </item>
     
     <item>
-      <title>Winnowing in the geophagine cichlid Satanoperca daemon</title>
-      <link>/publication/winnowing/</link>
-      <pubDate>Fri, 01 Sep 2017 19:05:49 -0400</pubDate>
-      <guid>/publication/winnowing/</guid>
+      <title>Dirt-sifting devilfish: winnowing in the geophagine cichlid Satanoperca daemon and evolutionary implications</title>
+      <link>/publication/weller-dirt-sifting-2017/</link>
+      <pubDate>Wed, 01 Mar 2017 00:00:00 +0000</pubDate>
+      <guid>/publication/weller-dirt-sifting-2017/</guid>
       <description></description>
     </item>
     

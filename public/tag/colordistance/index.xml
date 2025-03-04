@@ -190,13 +190,5 @@ plot_ly(data = clusters,
 </description>
     </item>
     
-    <item>
-      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
-      <link>/publication/colordistance/</link>
-      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/colordistance/</guid>
-      <description></description>
-    </item>
-    
   </channel>
 </rss>

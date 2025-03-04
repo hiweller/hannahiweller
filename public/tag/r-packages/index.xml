@@ -1305,14 +1305,6 @@ plot_ly(data = clusters,
     </item>
     
     <item>
-      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
-      <link>/publication/sicb-2021/</link>
-      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
-      <guid>/publication/sicb-2021/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>colordistance</title>
       <link>/project/colordistance/</link>
       <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
@@ -1328,22 +1320,6 @@ plot_ly(data = clusters,
       <guid>/project/recolorize/</guid>
       <description>&lt;p&gt;This is a package for making color maps, which are needed (or at least useful) for a wide range of color analysis techniques. It was born out of conversations with many biologists who found, to their surprise and mine, that generating color maps was the bottleneck step in their analyses. Fully automated methods rarely work all of the time, and are difficult to modify, while fully manual methods are subjective and time-consuming. This package tries to split the difference by giving you a mix of tools that will do a pretty good job with no user input, and then allow minor manual changes like merging and filtering layers or splitting components, before exporting them to the next step of your analysis. It&amp;rsquo;s also, for the most part, totally deterministic – no arbitrary seed-setting for repeatability.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Countcolors, an R package for quantification of the fluorescence emitted by Pseudogymnoascus destructans lesions on the wing membranes of hibernating bats</title>
-      <link>/publication/countcolors/</link>
-      <pubDate>Sat, 01 Feb 2020 19:36:14 -0400</pubDate>
-      <guid>/publication/countcolors/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Quantitative color profiling of digital images with earth mover’s distance using the R package colordistance</title>
-      <link>/publication/colordistance/</link>
-      <pubDate>Wed, 06 Feb 2019 00:00:00 +0000</pubDate>
-      <guid>/publication/colordistance/</guid>
-      <description></description>
     </item>
     
   </channel>

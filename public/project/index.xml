@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Projects | Hannah Weller</title>
+    <link>/project/</link>
+      <atom:link href="/project/index.xml" rel="self" type="application/rss+xml" />
+    <description>Projects</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Mon, 27 Apr 2020 00:00:00 +0000</lastBuildDate>
+    <image>
+      <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
+      <title>Projects</title>
+      <link>/project/</link>
+    </image>
+    
+    <item>
+      <title>colordistance</title>
+      <link>/project/colordistance/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/colordistance/</guid>
+      <description>&lt;p&gt;A package for implementing distance metrics to quantify color diversity across images. This is done by binning pixels by color using either data-dependent or automatically generated color bins, quantitatively measuring color similarity among images using one of several distance metrics for comparing pixel color clusters, and clustering images by object color similarity. Uses CIE Lab, RGB, or HSV color spaces. Originally written for use with organism coloration (reef fish color diversity, butterfly mimicry, etc), but easily applicable for any image set.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>recolorize</title>
+      <link>/project/recolorize/</link>
+      <pubDate>Mon, 27 Apr 2020 00:00:00 +0000</pubDate>
+      <guid>/project/recolorize/</guid>
+      <description>&lt;p&gt;This is a package for making color maps, which are needed (or at least useful) for a wide range of color analysis techniques. It was born out of conversations with many biologists who found, to their surprise and mine, that generating color maps was the bottleneck step in their analyses. Fully automated methods rarely work all of the time, and are difficult to modify, while fully manual methods are subjective and time-consuming. This package tries to split the difference by giving you a mix of tools that will do a pretty good job with no user input, and then allow minor manual changes like merging and filtering layers or splitting components, before exporting them to the next step of your analysis. It&amp;rsquo;s also, for the most part, totally deterministic – no arbitrary seed-setting for repeatability.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Insect Color Database</title>
+      <link>/project/icdb/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      <guid>/project/icdb/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

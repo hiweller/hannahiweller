@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>1 | Hannah Weller</title>
+    <link>/publication-type/1/</link>
+      <atom:link href="/publication-type/1/index.xml" rel="self" type="application/rss+xml" />
+    <description>1</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Jan 2021 20:57:23 -0400</lastBuildDate>
+    <image>
+      <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
+      <title>1</title>
+      <link>/publication-type/1/</link>
+    </image>
+    
+    <item>
+      <title>Recolorize: Color-based image segmentation (for people with other things to do)</title>
+      <link>/publication/sicb-2021/</link>
+      <pubDate>Fri, 01 Jan 2021 20:57:23 -0400</pubDate>
+      <guid>/publication/sicb-2021/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>The spandrels of Satan&#39;s perches: evidence for the co-optation of feeding traits in the convergent evolution of mouthbrooding in Neotropical cichlids</title>
+      <link>/publication/sicb-2020/</link>
+      <pubDate>Wed, 01 Jan 2020 00:00:00 +0000</pubDate>
+      <guid>/publication/sicb-2020/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

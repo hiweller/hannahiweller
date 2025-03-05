@@ -1,0 +1,78 @@
+# Website update checklist and resources
+
+- [x] Change the font
+- [x] Frontmatter: Update publications
+  - [x] Check formatting
+  - [x] Add featured images
+
+- [x] CV: Update CV; update PDF of CV
+- [ ] Posts: Update tutorial post
+- [x] Update 'Currently'
+- [x] Landing page: posts, then publications, then projects. Can posts include images?
+
+
+
+## General update note
+
+When you build locally using blogdown, changes to the layout/formatting/etc don't always appear, so you have to stop the server and then build/launch the site again using:
+
+`blogdown::stop_server(); blogdown::build_site(); blogdown::serve_site()`
+
+
+
+### Curriculum vitae
+
+1. To update the version served on the website, can just directly edit `hannahiweller/content/cv/index.md`
+2. To update the downloadable PDF, add updated PDF of CV to `hannahiweller/static/media/Hannah_Weller_CV.pdf`
+
+
+
+### Publications
+
+1. Make a .bib file for any new publications
+
+2. Use the academic CLI (installed from here https://github.com/GetRD/academic-file-converter) to convert any new bib files to publications e.g. `academic import weller_publications.bib hannahiweller/content/publication/ --compact`
+
+   * If this doesn't work, you can always do it manually by creating a folder under `hannahiweller/content/publication` and adding at minimum an index.md file with the following format:
+
+     ```
+     ---
+     title: Paper Title
+     authors:
+     - Firstname Lastname
+     - Firstname Lastname
+     author_notes:
+     - Equal contribution
+     - Equal contribution
+     date: '2024-06-01'
+     publishDate: '2025-03-04T15:40:54.070107Z'
+     publication_types: ["2"]
+     publication: '*Example Journal*'
+     doi: 10.1038/s41467-024-49506-4
+     url_pdf: "static/media/pdf/Crowell2024_snake_uv.pdf"
+     abstract: 'Abstract text'
+     links:
+     - name: URL
+       url: https://www.nature.com/articles/s41467-024-49506-4
+     ---
+     ```
+
+3. For each new folder, go through and:
+
+   - Change from publication_types: "article-journal" to publication_types: ["2"] (otherwise the site won't build)
+   - Add a link to the PDF of the paper under `url_pdf: "static/media/pdf/"` e.g. `url_pdf: "static/media/pdf/Weller2020_catfish.pdf"`
+   - Double check author names, formatting, etc.
+   - Add an image called "featured.png" if you want a featured image
+
+
+
+### Formatting
+
+Font: themes -> starter-academic -> data -> fonts -> my_font_set.toml
+
+To update a font: Go to https://fonts.google.com/ and pick one -> get font -> get embed code -> copy the section of embed code between "family" and "&display=swap" and add it to google_fonts in the my_font_set.toml 
+
+IMPORTANT: If you're building the site locally this won't show up until you stop the server and rebuild/serve the site. So after updating a font:
+
+`blogdown::stop_server(); blogdown::build_site(); blogdown::serve_site()`
+

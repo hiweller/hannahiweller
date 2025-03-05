@@ -128,7 +128,7 @@ The variance of the distribution is $\sigma^{2}$.
     </item>
     
     <item>
-      <title>Turtle Girdles: Comparing the Relationships Between Environment and Behavior on Forelimb Function in Loggerhead Sea Turtles (*Caretta caretta*) and River Cooters (*Pseudemys concinna*)</title>
+      <title>Turtle Girdles: Comparing the Relationships Between Environment and Behavior on Forelimb Function in Loggerhead Sea Turtles (Caretta caretta) and River Cooters (Pseudemys concinna)</title>
       <link>/publication/mayerl-turtle-2024/</link>
       <pubDate>Sun, 01 Dec 2024 00:00:00 +0000</pubDate>
       <guid>/publication/mayerl-turtle-2024/</guid>
@@ -809,7 +809,7 @@ for (i in 1:length(images)) {
     </item>
     
     <item>
-      <title>Modular lung ventilation in *Boa constrictor*</title>
+      <title>Modular lung ventilation in Boa constrictor</title>
       <link>/publication/capano-modular-2022/</link>
       <pubDate>Tue, 01 Mar 2022 00:00:00 +0000</pubDate>
       <guid>/publication/capano-modular-2022/</guid>
@@ -2396,7 +2396,7 @@ Three
       <pubDate>Thu, 28 Jun 2018 00:00:00 +0000</pubDate>
       <guid>/cv/</guid>
       <description>&lt;p&gt;
-  &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/Hannah_Weller_cv.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
+  &lt;i class=&#34;fas fa-download  pr-1 fa-fw&#34;&gt;&lt;/i&gt; &lt;a href=&#34;/media/Hannah_Weller_CV.pdf&#34; target=&#34;_blank&#34;&gt;Click here to download.&lt;/a&gt;&lt;/p&gt;
 &lt;h1 id=&#34;hannah-weller&#34;&gt;Hannah Weller&lt;/h1&gt;
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Research interests&lt;/strong&gt;: Evolution, development, and ecology of color patterns;
@@ -2404,11 +2404,12 @@ broadly, how traits interact to shape evolutionary trajectories;
 method and software development for accessible phenotyping approaches.&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;hr&gt;
+&lt;p&gt;&lt;small&gt;Last updated: March 5, 2025&lt;/small&gt;&lt;/p&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;present-position&#34;&gt;Present Position&lt;/h2&gt;
 &lt;dl&gt;
 &lt;dt&gt;2023—Present&lt;/dt&gt;
-&lt;dd&gt;&lt;strong&gt;Postdoctoral researcher, Integrative Evolutionary Biology Group&lt;/strong&gt;&lt;br&gt;
+&lt;dd&gt;&lt;strong&gt;Postdoctoral research fellow, Integrative Evolutionary Biology Group&lt;/strong&gt;&lt;br&gt;
 University of Helsinki (Helsinki, Finland)&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;h2 id=&#34;education&#34;&gt;Education&lt;/h2&gt;
@@ -2429,6 +2430,9 @@ University of Chicago (Chicago, IL) &lt;br&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;awards-and-fellowships&#34;&gt;Awards and Fellowships&lt;/h2&gt;
 &lt;dl&gt;
+&lt;dt&gt;April 2025&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;Marie Skłodowska-Curie Postdoctoral Fellowship&lt;/strong&gt;&lt;br&gt;
+€226,276.80, European Commission&lt;/dd&gt;
 &lt;dt&gt;January 2022&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Doctoral Dissertation Enhancement Grant&lt;/strong&gt;&lt;br&gt;
 $10,000, Bushnell Fund at Brown University&lt;/dd&gt;
@@ -2458,6 +2462,7 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;/dl&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;peer-reviewed-publications&#34;&gt;Peer-reviewed publications&lt;/h2&gt;
+&lt;p&gt;Mayerl, C.J., Capano, J.G., Van Meer, N., &lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Kaczmarek, E.B., Chadam, M., Blob, R.W., Brainerd, E.L. and Wyneken, J. (2024). Turtle Girdles: Comparing the Relationships Between Environment and Behavior on Forelimb Function in Loggerhead Sea Turtles (&lt;em&gt;Caretta caretta&lt;/em&gt;) and River Cooters (&lt;em&gt;Pseudemys concinna&lt;/em&gt;). &lt;em&gt;Journal of Morphology&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1002/jmor.70007&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1002/jmor.70007&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Crowell, H.L.*, Curlis, J.D.*, &lt;strong&gt;Weller, H.I.&lt;/strong&gt;*, Davis Rabosky, A.R.*  (2024). Predators drive the evolution of ultraviolet colouration in snakes. &lt;em&gt;Nature Communications&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1038/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1038/&lt;/a&gt;.&lt;br&gt;
 &lt;sup&gt;*These authors contributed equally to this work.&lt;/sup&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Weller, H.I.&lt;/strong&gt;, Hiller, A.E., Van Belleghem, S.M., and Lord, N.P. (2024). Recolorize: flexible color segmentation of biological images. &lt;em&gt;Ecology Letters&lt;/em&gt;. DOI: &lt;a href=&#34;https://doi.org/10.1111/ele.14378&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://doi.org/10.1111/ele.14378&lt;/a&gt;.&lt;br&gt;
@@ -2501,6 +2506,10 @@ $4,000, University of Chicago&lt;/dd&gt;
 &lt;br&gt;  
 &lt;h2 id=&#34;invited-talks-lectures--workshops&#34;&gt;Invited talks, lectures, &amp;amp; workshops&lt;/h2&gt;
 &lt;dl&gt;
+&lt;dt&gt;February 2025&lt;/dt&gt;
+&lt;dd&gt;&lt;strong&gt;A developmental approach to studying the variation and evolution of color patterns&lt;/strong&gt;
+&lt;em&gt;Bjorn Kurten Club, University of Helsinki&lt;/em&gt; (Helsinki, Finland)
+Seminar.&lt;/dd&gt;
 &lt;dt&gt;June 2022&lt;/dt&gt;
 &lt;dd&gt;&lt;strong&gt;Workshop: Statistics for Biologists&lt;/strong&gt;&lt;br&gt;
 &lt;em&gt;University of Washington, Friday Harbor Laboratories&lt;/em&gt; (Friday Harbor, WA) &lt;br&gt;
@@ -2534,7 +2543,7 @@ Organizer. Day-long workshop on data analysis and visualization in R.&lt;/dd&gt;
 &lt;h2 id=&#34;research-experience&#34;&gt;Research experience&lt;/h2&gt;
 &lt;dl&gt;
 &lt;dt&gt;2023—Present&lt;/dt&gt;
-&lt;dd&gt;&lt;strong&gt;Postdoctoral researcher&lt;/strong&gt;; advisor: Claudius Kratochwil&lt;br&gt;
+&lt;dd&gt;&lt;strong&gt;Postdoctoral researcher&lt;/strong&gt;; supervisor: Claudius Kratochwil&lt;br&gt;
 &lt;em&gt;University of Helsinki, HiLIFE Institute&lt;/em&gt;&lt;br&gt;
 Evolution and development of color pattern robustness in fishes.&lt;/dd&gt;
 &lt;dt&gt;2017—2023&lt;/dt&gt;

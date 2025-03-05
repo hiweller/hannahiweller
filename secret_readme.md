@@ -5,10 +5,17 @@
   - [x] Check formatting
   - [x] Add featured images
 
-- [ ] CV: Update CV; update PDF of CV
+- [x] CV: Update CV; update PDF of CV
 - [ ] Posts: Update tutorial post
 - [ ] Update 'Currently'
-- [ ] Landing page: posts, then publications, then projects. Can posts include images?
+- [x] Landing page: posts, then publications, then projects. Can posts include images?
+
+
+
+### Curriculum vitae
+
+1. To update the version served on the website, can just directly edit `hannahiweller/content/cv/index.md`
+2. To update the downloadable PDF, add updated PDF of CV to `hannahiweller/static/media/Hannah_Weller_CV.pdf`
 
 
 
@@ -17,11 +24,37 @@
 1. Make a .bib file for any new publications
 
 2. Use the academic CLI (installed from here https://github.com/GetRD/academic-file-converter) to convert any new bib files to publications e.g. `academic import weller_publications.bib hannahiweller/content/publication/ --compact`
+
+   * If this doesn't work, you can always do it manually by creating a folder under `hannahiweller/content/publication` and adding at minimum an index.md file with the following format:
+
+     ```
+     ---
+     title: Paper Title
+     authors:
+     - Firstname Lastname
+     - Firstname Lastname
+     author_notes:
+     - Equal contribution
+     - Equal contribution
+     date: '2024-06-01'
+     publishDate: '2025-03-04T15:40:54.070107Z'
+     publication_types: ["2"]
+     publication: '*Example Journal*'
+     doi: 10.1038/s41467-024-49506-4
+     url_pdf: "static/media/pdf/Crowell2024_snake_uv.pdf"
+     abstract: 'Abstract text'
+     links:
+     - name: URL
+       url: https://www.nature.com/articles/s41467-024-49506-4
+     ---
+     ```
+
 3. For each new folder, go through and:
+
    - Change from publication_types: "article-journal" to publication_types: ["2"] (otherwise the site won't build)
    - Add a link to the PDF of the paper under `url_pdf: "static/media/pdf/"` e.g. `url_pdf: "static/media/pdf/Weller2020_catfish.pdf"`
    - Double check author names, formatting, etc.
-   - Add an image called "featured.png"
+   - Add an image called "featured.png" if you want a featured image
 
 
 

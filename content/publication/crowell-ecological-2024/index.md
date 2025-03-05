@@ -16,7 +16,7 @@ publication_types: ["2"]
 publication: '*Nature Communications*'
 doi: 10.1038/s41467-024-49506-4
 url_pdf: "static/media/pdf/Crowell2024_snake_uv.pdf"
-abstract: 'Abstract Ultraviolet (UV) colour patterns invisible to humans are widespread
+abstract: 'Ultraviolet (UV) colour patterns invisible to humans are widespread
   in nature. However, research bias favouring species with conspicuous colours under
   sexual selection can limit our assessment of other ecological drivers of UV colour,
   like interactions between predators and prey. Here we demonstrate widespread UV

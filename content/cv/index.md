@@ -16,7 +16,7 @@ header:
 reading_time: no
 ---
 
-{{< icon name="download" pack="fas" >}} {{< staticref "media/Hannah_Weller_cv.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
+{{< icon name="download" pack="fas" >}} {{< staticref "media/Hannah_Weller_CV.pdf" "newtab" >}}Click here to download.{{< /staticref >}}
 
 
 Hannah Weller
@@ -28,13 +28,15 @@ Hannah Weller
 
 ----
 
+<small>Last updated: March 5, 2025</small>
+
 <br>  
 
 Present Position
 ---------
 
 2023—Present
-:   **Postdoctoral researcher, Integrative Evolutionary Biology Group**  
+:   **Postdoctoral research fellow, Integrative Evolutionary Biology Group**  
   University of Helsinki (Helsinki, Finland)    
 
 
@@ -55,13 +57,16 @@ Education
 :   **Honors B.Sc., Biology**  
   University of Chicago (Chicago, IL)    
    *Thesis: Winnowing in the eartheater cichlids*  
- 
+
 
 <br>  
 
 Awards and Fellowships
 ----------------------
-
+April 2025
+: **Marie Skłodowska-Curie Postdoctoral Fellowship**  
+    €226,276.80, European Commission
+ 
 January 2022
 : **Doctoral Dissertation Enhancement Grant**  
     $10,000, Bushnell Fund at Brown University
@@ -102,6 +107,8 @@ June 2014
 
 Peer-reviewed publications
 --------------------------
+Mayerl, C.J., Capano, J.G., Van Meer, N., **Weller, H.I.**, Kaczmarek, E.B., Chadam, M., Blob, R.W., Brainerd, E.L. and Wyneken, J. (2024). Turtle Girdles: Comparing the Relationships Between Environment and Behavior on Forelimb Function in Loggerhead Sea Turtles (*Caretta caretta*) and River Cooters (*Pseudemys concinna*). *Journal of Morphology*. DOI: [https://doi.org/10.1002/jmor.70007](https://doi.org/10.1002/jmor.70007).
+
 Crowell, H.L.\*, Curlis, J.D.\*, **Weller, H.I.**\*, Davis Rabosky, A.R.\*  (2024). Predators drive the evolution of ultraviolet colouration in snakes. *Nature Communications*. DOI: [https://doi.org/10.1038/](https://doi.org/10.1038/).  
 <sup>\*These authors contributed equally to this work.</sup>
 
@@ -187,6 +194,10 @@ Presentations
 
 Invited talks, lectures, & workshops
 -------------------
+February 2025
+:   **A developmental approach to studying the variation and evolution of color patterns**
+  *Bjorn Kurten Club, University of Helsinki* (Helsinki, Finland)
+  Seminar.
 
 June 2022
 :   **Workshop: Statistics for Biologists**  
@@ -230,7 +241,7 @@ December 2019
 Research experience
 -------------------
 2023—Present
-:   **Postdoctoral researcher**; advisor: Claudius Kratochwil  
+:   **Postdoctoral researcher**; supervisor: Claudius Kratochwil  
   *University of Helsinki, HiLIFE Institute*  
   Evolution and development of color pattern robustness in fishes.
 

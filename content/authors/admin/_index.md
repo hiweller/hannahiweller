@@ -54,6 +54,6 @@ I find it helpful to think about every living thing as being like a very, very o
 {{< icon name="file" pack="fas" >}} 
 [CV](/cv) 
 
-{{< icon name="bug" pack="fas" >}} [Posts (including tutorials)](/posts) 
+{{< icon name="bug" pack="fas" >}} [Posts (including tutorials)](/post/) 
 
 {{< icon name="paper-plane" pack="fas" >}} [Contact](#contact)  

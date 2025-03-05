@@ -7,8 +7,16 @@
 
 - [x] CV: Update CV; update PDF of CV
 - [ ] Posts: Update tutorial post
-- [ ] Update 'Currently'
+- [x] Update 'Currently'
 - [x] Landing page: posts, then publications, then projects. Can posts include images?
+
+
+
+## General update note
+
+When you build locally using blogdown, changes to the layout/formatting/etc don't always appear, so you have to stop the server and then build/launch the site again using:
+
+`blogdown::stop_server(); blogdown::build_site(); blogdown::serve_site()`
 
 
 

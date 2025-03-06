@@ -30,6 +30,8 @@ In my main postdoc project, I'm using the asymmetry of color patterns in cichlid
 
 ![](images/asymmetrical_fish.png)
 
+---
+Earlier updates:
 
 ### Pivoting to a postdoc (September 2023)
 
@@ -56,14 +58,6 @@ I also work a lot on color pattern evolution, and have written a few R packages 
 ![](images/cdm_rec_tree.png)
 
 More [here](/category/colordistance).
-
-### Collaborations
-
-I'm lucky to have really delightful spread of collaborations with researchers at other universities, including:
-  - UV in snakes (University of Michigan, Davis-Rabosky lab)
-  - The origin and diversity of color jewel beetles (Louisiana State University, Lord lab)
-  - Population structure and color variation in brook trout (Pennsylvania State University)
-  - The effect of mouthbrooding on the rate of craniofacial evolution (Clemson, Price lab)
 
 
 

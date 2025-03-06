@@ -51,9 +51,10 @@ I want to know how to interpret organisms in the light of their developmental an
 
 I find it helpful to think about every living thing as being like a very, very old house. Some of the parts are there because they've always been useful (walls), and some of the parts are new additions for new functions (solar panels). But a lot of parts are there because it was easier to modify what existed than it was to build something from scratch, especially if the house needs to be habitable the whole time (and the available changes are random). And, like houses, I think we can learn a lot about organisms by understanding them as the outcomes of their history.
 
-{{< icon name="file" pack="fas" >}} 
-[CV](/cv) 
 
 {{< icon name="bug" pack="fas" >}} [Posts (including tutorials)](/post/) 
+
+{{< icon name="file" pack="fas" >}} 
+[Curriculum vitae](/cv) 
 
 {{< icon name="paper-plane" pack="fas" >}} [Contact](#contact)  

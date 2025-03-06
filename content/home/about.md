@@ -17,8 +17,8 @@ title: ''
 design:
   columns: "1"
   background:
-    image: moss_light.JPG
-    image_darken: 1
+    image: moss_light2.jpg
+    image_darken: 1.1
     image_parallax: true
     image_position: center
     image_size: cover

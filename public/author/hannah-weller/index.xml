@@ -5,180 +5,275 @@
     <link>/author/hannah-weller/</link>
       <atom:link href="/author/hannah-weller/index.xml" rel="self" type="application/rss+xml" />
     <description>Hannah Weller</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 30 May 2024 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Fri, 07 May 2021 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>/media/icon_hu894dd0f75b84cd2ded4b9885934a1072_25364_512x512_fill_lanczos_center_2.png</url>
+      <url>/author/hannah-weller/avatar_huf048470611bc23e40deaf315d4765a21_1037735_270x270_fill_q75_lanczos_center.jpg</url>
       <title>Hannah Weller</title>
       <link>/author/hannah-weller/</link>
     </image>
     
     <item>
-      <title>An anecdote about irradiance</title>
-      <link>/post/an-anecdote-about-irradiance/</link>
-      <pubDate>Thu, 30 May 2024 00:00:00 +0000</pubDate>
-      <guid>/post/an-anecdote-about-irradiance/</guid>
-      <description>&lt;h1 id=&#34;the-anecdote&#34;&gt;The anecdote&lt;/h1&gt;
-&lt;p&gt;A couple of years ago, I got an email from my friend Anna Rose, at the time a textiles curator at the Rhode Island School of Design (RISD), asking me if I knew anything about infrared photography. She wanted to know if she could use it to uncover some lost history, which was such an exciting idea my mind immediately rejected it a fantasy that I was going to have to shoot down.&lt;/p&gt;
-&lt;p&gt;The context here was that a team of researchers from &lt;a href=&#34;https://www.faasamoaarts.com/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Fa&amp;rsquo;asamoa Arts&lt;/a&gt; (Su&amp;rsquo;a Uilisone Fitiao, Reggie Meredith Fitiao, and Mary Anne Bordonaro) were cataloging the painted barkcloths (siapo) from American Samoa in RISD&amp;rsquo;s textile collections. I could not be less qualified to describe the history or cultural significance of the siapo tradition in American Samoa, or to speak on the appropriateness of RISD having these particular examples (although the Fa&amp;rsquo;asamoa Arts site and &lt;a href=&#34;https://www.loc.gov/item/84073325/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this book by Mary J. Pritchard&lt;/a&gt; seem like excellent places to start learning more, and I&amp;rsquo;ve put the full explanation for the project that I was sent at the end of this post). Here&amp;rsquo;s an example they had out when I went to visit:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/IMG_1343.JPG&#34; alt=&#34;A circular siapo with a central checkerboard pattern, a border of leaves, and a scalloped design around the edge&#34;&gt;&lt;/p&gt;
-&lt;p&gt;The reason she had contacted me, though, was because o&amp;rsquo;a&amp;ndash;&lt;a href=&#34;https://www.faasamoaarts.com/post/brown-dye-american-samoa-art&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;a brown dye&lt;/a&gt; used in creating siapo, made from a tree of the same name&amp;ndash;oxidizes to near-black over time. So rather than intricate geometric patterns, some of the siapo the research team were cataloging looked like this:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/IMG_1328.JPG&#34; alt=&#34;A painted barkcloth (siapo) that appears completely black due to oxidized dye&#34;&gt;&lt;/p&gt;
-&lt;p&gt;But RISD also had, although apparently nobody knew how to use it, a professionally converted full-spectrum camera capable of imaging in ultraviolet and infrared. For imaging nerds: it was specifically a MaxMax-modified Canon UV-VIS-IR camera with an X-Nite 1000 infrared lens. IR photography has been &lt;a href=&#34;https://mci.si.edu/infrared-and-ultraviolet-imaging&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;plenty often&lt;/a&gt; in art conservation, so they thought it was worth trying to see if we could uncover the hidden siapo designs using this camera. So one afternoon I walked the ten or so minutes from Brown&amp;rsquo;s campus to RISD&amp;rsquo;s collections to help out with this.&lt;/p&gt;
-&lt;p&gt;I will be honest: I thought I would show them how to use the camera, and then be the wet blanket explaining why it didn&amp;rsquo;t reveal the design. I think when we photograph things in UV or IR, we&amp;rsquo;re always hoping to reveal a hidden world, the hyperspectral equivalent of the numbers on the &lt;a href=&#34;https://en.wikipedia.org/wiki/Ishihara_test&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Ishihara colorblindness test cards&lt;/a&gt;. And as a scientist I think I&amp;rsquo;m inclined to be skeptical of anything I want badly to be true. In this case, for the design to be visible, there would need to be a difference in infrared absorption between the two dyes, which seemed unlikely since lama (the black dye) is a combination of o&amp;rsquo;a (the brown dye) and burned candlenut kernels. Differences in IR absorption would probably be minor and hard to see without an intense source of infrared light.&lt;/p&gt;
-&lt;p&gt;And guess what! Yeah, we saw nothing. I didn&amp;rsquo;t take a picture, but fortunately, I can recreate for you almost exactly what it looked like when we popped the IR lens on the camera and pointed it at the siapo, because it was literally just black:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/black.JPG&#34; alt=&#34;A black rectangle.&#34;&gt;&lt;/p&gt;
-&lt;p&gt;At this point I said something like well, haha, that&amp;rsquo;s usually how it goes, sorry, although if you want to try something else, I guess you could get a light source with a lot of infrared light instead of photographing it just under your presumably fluorescent ceiling lights, but I wouldn&amp;rsquo;t get your hopes up.&lt;/p&gt;
-&lt;p&gt;And Anna Rose asked me &amp;ldquo;Well, what&amp;rsquo;s the cheapest source of infrared light?&amp;rdquo; and I said, &amp;ldquo;THE SUN, I guess, but it&amp;rsquo;s not like you can take this 150-year-old barkcloth outside,&amp;rdquo; and she said oh we totally can, as long as it stays on museum grounds, and she and her intern promptly wheeled it through the museum cafe and onto the patio where people were having their lunch.&lt;/p&gt;
-&lt;p&gt;It was fine, but this move felt so illegal to me at the time that I honestly feel like writing about it now is incriminating. I don&amp;rsquo;t know the statute of limitations on taking a piece of preserved cultural heritage onto a museum cafe patio. On the other hand it worked.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/IMG_1325.JPG&#34; alt=&#34;The solid black siapo from before, this time with the underlying geometric design revealed in a purple-tinted infrared photo.&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I distinctly remember that her intern pulled over a chair from an empty table, stood on top of it, flipped open the camera with the IR lens still on, and actually gasped out loud. And then she showed me, and I also gasped out loud.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/IMG_0946.JPG&#34; alt=&#34;A DSLR camera pointed at a barkcloth, with the infrared preview showing the revealed design.&#34;&gt;&lt;/p&gt;
-&lt;p&gt;I&amp;rsquo;m not even sure how to describe how satisfying this moment was. It was like a scenario I would make up in a daydream about all my esoteric color knowledge suddenly feeling useful. A lot of science is working for months or years on something you find interesting only to show it to other people and have most of them say at most, &amp;ldquo;oh, nice,&amp;rdquo; and this took about fifteen minutes to provide something tangible that everyone found exciting. This is how science works in like, forensic TV shows.&lt;/p&gt;
-&lt;h1 id=&#34;the-irradiance&#34;&gt;The irradiance&lt;/h1&gt;
-&lt;p&gt;The first image we took with the IR lens was indoors with a standard fluorescent ceiling light. Fluorescent lights are meant to more or less emulate the way that daylight appears to our eyes by providing peaks of emitted light around the peak wavelength sensitivities of our cone cells (around 430, 540, and 570 nm; image from &lt;a href=&#34;https://www.waveformlighting.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Waveform Lighting&lt;/a&gt;):&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/waveformlighting_fluorescent.png&#34; alt=&#34;Irradiance spectrum for a typical fluorescent light, from https://www.waveformlighting.com&#34;&gt;&lt;/p&gt;
-&lt;p&gt;Those peaks do a great job of illuminating objects for human vision so that they appear more or less as they would under natural sunlight. But they provide very little light outside of those peaks, especially for red and infrared wavelengths (&amp;gt;650nm). Compare that to the amount of light above 650nm in sunlight:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/waveformlighting_daylight.png&#34; alt=&#34;Irradiance spectrum for sunlight, from https://www.waveformlighting.com&#34;&gt;&lt;/p&gt;
-&lt;p&gt;People can&amp;rsquo;t see infrared light, so this doesn&amp;rsquo;t make a big practical difference in how things look indoors vs. outdoors. But the IR lens on the camera filters out any non-infrared light, which under a fluorescent lightsource means it&amp;rsquo;s just filtering out ALL of the available environmental light. Even if a surface differs in how much it absorbs and reflects IR wavelengths&amp;ndash;leading to a difference in infrared &amp;ldquo;color&amp;rdquo;&amp;ndash;we weren&amp;rsquo;t able to see that when there was no available infrared light to absorb or reflect.&lt;/p&gt;
-&lt;p&gt;I like this example because it&amp;rsquo;s just enough outside the normal human sensory experience to feel non-obvious, but it&amp;rsquo;s a phenomenon that happens all the time with imaging without us ever clocking it. We think of color as an inherent property of an object (e.g. &amp;ldquo;my dress &lt;em&gt;is&lt;/em&gt; green, it just looks black with the bad lighting in the hallway&amp;rdquo;), but it&amp;rsquo;s not purely academic to point out that color is an emergent property of how a surface interacts with available environmental light. It can have practical consequences!&lt;/p&gt;
-&lt;p&gt;A much more succinct, intuitive example is Olfaur Eliasson&amp;rsquo;s &amp;ldquo;Room for One Colour&amp;rdquo;, which he very neatly demonstrated in about ten seconds of a &lt;a href=&#34;https://www.youtube.com/watch?v=fDE7A68hVaw&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Netflix trailer&lt;/a&gt;:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;images/monochromatic1.png&#34; alt=&#34;Olafur Eliasson turning on a lightbulb in a room lit with yellow light.&#34;&gt;
-&lt;img src=&#34;images/monochromatic2.png&#34; alt=&#34;Turning on the white light reveals a rainbow.&#34;&gt;&lt;/p&gt;
-&lt;h3 id=&#34;information-about-the-siapo-project&#34;&gt;Information about the siapo project&lt;/h3&gt;
-&lt;p&gt;Here&amp;rsquo;s the info that RISD sent me when I asked. Any questions about the project should certainly go to the research team or possibly the museum, not me.&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;On June 7th, 2022, researchers froman indigenous arts nonprofit in American Samoa came to the RISD Museum to view Samoan barkcloth, called siapo. Their organization, known as Folauga o le Tatau Malaga Aganu’u Fa’asamoa (a.k.a. Fa’asamoa Arts), seeks to educate others about the indigenous arts of American Samoa and promote the integration of these ancient art forms into modern lives.Their travel was funded by the Amerika Samoa Humanities Council, and will culminate in a new creative nonfiction book: &lt;em&gt;U’A: Ancient Art through Contemporary Eyes&lt;/em&gt;. The research team consists of three people. Su’a Uilisone Fitiao is a Tufuga Ta Tatau (a traditional tattoo master), a siapo maker, and woodcarver. Reggie Meredith Fitiao (MFA) is a siapo maker and art educator. Mary Anne Bordonaro is a grant writer, short story writer, and will be the author of the book being funded by this grant.&lt;/p&gt;
-&lt;/blockquote&gt;
+      <title>Image trees</title>
+      <link>/post/image-trees/</link>
+      <pubDate>Fri, 07 May 2021 00:00:00 +0000</pubDate>
+      <guid>/post/image-trees/</guid>
+      <description>&lt;p&gt;One of the most direct ways to tell whether or not your image analysis is working is to plot your images themselves as points in your result plots, which is usually easier said than done. Lots of packages in R will allow you to do some form of this, but I usually run into two problems: 1) I have to download a (sometimes pretty hefty) package for a single function, and 2) that function often only works in a specific context, which means it&amp;rsquo;s not very flexible. In practice, I usually end up defining functions for this as-needed, in a sort of ad-hoc dirtbag fashion. This post will outline the basics of doing just that.&lt;/p&gt;
+&lt;p&gt;First, let&amp;rsquo;s take a look at our images:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-1-1.png&#34; width=&#34;672&#34; /&gt;
+This is a lovely set of 40 images of jewel beetles, taken by my collaborator &lt;a href=&#34;https://www.thelordlab.com&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nathan P. Lord&lt;/a&gt;. Not only are they all nicely uniform and centered, but the backgrounds are &lt;strong&gt;transparent&lt;/strong&gt; &amp;ndash; this almost always makes for nicer plotting, because you don&amp;rsquo;t get big white corners when the images overlap. Although if you&amp;rsquo;re just using these plots as diagnostics instead of figures, it doesn&amp;rsquo;t really matter as long as it helps you understand your data better.&lt;/p&gt;
+&lt;p&gt;As an example of the kind of thing we might want to plot, we&amp;rsquo;ll use &lt;a href=&#34;https://github.com/hiweller/colordistance&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;colordistance&lt;/a&gt; to generate a distance matrix of color similarity for the forty images above:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(colordistance)
+
+# in my case, I have a folder called &#39;images&#39; which contains the 40 images,
+# so &#39;images&#39; is a vector of 40 paths
+images &amp;lt;- dir(&amp;quot;images/&amp;quot;, full.names = TRUE)
+
+# generate a distance matrix using all the package defaults
+cdm &amp;lt;- imageClusterPipeline(images, sample.size = FALSE)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-2-1.png&#34; width=&#34;672&#34; /&gt;
+The idea of this analysis is to cluster the images with the most similar color palettes together. So, we want to know if the clusters produced by this distance matrix represent images that actually are the most similar-looking.&lt;/p&gt;
+&lt;p&gt;By default, colordistance generates a heatmap representing the pairwise color distances between each image, where darker blue indicates that two images are more similar, and brighter pink indicates that they are less similar. You might notice that this graphic is kind of useless for diagnostics. The image names are just printed as labels, and their names are not indicative of their contents&amp;ndash;so I have no idea if this analysis has lumped together the green-and-shiny beetles separate from the black-and-yellow beetles, or if I need to try different settings, and sitting here looking up image names is not a quick way to check.&lt;/p&gt;
+&lt;p&gt;A better solution is to plot the images at the tips of the hierarchical clustering tree shown on the top and left of the heatmap:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-3-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;To make this plot, I used the &lt;code&gt;ape&lt;/code&gt; package to plot a neighbor-joining tree of the distance matrix, then defined a function for plotting images at the tips. First, let&amp;rsquo;s make the neighbor-joining tree:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ape)
+tree &amp;lt;- nj(as.dist(cdm))
+plot(tree, direction = &amp;quot;upwards&amp;quot;, cex = 0.5)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-4-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Next, we can define a function, &lt;code&gt;add_image&lt;/code&gt;, which adds an image to a plot at a given set of XY coordinates. It&amp;rsquo;s sort of analogous to the &lt;code&gt;points&lt;/code&gt; function, which lets you add points to an existing base R plot.&lt;/p&gt;
+&lt;p&gt;This is more complicated than just plotting an image as an image, because we have to play nice with existing plotting parameters (aspect ratio, range of the X- and Y-axes, etc).&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# define add_image function:
+add_image &amp;lt;- function(obj, # an object interpretable by rasterImage
+                      x = NULL, # x &amp;amp; y coordinates for the center of the image
+                      y = NULL,
+                      width = NULL, # width of the image
+                      interpolate = TRUE, # method for resizing
+                      angle = 0) {
+  
+  # get current plotting window parameters:
+  usr &amp;lt;- graphics::par()$usr # extremes of user coordinates in the plotting region
+  pin &amp;lt;- graphics::par()$pin # plot dimensions (in inches)
+  
+  # image dimensions and scaling factor:
+  imdim &amp;lt;- dim(obj)
+  sf &amp;lt;- imdim[1] / imdim[2]
+  
+  # set the width of the image (relative to x-axis)
+  w &amp;lt;- width / (usr[2] - usr[1]) * pin[1]
+  h &amp;lt;- w * sf # height is proportional to width
+  hu &amp;lt;- h / pin[2] * (usr[4] - usr[3]) # scale height to y-axis range
+  
+  # plot the image
+  graphics::rasterImage(image = obj,
+                        xleft = x - (width / 2), xright = x + (width / 2),
+                        ybottom = y - (hu / 2), ytop = y + (hu/2),
+                        interpolate = interpolate,
+                        angle = angle)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Note that if you just want to plot an image as an image, you can use &lt;code&gt;rasterImage&lt;/code&gt; from the &lt;code&gt;graphics&lt;/code&gt; package, and almost any other image analysis package will come with a plotting method (for example, in &lt;code&gt;recolorize&lt;/code&gt; you can use &lt;code&gt;plotImageArray&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;We can use this function to plot the images on a regular XY plot:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;X &amp;lt;- runif(40)
+Y &amp;lt;- runif(40)
+plot(X, Y)
+
+for (i in 1:length(images)) {
+  
+  # read the image into R:
+  img &amp;lt;- png::readPNG(images[i]) 
+  
+  # add the image:
+  add_image(img, x = X[i], y = Y[i],
+            width = 0.05)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-6-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If we wanted to actually plot the distance matrix as a bivariate plot, we could use non-metric multidimensional scaling (NMDS), as described in &lt;a href=&#34;https://cougrstats.wordpress.com/2019/12/11/non-metric-multidimensional-scaling-nmds-in-r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt;, to represent the distance matrix with a set of 2D coordinates:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# explaining NMDS is beyond the scope of this post (and is probably best left to the ecologists)
+# see this link for more: 
+# https://cougrstats.wordpress.com/2019/12/11/non-metric-multidimensional-scaling-nmds-in-r/
+
+# for now, we&#39;ll just do it in two lines!
+library(vegan)
+nmds_scores &amp;lt;- scores(metaMDS(comm = as.dist(cdm)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code&gt;## Run 0 stress 0.1158626 
+## Run 1 stress 0.1139447 
+## ... New best solution
+## ... Procrustes: rmse 0.01705616  max resid 0.09840254 
+## Run 2 stress 0.1140722 
+## ... Procrustes: rmse 0.007575743  max resid 0.03447679 
+## Run 3 stress 0.1159785 
+## Run 4 stress 0.1158626 
+## Run 5 stress 0.1139448 
+## ... Procrustes: rmse 0.0001779728  max resid 0.0006533518 
+## ... Similar to previous best
+## Run 6 stress 0.1158627 
+## Run 7 stress 0.115814 
+## Run 8 stress 0.1158626 
+## Run 9 stress 0.1139447 
+## ... New best solution
+## ... Procrustes: rmse 6.912601e-05  max resid 0.0002514859 
+## ... Similar to previous best
+## Run 10 stress 0.1139447 
+## ... Procrustes: rmse 5.642976e-05  max resid 0.0001733153 
+## ... Similar to previous best
+## Run 11 stress 0.1140719 
+## ... Procrustes: rmse 0.007496018  max resid 0.03406593 
+## Run 12 stress 0.1139448 
+## ... Procrustes: rmse 9.99557e-05  max resid 0.000494275 
+## ... Similar to previous best
+## Run 13 stress 0.1139447 
+## ... Procrustes: rmse 9.345179e-05  max resid 0.0004509194 
+## ... Similar to previous best
+## Run 14 stress 0.1139447 
+## ... Procrustes: rmse 6.492366e-05  max resid 0.0003038437 
+## ... Similar to previous best
+## Run 15 stress 0.1140722 
+## ... Procrustes: rmse 0.007604775  max resid 0.03440036 
+## Run 16 stress 0.1158141 
+## Run 17 stress 0.1158141 
+## Run 18 stress 0.1158142 
+## Run 19 stress 0.1139447 
+## ... Procrustes: rmse 5.046786e-05  max resid 0.0002452231 
+## ... Similar to previous best
+## Run 20 stress 0.1158141 
+## *** Solution reached
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;plot(nmds_scores)
+for (i in 1:length(images)) {
+  
+  # read the image into R:
+  img &amp;lt;- png::readPNG(images[i]) 
+  
+  # add the image:
+  add_image(img, x = nmds_scores[i, 1], y = nmds_scores[i, 2],
+            width = 0.05)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-7-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;If this were a presentation-quality figure, I would probably bump out the X- and Y-axis ranges a bit so none of the images got cut off, but this looks pretty good!&lt;/p&gt;
+&lt;p&gt;However, I did promise plotting images at the tips of trees, and that turns out to be pretty easy once you&amp;rsquo;ve got a plotted tree and a set of tips. This mostly comes from &lt;a href=&#34;http://blog.phytools.org/2017/04/new-function-to-add-tip-labels-to-tree.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;this post&lt;/a&gt; on Liam Revell&amp;rsquo;s Phytools blog, which shows how to extract the XY coordinates of the tree tips from a plotted phylogeny; once we have those XY coordinates, we can plot images at those coordinates just as we would for a regular bivariate plot:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# plot the tree
+plot(tree, show.tip.label = FALSE, direction = &amp;quot;upward&amp;quot;)
+
+# get the parameters from the plotting environment
+lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+
+# get the xy coordinates of the tips
+ntip &amp;lt;- lastPP$Ntip
+
+# first n values are the tips, remaining values are the coordinates of the
+# nodes:
+xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                 y = lastPP$yy[1:ntip]) 
+
+# we can add points to the tree pretty easily using generic functions:
+points(xy[ , 1], xy[ , 2], 
+       col = viridisLite::viridis(40), 
+       pch = 19, cex = 2)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-8-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Putting it all together, all we have to do is plot the tree, then plot the images. One crucial thing here&amp;ndash;and familiar to anyone working with trees&amp;ndash;&lt;strong&gt;make sure your images are in the same order as your tips&lt;/strong&gt;. This will save you a lot of head-scratching later.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;# get image names
+imnames &amp;lt;- tools::file_path_sans_ext(basename(images))
+
+# get tip labels
+tipnames &amp;lt;- tree$tip.label
+
+# in my case, the tip labels are identical to the image names, so I can
+# use these to check that my images are in the right order:
+image_order &amp;lt;- match(tipnames, imnames)
+images &amp;lt;- images[image_order]
+
+# and plot!
+par(mar = rep(0, 4))
+plot(tree, show.tip.label = FALSE, direction = &amp;quot;upward&amp;quot;)
+
+# get the parameters from the plotting environment
+lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+
+# get the xy coordinates of the tips
+ntip &amp;lt;- lastPP$Ntip
+xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                 y = lastPP$yy[1:ntip]) 
+
+for (i in 1:length(images)) {
+  add_image(png::readPNG(images[i]),
+            x = xy[i, 1],
+            y = xy[i, 2], 
+            width = 3)
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-9-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;At this point,  I usually write a wrapper function to do all of this for me, so I can plot an image tree from a tree and a list of image paths. I also add a bit of trickery to fix the x-axis scaling; phylogenies typically have weird axis scaling.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;image_tree &amp;lt;- function(tree, # a phylo object
+                       image_paths, # a vector of image paths (in order)
+                       image_width = 0.1, # image width (as a proportion of the x-axis)
+                       tip_label = FALSE, # whether to draw the tip labels
+                       ...) {
+  
+  require(ape)
+  # plot the tree
+  plot.phylo(tree, show.tip.label = tip_label, ...)
+  
+  # this is the weird part: we get the phylo plot parameters from the active
+  # graphics device
+  lastPP &amp;lt;- get(&amp;quot;last_plot.phylo&amp;quot;, envir = .PlotPhyloEnv)
+  
+  # get the xy coordinates of the tips
+  ntip &amp;lt;- lastPP$Ntip
+  xy &amp;lt;- data.frame(x = lastPP$xx[1:ntip],
+                   y = lastPP$yy[1:ntip])
+  
+  # scale image width according to plot width
+  image_width &amp;lt;- diff(range(lastPP$x.lim)) * image_width
+  
+  # add the images using the add_image function
+  for (i in 1:length(image_paths)) {
+    img &amp;lt;- recolorize::readImage(image_paths[i])
+    add_image(img,
+              xy[i, 1], xy[i, 2],
+              width = image_width)
+  }
+  
+}
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;I&amp;rsquo;ll save that function and the &lt;code&gt;add_image&lt;/code&gt; function in a script file (typically called &lt;code&gt;image_tree.R&lt;/code&gt; or similar) and source that for the relevant project, so in practice my actual workflow looks like this:&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(ape)
+library(colordistance)
+
+# get images
+images &amp;lt;- dir(&amp;quot;images/&amp;quot;, full.names = TRUE)
+
+# get distance matrix
+cdm &amp;lt;- imageClusterPipeline(images, 
+                            plot.heatmap = FALSE, 
+                            sample.size = NULL)
+
+# make neighbor-joining tree
+tree &amp;lt;- nj(as.dist(cdm))
+
+# plot image tree
+par(mar = rep(0, 4))
+image_tree(tree, images, 
+           direction = &amp;quot;upward&amp;quot;,
+           y.lim = c(0, 0.7))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&#34;/post/image-trees/index_files/figure-html/unnamed-chunk-11-1.png&#34; width=&#34;672&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;So it&amp;rsquo;s actually pretty straightforward!&lt;/p&gt;
+&lt;p&gt;One question I would have after reading this post is: &amp;ldquo;Why don&amp;rsquo;t you just add this function to your R packages, instead of the crummy-looking default?&amp;rdquo; This is a good question, and there are two answers.&lt;/p&gt;
+&lt;p&gt;First, I didn&amp;rsquo;t know how to do this when I first wrote the colordistance package, but I did know how to make heatmaps. I assumed that anyone using the package would take a quick look at the heatmap and then export the distance matrix for further analysis and plotting to emphasize whatever was most important about their results, and it didn&amp;rsquo;t occur to me that people are pretty likely to use the default visualization because they assume that&amp;rsquo;s what the package author intended. If I ever get the time and incentive to update the package, I hope to do so.&lt;/p&gt;
+&lt;p&gt;Second, I find myself redefining or tweaking this function so much for specific use cases (for instance, in this case we just use the &lt;code&gt;readPNG&lt;/code&gt; function because all the images are PNGs, but you would need to change this if that&amp;rsquo;s not true of your images) that I didn&amp;rsquo;t see the point of including a static version in any one package. There&amp;rsquo;s so much variability in how plots are displayed and in how images are stored and displayed that a post explaining the details of the function was more helpful than creating a static version that would be out of date or too specific in scope. For instance, the &lt;code&gt;image_tree&lt;/code&gt; function above doesn&amp;rsquo;t try to match your image list to your tree tips, because that would require assuming your images are named the same way as your tree tips, which probably won&amp;rsquo;t usually be the case.&lt;/p&gt;
+&lt;p&gt;Anyways, there is probably a happier middle ground than what I&amp;rsquo;ve included here. Hopefully this post provides enough detail for other people to modify it for their needs!&lt;/p&gt;
 </description>
     </item>
     
-    <item>
-      <title>Editing zone maps with user-selected regions</title>
-      <link>/post/editing-zone-maps-with-user-selected-regions/</link>
-      <pubDate>Fri, 22 Mar 2024 00:00:00 +0000</pubDate>
-      <guid>/post/editing-zone-maps-with-user-selected-regions/</guid>
-      <description>&lt;p&gt;As much as I would like &lt;code&gt;recolorize&lt;/code&gt; to provide a single perfect solution to color segmentation that requires no user input, I made it modular for a reason. Supposed &amp;ldquo;one-click&amp;rdquo; methods can be really frustrating when they just barely don&amp;rsquo;t work for your use case and offer no simple way to fix their output.&lt;/p&gt;
-&lt;p&gt;I know that &lt;code&gt;recolorize&lt;/code&gt; will often produce results that are pretty good but not quite right: maybe a part of your image is in deep shadows or a specimen was damaged in preservation. I have certainly had cases where I wanted to open up a &lt;code&gt;recolorize&lt;/code&gt; object in ImageJ to just outline a particularly troublesome region of an image, and others using the package have voiced similar suggestions.&lt;/p&gt;
-&lt;p&gt;With that in mind, I wrote an (experimental) function to allow the user to select a region of the image to alter. This is obviously not as sophisticated as image analysis software with a dedicated user interface, but I think it works really well when you have small fixes to implement, because it means you don&amp;rsquo;t have to clumsily go between a bunch of different softwares for different things.&lt;/p&gt;
-&lt;p&gt;I tried to keep this function as lightweight as possible, so it&amp;rsquo;s not fancy, but maybe it will be useful. Let&amp;rsquo;s define the function first and then I&amp;rsquo;ll demonstrate how it works:&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&#34;language-r&#34;&gt;library(recolorize)
-recolor_selection &amp;lt;- function(rc_obj, color_to = 1, 
-                       selection = &amp;quot;rect&amp;quot;, 
-                       locator_color = &amp;quot;red&amp;quot;,
-                       n_polygons = 1,
-                       plotting = TRUE,
-                       recolor_background = FALSE) {
-  # store old map
-  rc_original_pix &amp;lt;- rc_obj$pixel_assignments
-  
-  # choose region selection method:
-  selection &amp;lt;- match.arg(arg = selection, choices = c(&amp;quot;rectangle&amp;quot;, &amp;quot;polygon&amp;quot;))
-  
-  # make image:
-  img &amp;lt;- recoloredImage(rc_obj, type = &amp;quot;raster&amp;quot;)
-  layout(1); par(mar = rep(0, 4))
-  plot(img)
-  
-  # plot horizontal and vertical bounds to keep user from selecting
-  # outside the image boundaries:
-  abline(h = c(0, dim(img)[1]), v = c(0, dim(img)[2]), col = &amp;quot;darkgrey&amp;quot;)
-  
-  # user-select area and change color of pixels inside region of interest
-  if (selection == &amp;quot;rectangle&amp;quot;) {
-    
-    # select a rectangle
-    u &amp;lt;- spatstat.geom::clickbox(add = TRUE, col = locator_color)
-    
-    # store the input
-    u$xrange &amp;lt;- round(u$xrange)
-    u$yrange &amp;lt;- round(u$yrange)
-    
-    # flip the yrange (in the image, y is numbered bottom to top, but in an array
-    # it&#39;s indexed top to bottom)
-    u$yrange &amp;lt;- dim(img)[1] - u$yrange
-    
-    # and change pixel assignments to new color
-    rc_obj$pixel_assignments[u$yrange[1]:u$yrange[2],
-                             u$xrange[1]:u$xrange[2]] &amp;lt;- color_to
-    
-  } else if (selection == &amp;quot;polygon&amp;quot;) {
-    
-    # select polygon(s)
-    u &amp;lt;- spatstat.geom::clickpoly(add = TRUE, col = locator_color, np = n_polygons)
-    u$xrange &amp;lt;- round(u$xrange)
-    u$yrange &amp;lt;- round(u$yrange)
-    u$bdry &amp;lt;- lapply(u$bdry, \(x) lapply(x, round))
-    
-    # find all pixels inside of the bounding box for the polygon(s)
-    xy &amp;lt;- expand.grid(u$xrange[1]:u$xrange[2], u$yrange[1]:u$yrange[2])
-    
-    # for every polygon...
-    for (i in 1:length(u$bdry)) {
-      pol &amp;lt;- u$bdry[[i]]
-      # find which points in the bounding box fall inside the polygon
-      if (i == 1) {
-        col_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
-      } else {
-        new_idx &amp;lt;- xy[which(secr::pointsInPolygon(xy, do.call(cbind, pol), logical = T)), ]
-        col_idx &amp;lt;- rbind(col_idx, new_idx)
-      }
-    }
-      
-      # reverse x/y order, y
-      col_idx &amp;lt;- as.matrix(col_idx[ , 2:1])
-      col_idx[,1] &amp;lt;- dim(img)[1] - col_idx[,1]
-      
-      # and change color
-      rc_obj$pixel_assignments[col_idx] &amp;lt;- color_to
-      
-  }
-  
-  # make sure the background is still transparent
-  if (!recolor_background) {
-    rc_obj$pixel_assignments[rc_original_pix == 0] &amp;lt;- 0
-  }
-  
-  # if plotting, plot
-  if (plotting) {
-    
-    # draw box or polygon around the region that was changed
-    plot_region &amp;lt;- function() {
-      xdim &amp;lt;- dim(rc_obj$pixel_assignments)[2]
-      ydim &amp;lt;- dim(rc_obj$pixel_assignments)[1]
-      if (selection == &amp;quot;rectangle&amp;quot;) {
-        rect(xleft = u$xrange[1] / xdim, xright = u$xrange[2] / xdim,
-             ybottom = 1 - u$yrange[1] / ydim, ytop = 1 - u$yrange[2] / ydim,
-             border = locator_color)
-      } else {
-        for (i in 1:length(u$bdry)) {
-          polygon(u$bdry[[i]]$x / xdim, 
-                  u$bdry[[i]]$y / ydim, border = locator_color)
-        }
-      }
-    }
-    
-    # reset graphical parameters when function exits:
-    current_par &amp;lt;- graphics::par(no.readonly = TRUE)
-    on.exit(graphics::par(current_par))
-    
-    # set layout
-    graphics::layout(matrix(1:3, nrow = 1),
-                     widths = rep(1, 3))
-    
-    # plot original image
-    graphics::par(mar = c(0, 0, 2, 0))
-    recolorize::plotImageArray(rc_obj$original_img,
-                               main = &amp;quot;Recolored original&amp;quot;)
-    plot_region()
-    
-    # plot old zone map with polygon/rectangle
-    graphics::par(mar = c(0, 0, 2, 0))
-    recolorize::plotImageArray(constructImage(rc_original_pix, rc_obj$centers),
-                               main = &amp;quot;Input&amp;quot;)
-    plot_region()
-    
-    # plot new color map &amp;amp; palette
-    graphics::par(mar = c(0, 0, 2, 0))
+  </channel>
+</rss>
+phics::par(mar = c(0, 0, 2, 0))
     recolorize::plotImageArray(recoloredImage(rc_obj),
                                main = &amp;quot;Output&amp;quot;)
     plot_region()

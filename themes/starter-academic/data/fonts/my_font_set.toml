@@ -5,7 +5,7 @@ name = "Hannah"
 # google_fonts = "family=Montserrat:wght@400;700&family=Roboto+Mono&family=Roboto:wght@400;700"
 # google_fonts = "family=Cormorant+Garamond&family=Inconsolata&family=Noto+Sans&family=Nunito+Sans:wght@300;400&family=Nunito:wght@300&family=Open+Sans&family=Raleway:wght@300;400&display=swap"
 # google_fonts = "family=Barlow:wght@400;600&family=Barrio&family=Inconsolata&family=Nunito"
-google_fonts = "family=Quicksand&family=Barrio&family=Inconsolata&family=Nunito"
+google_fonts = "family=Barlow&family=Barrio&family=Inconsolata&family=Nunito"
 
 
 
@@ -17,7 +17,7 @@ google_fonts = "family=Quicksand&family=Barrio&family=Inconsolata&family=Nunito"
 # Raleway
 
 # Font families
-heading_font = "Quicksand"
-body_font = "Quicksand"
+heading_font = "Barlow"
+body_font = "Barlow"
 nav_font = "Barrio"
 mono_font = "Inconsolata"

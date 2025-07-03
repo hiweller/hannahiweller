@@ -15,7 +15,7 @@ subtitle: ''
 summary: 'How to generate and integrate semilandmarks into a typical patternize/recolorize workflow.'
 authors: [Hannah Weller]
 lastmod: '2025-07-03T15:00:44+02:00'
-featured: no
+featured: yes
 draft: no
 image:
   caption: 'Semilandmarks can help reduce distortions during alignment.'
